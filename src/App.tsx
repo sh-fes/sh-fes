@@ -2,9 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.scss';
 import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Products from './pages/Products';
-import Reports from './pages/Reports';
+import { Home, Products, Reports } from './pages';
 
 function App() {
     return (
