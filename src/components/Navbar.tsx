@@ -3,7 +3,7 @@ import { IconContext } from 'react-icons';
 import * as AiIcons from 'react-icons/ai';
 import * as FaIcons from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import './Navbar.scss'; // eslint-disable-line
+import './Navbar.scss';
 import { SidebarData } from './SidebarData';
 
 function Navbar() {
