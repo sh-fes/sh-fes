@@ -5,7 +5,7 @@
 ```bash
 git clone https://github.com/otkrickey/sh-fes2021
 
-cd sh-fes
+cd sh-fes2021
 
 yarn install
 ```
@@ -15,3 +15,9 @@ yarn install
 ```bash
 yarn start
 ```
+
+## ProgressNote
+
+-   [x] Create React App
+-   [x] Add Navigation Menu
+-   [ ] ....
