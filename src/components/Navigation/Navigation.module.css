@@ -1,0 +1,102 @@
+.Container {
+    position: fixed;
+    bottom: max(-25vw, -150px);
+    right: max(-25vw, -150px);
+    width: min(100vw, 600px);
+    height: min(100vw, 600px);
+    transform: scale(1);
+    transition: all 600ms 0s ease-in-out;
+}
+
+.PartsList {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 50%;
+    padding: 0;
+    margin: 0;
+}
+.PartsList::after {
+    content: '';
+    z-index: 100;
+    height: min(80vw, 480px);
+    width: min(80vw, 480px);
+    border-radius: 50%;
+    position: absolute;
+    left: min(10vw, 60px);
+    top: min(10vw, 60px);
+    background-color: #808080;
+    overflow: hidden;
+}
+input {
+    position: absolute;
+}
+
+.Parts {
+    list-style: none;
+    position: absolute;
+    bottom: min(50vw, 300px);
+    right: min(50vw, 300px);
+    background-color: #404040;
+    height: min(50vw, 300px);
+    width: min(50vw, 300px);
+    transform-origin: 100% 100%;
+    overflow: hidden;
+    transition: all 600ms 0s ease-in-out;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    padding-top: min(3.5vw, 21px);
+    position: absolute;
+    border-radius: 50%;
+    height: min(100vw, 600px);
+    width: min(100vw, 600px);
+    bottom: max(-50vw, -300px);
+    right: max(-50vw, -300px);
+    transform: skew(-70deg) rotate(-80deg);
+}
+label {
+    position: absolute;
+    z-index: 200;
+    height: min(20vw, 120px);
+    width: min(20vw, 120px);
+    bottom: min(40vw, 240px);
+    right: min(40vw, 240px);
+    cursor: pointer;
+    border-radius: 50%;
+    justify-content: center;
+    text-align: center;
+    background-color: red;
+}
+input:checked ~ label {
+    background-color: blue;
+}
+
+input:checked ~ .container {
+    transform: scale(0);
+}
+
+.button {
+    position: absolute;
+    border: none;
+    background: none;
+    color: white;
+    text-align: Center;
+    font-size: 1.5em;
+    padding-bottom: 1em;
+    height: 3.5em;
+    width: 3.5em;
+    background-color: red;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 300;
+}
+.button:hover,
+.button:active,
+.button:focus {
+    background-color: blue;
+}
