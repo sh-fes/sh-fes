@@ -1,66 +1,61 @@
-import React, { Component, CSSProperties } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-// import './CircleNav.scss';
+import Style from './Navigation.module.css';
 import { TNavigationConfig } from './NavigationConfig';
 
-export type transform = {
-    count: number;
-    sum: number;
-    diff: number;
-};
+export type renderData = { sum: number; diff: number };
 interface Props {
-    transform: transform;
+    renderData: renderData;
     config: TNavigationConfig;
+    count: number;
+    to: string;
 }
 interface States {
-    transform: transform;
+    renderData: renderData;
 }
 
 class NavigationPart extends Component<Props, States> {
     constructor(props: Props) {
         super(props);
-        this.state = { transform: this.props.transform };
+        this.state = { renderData: this.props.renderData };
+    }
+    componentDidMount() {
+        this.update(this.state.renderData);
     }
     componentWillReceiveProps(props: Props) {
-        if (props.transform) this.setState({ transform: props.transform });
+        if (props.renderData) this.setState({ renderData: props.renderData });
     }
-    returnParentConfig(config: transform): CSSProperties {
-        const { count, sum, diff } = config;
-        const { id } = this.props.config;
-        const rotate = diff + (sum / count) * id;
-        const skew = 90 - sum / count;
+    update(renderData: renderData) {
+        const c = this.props.count;
+        const { sum: s, diff: d } = renderData;
+        const { id: i } = this.props.config;
         return {
-            transform: `rotate(${rotate}deg) skew(${skew}deg)`,
-        };
-    }
-    returnChildConfig(config: transform): CSSProperties {
-        const { count, sum } = config;
-        const skew = -90 + sum / count;
-        const rotate = -90 + sum / count / 2;
-        return {
-            transform: `skew(${skew}deg) rotate(${rotate}deg)`,
-        };
-    }
-    ra() {
-        const { count, sum, diff } = this.state.transform;
-        const { id } = this.props.config;
-        const rotate = diff + (sum / count) * id;
-        const skew = 90 - sum / count;
-        return {
-            transform: `rotate(${rotate}deg) skew(${skew}deg)`,
+            li: `rotate(${d + (s / c) * i}deg) skew(${90 - s / c}deg)`,
+            link: `skew(${-90 + s / c}deg) rotate(${-90 + s / c / 2}deg)`,
+            child: `rotate(${-d - (s / c) * (i + 1 / 2) + 90}deg)`,
         };
     }
     render() {
         return (
             <li
-                className={`child`}
-                style={this.returnParentConfig(this.state.transform)}
+                className={Style.Parts}
+                style={{ transform: this.update(this.state.renderData).li }}
             >
                 <Link
-                    to='#'
-                    style={this.returnChildConfig(this.state.transform)}
+                    className={Style.PartsLink}
+                    style={{
+                        transform: this.update(this.state.renderData).link,
+                    }}
+                    to={this.props.to}
                 >
-                    <span>{this.props.config.title}</span>
+                    <div
+                        className={Style.PartsContent}
+                        style={{
+                            transform: this.update(this.state.renderData).child,
+                        }}
+                    >
+                        {this.props.config.title}
+                    </div>
                 </Link>
             </li>
         );

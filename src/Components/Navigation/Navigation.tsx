@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Style from './Navigation.module.css';
 import NavigationConfig from './NavigationConfig';
-import NavigationPart, { transform } from './NavigationPart';
+import NavigationPart, { renderData } from './NavigationPart';
 
 interface Props {}
 interface States {
@@ -13,41 +13,42 @@ class Navigation extends Component<Props, States> {
         super(props);
         this.state = { Active: false };
     }
-    r(Active: boolean): transform {
-        const count = document.querySelector('ul.nav')?.children.length ?? 0;
+    update(Active: boolean): renderData {
         const sum = Active ? 150 : 0;
         const diff = Active ? -30 : -30;
-        return { count, sum, diff };
+        return { sum, diff };
+    }
+    componentDidMount() {
+        this.update(this.state.Active);
     }
     render() {
         return (
             <div className={Style.Container}>
-                <button
-                    className={Style.button}
-                    onClick={() => {
-                        this.setState({ Active: !this.state.Active });
-                    }}
-                >
-                    +
-                </button>
-                <ul className={Style.PartsList}>
-                    {NavigationConfig.map((item) => (
-                        <NavigationPart
-                            transform={this.r(this.state.Active)}
-                            config={item}
-                        />
-                    ))}
-                </ul>
-                {/* <CircleList Active={ this.state.Active}/> */}
                 <input
                     type='checkbox'
-                    name='nav-open'
-                    id='nav-open'
+                    name='Button'
+                    id='Button'
                     onChange={(e) => {
                         this.setState({ Active: e.target.checked });
                     }}
+                    className={Style.Button}
+                    defaultChecked={false}
+                    hidden={true}
                 />
-                <label htmlFor='nav-open'></label>
+                <label htmlFor='Button' className={Style.ButtonLabel}></label>
+                <nav className={Style.Nav}>
+                    <ul className={Style.PartsList}>
+                        {NavigationConfig.map((item, index) => (
+                            <NavigationPart
+                                to={item.to}
+                                key={index}
+                                count={NavigationConfig.length}
+                                renderData={this.update(this.state.Active)}
+                                config={item}
+                            />
+                        ))}
+                    </ul>
+                </nav>
             </div>
         );
     }
