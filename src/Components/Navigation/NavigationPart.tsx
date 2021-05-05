@@ -3,7 +3,10 @@ import { Link } from 'react-router-dom';
 import Style from './Navigation.module.css';
 import { TNavigationConfig } from './NavigationConfig';
 
-export type renderData = { sum: number; diff: number };
+export interface renderData {
+    sum: number;
+    diff: number;
+}
 interface Props {
     renderData: renderData;
     config: TNavigationConfig;

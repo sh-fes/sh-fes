@@ -2,7 +2,10 @@ import Markdown from 'markdown-to-jsx';
 import React, { Component } from 'react';
 import options from './Article.template.options';
 
-class ArticleTemplate extends Component {
+interface Props {}
+interface States {}
+
+class ArticleTemplate extends Component<Props, States> {
     data() {
         return {
             title: '',

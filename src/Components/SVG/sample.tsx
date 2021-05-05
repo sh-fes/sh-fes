@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import Style from './sample.module.css';
 
-class Sample extends Component {
+interface Props {}
+interface States {}
+
+class Sample extends Component<Props, States> {
     render() {
         return (
             <>

@@ -1,6 +1,9 @@
 import { Component } from 'react';
 
-class Base extends Component {
+interface Props {}
+interface States {}
+
+class Base extends Component<Props, States> {
     render() {
         return this.props.children;
     }

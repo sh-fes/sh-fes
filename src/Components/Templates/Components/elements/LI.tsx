@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Style from '../Markdown.module.scss';
-// import Style from '../Markdown.module.css';
 
-class MD_LI extends Component {
+interface Props {}
+interface States {}
+
+class MD_LI extends Component<Props, States> {
     render() {
         return <li className={Style.LI}>{this.props.children}</li>;
     }

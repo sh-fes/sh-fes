@@ -7,8 +7,9 @@ import Base from './PageBase';
 interface Props {
     store: Store;
 }
+interface States {}
 
-class Home extends Component<Props> {
+class Home extends Component<Props, States> {
     render() {
         return (
             <>

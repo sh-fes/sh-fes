@@ -4,8 +4,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Home, Products, Reports } from './pages';
 
 interface Props {}
+interface States {}
 
-class App extends Component<Props> {
+class App extends Component<Props, States> {
     render() {
         return (
             <Router>

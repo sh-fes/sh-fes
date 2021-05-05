@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import Base from './PageBase';
 
-class Reports extends Component {
+interface Props {}
+interface States {}
+
+class Reports extends Component<Props, States> {
     render() {
         return (
             <>
