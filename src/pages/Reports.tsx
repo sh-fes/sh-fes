@@ -9,7 +9,7 @@ class Reports extends Component {
                 <Helmet>
                     <title>Reports</title>
                 </Helmet>
-                <Base pageTitle='Reports'>
+                <Base>
                     <div className='reports'>
                         <h1>Reports</h1>
                     </div>

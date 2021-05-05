@@ -9,7 +9,7 @@ class Products extends Component {
                 <Helmet>
                     <title>Products</title>
                 </Helmet>
-                <Base pageTitle='Products'>
+                <Base>
                     <div className='products'>
                         <h1>Products</h1>
                     </div>

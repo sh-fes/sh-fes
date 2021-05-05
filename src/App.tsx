@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Navigation } from './Components/Navigation/';
 import { Home, Products, Reports } from './pages';
 
-class App extends Component {
+interface Props {}
+
+class App extends Component<Props> {
     render() {
         return (
             <Router>

@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
+import { Store } from 'redux';
 import { ArticleTemplates } from '../Components/Templates';
 import Base from './PageBase';
 
-class Home extends Component {
+interface Props {
+    store: Store;
+}
+
+class Home extends Component<Props> {
     render() {
         return (
             <>
                 <Helmet>
                     <title>Home</title>
                 </Helmet>
-                <Base pageTitle='Home'>
+                <Base>
                     <div className='home'>
                         <h1>Home</h1>
                     </div>
