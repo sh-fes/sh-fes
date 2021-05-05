@@ -1,0 +1,23 @@
+article {
+    .H1 {
+        color: red;
+    }
+    .UL {
+        color: blue;
+        .LI {
+            color: blue;
+            .UL {
+                color: green;
+                .LI {
+                    color: green;
+                    .UL {
+                        color: red;
+                        .LI {
+                            color: red;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

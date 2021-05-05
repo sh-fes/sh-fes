@@ -1,0 +1,15 @@
+.Svg {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+
+    background-color: red;
+}
+.Svg .Circle {
+    transition: all 200ms ease;
+
+    stroke-dasharray: 0 calc(3.14 * 50);
+}
+.Svg:hover .Circle {
+    stroke-dasharray: calc(10 * 3.14 * 50 / 100) calc(3.14 * 50);
+}

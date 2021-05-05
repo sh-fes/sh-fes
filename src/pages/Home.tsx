@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import { Store } from 'redux';
-import { ArticleTemplates } from '../Components/Templates';
+import { ArticleTemplates, Sample } from '../Components';
 import Base from './PageBase';
 
 interface Props {
@@ -16,6 +16,7 @@ class Home extends Component<Props> {
                     <title>Home</title>
                 </Helmet>
                 <Base>
+                    <Sample />
                     <div className='home'>
                         <h1>Home</h1>
                     </div>

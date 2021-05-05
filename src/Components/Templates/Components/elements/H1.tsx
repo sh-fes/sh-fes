@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Style from '../Markdown.module.css';
+import Style from '../Markdown.module.scss';
+// import Style from '../Markdown.module.css';
 
 class MD_h1 extends Component {
     render() {
