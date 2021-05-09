@@ -12,7 +12,7 @@ const options: MarkdownToJSX.Options = {
         },
         ul: {
             component: MD_UL,
-        }
+        },
     },
 };
 
