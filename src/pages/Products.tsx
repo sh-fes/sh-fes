@@ -15,6 +15,7 @@ class Products extends Component<Props, States> {
                 <Base>
                     <div className='products'>
                         <h1>Products</h1>
+                        <div style={{ height: '200vh' }}></div>
                     </div>
                 </Base>
             </>
