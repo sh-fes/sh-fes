@@ -6,7 +6,11 @@ interface States {}
 
 class MD_UL extends Component<Props, States> {
     render() {
-        return <ul className={Style.UL}>{this.props.children}</ul>;
+        return (
+            <>
+                <ul className={Style.UL}>{this.props.children}</ul>;
+            </>
+        );
     }
 }
 

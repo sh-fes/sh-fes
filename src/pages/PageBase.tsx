@@ -5,7 +5,11 @@ interface States {}
 
 class Base extends Component<Props, States> {
     render() {
-        return this.props.children;
+        return (
+            <>
+                {this.props.children}
+            </>
+        );
     }
 }
 

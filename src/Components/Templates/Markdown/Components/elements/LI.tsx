@@ -6,7 +6,11 @@ interface States {}
 
 class MD_LI extends Component<Props, States> {
     render() {
-        return <li className={Style.LI}>{this.props.children}</li>;
+        return (
+            <>
+                <li className={Style.LI}>{this.props.children}</li>;
+            </>
+        );
     }
 }
 

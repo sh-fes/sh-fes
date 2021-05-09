@@ -21,20 +21,22 @@ class Navigation extends Component<Props, States> {
     }
     render() {
         return (
-            <div
-                className={[
-                    Style.Container,
-                    this.state.active ? Style.Container_Active : null,
-                ].join(' ')}
-            >
-                <nav className={Style.Nav}>
-                    <NavCircle />
-                    <NavContent />
-                </nav>
-                <Fab className={Style.FAB} onClick={this.update}>
-                    <NavButton />
-                </Fab>
-            </div>
+            <>
+                <div
+                    className={[
+                        Style.Container,
+                        this.state.active ? Style.Container_Active : null,
+                    ].join(' ')}
+                >
+                    <nav className={Style.Nav}>
+                        <NavCircle />
+                        <NavContent />
+                    </nav>
+                    <Fab className={Style.FAB} onClick={this.update}>
+                        <NavButton />
+                    </Fab>
+                </div>
+            </>
         );
     }
 }

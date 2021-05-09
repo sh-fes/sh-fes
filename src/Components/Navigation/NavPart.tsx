@@ -11,11 +11,13 @@ interface States {}
 class NavPart extends Component<Props, States> {
     render() {
         return (
-            <li className={Style.Parts}>
-                <Link className={Style.PartsLink} to={this.props.to}>
-                    {this.props.title}
-                </Link>
-            </li>
+            <>
+                <li className={Style.Parts}>
+                    <Link className={Style.PartsLink} to={this.props.to}>
+                        {this.props.title}
+                    </Link>
+                </li>
+            </>
         );
     }
 }

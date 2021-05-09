@@ -9,11 +9,17 @@ interface States {}
 class NavContent extends Component<Props, States> {
     render() {
         return (
-            <ul className={Style.PartsList}>
-                {NavigationConfig.map((config: TNavigationConfig, key) => (
-                    <NavPart to={config.to} title={config.title} key={key} />
-                ))}
-            </ul>
+            <>
+                <ul className={Style.PartsList}>
+                    {NavigationConfig.map((config: TNavigationConfig, key) => (
+                        <NavPart
+                            to={config.to}
+                            title={config.title}
+                            key={key}
+                        />
+                    ))}
+                </ul>
+            </>
         );
     }
 }

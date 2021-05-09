@@ -6,7 +6,11 @@ interface States {}
 
 class MD_h1 extends Component<Props, States> {
     render() {
-        return <h1 className={Style.H1}>{this.props.children}</h1>;
+        return (
+            <>
+                <h1 className={Style.H1}>{this.props.children}</h1>
+            </>
+        );
     }
 }
 
