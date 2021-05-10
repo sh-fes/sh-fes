@@ -8,7 +8,7 @@ class MD_LI extends Component<Props, States> {
     render() {
         return (
             <>
-                <li className={Style.LI}>{this.props.children}</li>;
+                <li className={Style.LI}>{this.props.children}</li>
             </>
         );
     }

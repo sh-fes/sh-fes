@@ -8,7 +8,7 @@ class MD_UL extends Component<Props, States> {
     render() {
         return (
             <>
-                <ul className={Style.UL}>{this.props.children}</ul>;
+                <ul className={Style.UL}>{this.props.children}</ul>
             </>
         );
     }
