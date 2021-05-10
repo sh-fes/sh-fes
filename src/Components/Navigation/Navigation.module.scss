@@ -1,17 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
-* {
-    font-family: 'Noto Sans JP', sans-serif;
-
-    box-sizing: border-box;
-}
 :root {
-    --min100: min(20vw, 100px);
-    --min1000: min(200vw, 1000px);
-    --min20: min(4vw, 20px);
-    --min200: min(40vw, 200px);
-    --min30: min(6vw, 30px);
-    --min50: min(10vw, 50px);
-    --min500: min(100vw, 500px);
+    --navigation-min100: min(20vw, 100px);
+    --navigation-min1000: min(200vw, 1000px);
+    --navigation-min20: min(4vw, 20px);
+    --navigation-min200: min(40vw, 200px);
+    --navigation-min30: min(6vw, 30px);
+    --navigation-min50: min(10vw, 50px);
+    --navigation-min500: min(100vw, 500px);
 }
 .Container {
     position: fixed;
@@ -35,32 +29,6 @@
             cx: 1133;
             cy: 1133;
             r: 0;
-
-            &:nth-child(1),
-            &:nth-child(2) {
-                transform-origin: 810px 760px;
-                animation: A_NavCircle_wave 4s linear infinite;
-
-                cx: 800;
-                cy: 750;
-                r: 750;
-            }
-            &:nth-child(3) {
-                transform-origin: 780px 730px;
-                animation: A_NavCircle_wave 3s linear infinite;
-
-                cx: 770;
-                cy: 720;
-                r: 720;
-            }
-            &:nth-child(4) {
-                transform-origin: 760px 710px;
-                animation: A_NavCircle_wave 5s linear infinite;
-
-                cx: 750;
-                cy: 700;
-                r: 700;
-            }
         }
     }
     .PartsList {
@@ -75,15 +43,15 @@
         margin: 0;
         padding: 0;
 
-        animation: A_NavContent_SlideOut 300ms ease;
+        animation: A_NavContent_SlideOut 200ms ease;
 
         .Parts {
-            margin: var(--min20);
+            margin: var(--navigation-min20);
 
             list-style: none;
         }
         .PartsLink {
-            font-size: var(--min30);
+            font-size: var(--navigation-min30);
 
             color: black;
         }
@@ -98,16 +66,43 @@
     }
     &_Active {
         .NavCircle {
-            width: var(--min500);
-            height: var(--min1000);
+            width: var(--navigation-min500);
+            height: var(--navigation-min1000);
 
             animation: A_NavCircle_display 300ms ease;
+            .c {
+                &:nth-child(1),
+                &:nth-child(2) {
+                    transform-origin: 810px 760px;
+                    animation: A_NavCircle_wave 4s linear infinite;
+
+                    cx: 800;
+                    cy: 750;
+                    r: 750;
+                }
+                &:nth-child(3) {
+                    transform-origin: 780px 730px;
+                    animation: A_NavCircle_wave 3s linear infinite;
+
+                    cx: 770;
+                    cy: 720;
+                    r: 720;
+                }
+                &:nth-child(4) {
+                    transform-origin: 760px 710px;
+                    animation: A_NavCircle_wave 5s linear infinite;
+
+                    cx: 750;
+                    cy: 700;
+                    r: 700;
+                }
+            }
         }
         .PartsList {
-            right: var(--min50);
-            bottom: var(--min200);
+            right: var(--navigation-min50);
+            bottom: var(--navigation-min200);
 
-            width: var(--min200);
+            width: var(--navigation-min200);
             height: min-content;
 
             animation: A_NavContent_SlideIn 400ms ease;
@@ -133,8 +128,8 @@
 }
 .FAB {
     position: absolute;
-    right: var(--min100);
-    bottom: var(--min100);
+    right: var(--navigation-min100);
+    bottom: var(--navigation-min100);
 }
 
 @keyframes A_NavCircle_wave {
@@ -148,12 +143,12 @@
 
 @keyframes A_NavCircle_hide {
     0% {
-        width: var(--min500);
-        height: var(--min1000);
+        width: var(--navigation-min500);
+        height: var(--navigation-min1000);
     }
     40% {
-        width: var(--min500);
-        height: var(--min1000);
+        width: var(--navigation-min500);
+        height: var(--navigation-min1000);
     }
     100% {
         width: 0;
@@ -166,8 +161,8 @@
         height: 0;
     }
     100% {
-        width: var(--min500);
-        height: var(--min1000);
+        width: var(--navigation-min500);
+        height: var(--navigation-min1000);
     }
 }
 @keyframes A_NavContent_SlideIn {
@@ -176,7 +171,7 @@
 
         opacity: 0;
     }
-    33% {
+    40% {
         transform: translateX(64px);
 
         opacity: 0;
@@ -189,21 +184,10 @@
 }
 @keyframes A_NavContent_SlideOut {
     0% {
-        right: var(--min50);
-        bottom: var(--min200);
+        right: var(--navigation-min50);
+        bottom: var(--navigation-min200);
 
-        width: var(--min200);
-        height: min-content;
-
-        transform: translateX(0);
-
-        opacity: 1;
-    }
-    33% {
-        right: var(--min50);
-        bottom: var(--min200);
-
-        width: var(--min200);
+        width: var(--navigation-min200);
         height: min-content;
 
         transform: translateX(0);
@@ -211,10 +195,10 @@
         opacity: 1;
     }
     100% {
-        right: var(--min50);
-        bottom: var(--min200);
+        right: var(--navigation-min50);
+        bottom: var(--navigation-min200);
 
-        width: var(--min200);
+        width: var(--navigation-min200);
         height: min-content;
 
         transform: translateX(64px);
