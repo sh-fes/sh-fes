@@ -1,0 +1,24 @@
+.Header {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: min-content;
+
+    border: 1px solid red;
+    .Icon {
+        width: 200px;
+        height: 40px;
+        margin: 20px;
+
+        border: 1px solid blue;
+    }
+    .Container {
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        width: 0;
+        height: 0;
+    }
+}
