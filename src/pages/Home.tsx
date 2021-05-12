@@ -14,9 +14,6 @@ class Home extends Component<Props, States> {
                     <title>Home</title>
                 </Helmet>
                 <Base>
-                    <div className='home'>
-                        <h1>Home</h1>
-                    </div>
                     <ArticleTemplates />
                 </Base>
             </>

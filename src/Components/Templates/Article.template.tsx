@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { default as content } from '../../sample/SampleText';
 import { MarkdownConverter } from './Markdown';
 
