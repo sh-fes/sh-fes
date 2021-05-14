@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, '../client/build/')));
+app.get('/health', (req, res, next) => { res.status(200).send(); });
 
 app.use((req, res, next) => { next(createHttpError(404)); });
 
