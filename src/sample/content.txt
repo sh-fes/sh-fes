@@ -1,0 +1,270 @@
+---
+title: Google Chromeが勧める広告技術FLoCのまとめ
+tags: FLoC google Chrome cookie 広告
+author: rana_kualu
+slide: false
+---
+この1・2週間で一気に話が広まったせいで[今さらなかんじ](https://twitter.com/rana_kualu/status/1384162474333667336)になってしまった感もありますが、FLoCの話のまとめです。
+
+サードパーティーCookieの代替としてGoogleが導入を進めている[Federated Learning of Cohorts](https://wicg.github.io/floc/)ですが、[とにかく大不評](https://github.com/WICG/floc/issues/)です。
+
+
+# FLoCについて
+
+## FLoCとは
+
+非常にざっくりFLoCを説明すると、ユーザを嗜好でグルーピングしてグループID(cohort ID)を発行し、そして広告会社にはグループIDだけを渡すよ、というものです。
+お前ロリコングループな、お前は巨乳グループな、などと分類されるわけです。[^1]
+
+ブラウザからWebサイトに渡されるのはグループIDだけなので、そのグループ内の誰であるかを特定することはできません。
+木を隠すなら森の中ということですね。
+
+## どうしてFLoCが必要になったのか
+
+今後使えなくなるサードパーティCookieの代替手段として、Googleが考え出した方法です。
+
+### サードパーティCookieとは
+
+```html:サイトBのHTML
+    <script src="サイトA/tracker.js"></script>
+```
+
+とすることでサイトAがサイトBの情報を収集できるようにする仕組みです。
+アクセス分析など正当な目的だけに使われている間はこれでよかったのですが、次第にこれをサイトCやサイトDといった多くのサイトから横断的に情報を収集し、個人を特定して属性性癖思想信条を吸い上げる仕組みが出来上がっていきました。
+ということでFirefoxもSafariもEdgeも、なんとInternet Explorerですら、2010年代前半までにはサードパーティCookieをデフォルト禁止に変更していました。
+そんな中Chromeだけがしつこくデフォルト許可を貫いていたのですが、最近のプライバシー保護の声に耐えかねて最近ようやくデフォルト禁止することに決めたというわけです。
+
+しかし、ただ単に禁止するだけだと広告頼りのGoogleは死ぬので、何らかの代替手段が必要となります。
+そんなわけでプライバシーを守りつつ広告を出せる仕組みとして考え出されたのがFLoCとなります。
+というかタイミングからすると、代替手段に目途が付いたのでサードパーティCookie廃止を発表したようにも思えてしまうわけですが。
+
+
+## FLoCの問題点
+
+主にふたつの問題点が指摘されています。
+ひとつがサードパーティーCookie以外の特定手段の問題、そしてもうひとつがグループに分類するというアイデアそれ自体の問題です。
+
+まず前者について、外に出るのはグループIDだけで、個人を特定することはできないから問題ないというのがGoogleの主張です。
+しかし現在でも、Cookieを使わずともブラウザフィンガープリント等の手段でけっこうな確度で特定が可能です。
+すなわち、ブラウザフィンガープリントとFLoCを組み合わせることで、これまで以上に自分の属性性癖が把握されます。
+
+またグループIDを使うことで、[グループID:100は黒人が多いから投票阻止広告を出す](https://gigazine.net/news/20200929-trump-black-voters/)とか、[グループID:200は貧乏人が多いからローン広告を出す](https://gigazine.net/news/20161214-how-internet-keeps-poor/)といった誘導が、むしろ今よりもやりやすくなります。
+そしてたとえば『グループID:300は反政府傾向が強い』という情報を独裁政権が握ったら、あとはどうなるでしょうか。
+
+さらにGoogleやAmazon、FacebookやAppleのようにログインを要するサイトであれば、これはそもそもブラウザフィンガープリントを使うまでもなく完全に個人を特定できます。
+そして、私は決してFacebookにログインしないぞと決意している人のグループIDが400だったとして、たまたまFacebookにログインしてる人の中にグループID400の人がいたら、一度もログインしていないのに性癖がFacebookに流出してしまいます。
+要するに、サードパーティCookieを廃止して、余計にひどい仕組みを導入してるということです。
+
+そしてこの仕組みは、強者をさらに強く、弱者をさらに弱くするバイアスがかかっています。
+たとえばAmazonのような巨大企業は、大量に存在する販売履歴とグループIDを紐付ける事で、グループID:500は痴漢ものばっかり買ってるしグループID:600は触手好きだ、みたいな属性性癖を把握することができます。
+そしてグループIDに対してターゲティング広告を施すことによって、初めて訪れたはずの人にも何故か適切なリコメンドが表示され、つい興味をそそられてしまうというわけです。
+
+逆に弱小販売サイトは、販売履歴が少ないためグループIDと属性性癖の紐付けが弱くなり、適切なリコメンドを表示することが難しくなり、客が減る一方ということになります。
+
+さて販売サイトはこうでしたが、では検索サイトはどうでしょう。
+当然Googleの独擅場であり、世界中から自動的にグループIDと検索語句のセットが送られてきます。
+GoogleはサードパーティCookieなど使わなくても、世界で最も正確な属性性癖グループリストを作ることができるのです。
+逆に他の検索サイトや分析サービスは、サードパーティCookieが排除されたことによって、これまでより質の低いデータしか手に入れられなくなります。
+結果としてGoogleは、広告市場において圧倒的に優位な地位に立つことになります。
+要するに、[FLoCはGoogleが市場支配を強化するために競合を排除する仕組みだ](https://gigazine.net/news/20210310-oracle-google-privacy-sandbox-floc/)ということです。
+
+
+# 各ブラウザの反応
+
+
+## Vivaldi
+
+[Vivaldi](https://vivaldi.com/ja/)は[FLoCを許可しない](https://vivaldi.com/blog/no-google-vivaldi-users-will-not-get-floced/)と断言しました。
+[日本語訳](https://vivaldi.com/ja/blog/no-google-vivaldi-users-will-not-get-floced/)も用意されています。
+
+
+## Brave
+
+[Brave](https://brave.com/ja/)も[FLoCを許可しない](https://brave.com/why-brave-disables-floc/)ことを明言しました。
+
+まあVivaldiやBraveはそもそも広告反対の立場から生まれたものなので、このあたりがFLoCを止めるのは当然という見方ではあります。
+
+
+## Firefox
+
+[Firefox](https://www.mozilla.org/ja/firefox/new/)は公式声明は見つけられませんでした。
+
+しかしインタビューなどでは[サポートしないと発言している](https://digiday.com/media/browser-makers-now-including-mozillas-firefox-are-already-ditching-googles-proposed-cookieless-ad-targeting-method-floc/)ようです。
+
+
+## Edge
+
+[Microsoft Edge](https://www.microsoft.com/ja-jp/edge)も公式声明はありません。
+
+しかし、オプションでFLoCを有効にしてEdgeを起動しても[FLoCが使えなかった](https://www.bleepingcomputer.com/news/microsoft/microsoft-disables-googles-floc-tracking-in-microsoft-edge-for-now/)らしく、記事の著者は、Edgeが意図的にFLoCを無効化しているのではないかと想像しているようです。
+なお実際にMSに聞いてみてもはっきりした答えは得られず、逆に[MSの広告戦略PARAKEET](https://github.com/WICG/privacy-preserving-ads/blob/main/Parakeet.md)を勧められたそうな。
+
+ちなみにこのMSの回答、他の記事でも[全く](https://www.zdnet.com/article/brave-browser-disables-googles-floc-tracking-system/)[同じ](https://www.theverge.com/2021/4/16/22387492/google-floc-ad-tech-privacy-browsers-brave-vivaldi-edge-mozilla-chrome-safari)なので定型文のようです。
+
+
+## Opera
+
+[Opera](https://www.opera.com/)も公式声明はありません。
+
+インタビューでは[今のところ導入する予定はない](https://www.theverge.com/2021/4/16/22387492/google-floc-ad-tech-privacy-browsers-brave-vivaldi-edge-mozilla-chrome-safari)と答えています。
+
+
+## Safari
+
+[Safari](https://www.apple.com/jp/safari/)も公式声明はありません。
+
+エンジニアが私的に[実装予定はない](https://twitter.com/johnwilander/status/1381699191609561088)と言っている例はあるみたいですが、公式声明はありません。
+しかしまあ、Appleの姿勢からして導入することはないんじゃないかなと思います。
+そもそもAppleは広告収入に頼る必要がありませんからね。
+
+
+そんなわけで、Chrome以外の主要ブラウザは全てFLoCに反対寄りの立場を取っており、FLoCが導入される可能性はかなり低そうです。
+ただ実際Chromeだけでブラウザシェアの過半数を握っているので、単独で導入を強行したとしてもかなりの効果はあったりしそうですが。
+一般人はFLoCなんて存在自体を知らないし、オプトアウトするという概念もありませんからね。
+
+
+# ブラウザ以外の反応
+
+## 電子フロンティア財団
+
+FLoC反対の輪がここまで広がったのは、おそらくEFFが2021/03/03に発表した[Google's FLoC Is a Terrible Idea](https://www.eff.org/deeplinks/2021/03/googles-floc-terrible-idea)の記事が嚆矢だと思います。
+
+
+## DuckDuckGo
+
+[Chrome拡張機能](https://chrome.google.com/webstore/detail/duckduckgo-privacy-essent/bkdgflcldnnnapblkhphbgpggdiikppg)に[FLoC無効化を追加したよ](https://spreadprivacy.com/block-floc-with-duckduckgo/)だそうです。
+仕事が早い。
+
+
+## WordPress
+
+WordPressに[デフォルト非対応にするセキュリティアップデートのProposalが提出](https://make.wordpress.org/core/2021/04/18/proposal-treat-floc-as-a-security-concern/)されました。
+まだProposalなので導入されると決まったわけではありませんし、セキュリティアップデート扱いは違うだろという突っ込みがたくさんありましたが、機能の導入そのものには賛成多めな雰囲気です。
+
+なお本体ではなくプラグインであれば[既に幾つも存在します](https://wordpress.org/plugins/search/FLoC/)。
+
+## Laravel
+
+デフォルト非対応にする[commit](https://github.com/laravel/framework/commit/c42988a551ffdae0e70aa15959969732265789c0)が入りました。
+committerの[Taylor Otwell](https://twitter.com/taylorotwell)はLaravelの作者なので、よほどのことがない限りLaravelは[デフォルトでFLoCに非対応になります](https://twitter.com/taylorotwell/status/1389214027902070787)。
+
+WordPressもLaravelもただのソフトウェア対応なので後から有効に変更することも可能ですが、PHP最大のシェアを誇るCMSとPHP最大のシェアを誇っているフレームワークが揃ってデフォルト禁止側に倒すことの影響は大きいですね。
+
+
+## GitHub
+
+しれっと[Permissions-Policyレスポンスヘッダを返す](https://qiita.com/rana_kualu/items/453d7c4d551e0e6063f3)ようになりました。
+世界最大のプラットフォームが対策した意味は大きそうですね。
+ちなみにGitHubはMicrosoft傘下であり、MicrosoftはEdgeを作っています。
+つまりはそういうことです。
+
+なお[GitLab](https://about.gitlab.com/)や[Bitbucket](https://bitbucket.org/)には今のところ動きはありません。
+
+## Oracle
+
+[Googleは売春宿を経営しながら聖歌隊に入りたいと言っているようなものだ](https://www.oracle.com/news/announcement/blog/google-privacy-sandbox-030721.html)と、なかなか酷いことを言ってます。
+
+GoogleはサードパーティCookieなんて使わなくても個人情報から位置情報からアプリの使用状況まで抜き放題なのだから、プライバシーを口実に競合他社を追い出して広告市場を独占するのが目的でしかない、という主張です。
+
+
+## アメリカ合衆国司法省
+
+競合他社を排除する独禁法違反の疑いで[U.S. Department of Justiceが調査している](https://www.reuters.com/article/us-tech-antitrust-google-exclusive-idUKKBN2BA10I)とかなんとか。
+
+
+## イギリス公正取引委員会
+
+イギリスの公正取引委員会にあたるCMAという組織が[プライバシーサンドボックスを調査](https://www.gov.uk/government/news/cma-to-investigate-google-s-privacy-sandbox-browser-changes)すると発表。
+これだけEFFの投稿よりだいぶ前の2021/01/08の事例で、イギリス政府めちゃ反応が早い。
+
+## Laravel
+
+
+
+# Googleの主張
+
+2021/04/21: [Federated Learning of Cohorts（FLoC）の概要](https://developers-jp.googleblog.com/2021/04/floc.html)
+2021/04/09: [Privacy-first web advertising: a measurement update](https://blog.google/products/ads-commerce/2021-04-privacy-sandbox-measurement/)
+2021/03/30: [Privacy, sustainability and the importance of "and"](https://blog.google/products/chrome/privacy-sustainability-and-the-importance-of-and/)
+2021/03/04: [よりプライバシーに配慮したウェブの実現にむけて](https://japan.googleblog.com/2021/03/a-more-privacy-first-web.html)。
+2021/02/01: [プライバシーを優先したオンライン広告の未来にむけて](https://japan.googleblog.com/2021/02/2021-privacy-sandbox.html)
+2021/02/01: [Building a privacy-first future for web advertising](https://blog.google/products/ads-commerce/2021-01-privacy-sandbox/)
+
+いずれもFLoCでプライバシーを守りつつターゲティング広告できるよ！という従前の主張の繰り返しです。
+ここ最近の盛り上がりに対する反応は特にないようです。
+
+# FLoCを拒否する方法
+
+FLoCはオプトアウトです。
+ユーザ側もサーバ側も、能動的に拒否しないかぎり勝手にFLoCが有効になります。
+そして、既に一部のChromeでは密かにFLoCが有効になっています。
+一切の通知はありません。
+
+ユーザ側で拒否したい場合は以下の対策のいずれかを取りましょう。
+
+## DuckDuckGo拡張機能を導入する
+
+[DuckDuckGo Privacy Essentials](https://chrome.google.com/webstore/detail/duckduckgo-privacy-essent/bkdgflcldnnnapblkhphbgpggdiikppg)をインストールするのが最も手っ取り早いです。
+『Chromeに追加する』ボタンを押すだけで対策完了です。
+
+DuckDuckGo Privacy Essentialsは検索URLがDuckDuckGoに置き換わったりとFLoC以外の動作にも影響が出るため、他に影響を出したくない場合は[単機能の拡張機能](https://chrome.google.com/webstore/search/FLoC)を探すのもよいでしょう。
+
+## Chrome以外のブラウザを使う
+
+上記のように、Chrome以外のブラウザはFLoCに対応しません。
+他にも強力な広告ブロックや、その他の利点も色々とあります。
+この際だから乗り換えるのも手でしょう。
+とはいえ使い勝手が変わったりメニューを覚えなおしたりと移行コストもかかるので、なかなか難しいかもしれませんが。
+
+## ヨーロッパに移住する
+
+[GDPRが怖いのでヨーロッパは対象外](https://www.adexchanger.com/platforms/google-will-not-run-floc-origin-tests-in-europe-due-to-gdpr-concerns/)です。
+
+## サードパーティーCookieをブロックする
+
+サードパーティーCookie無しでも個人情報を取れるようにするのがFLoCだと思ったのですが、なぜかサードパーティーCookieを拒否することでFLoCも止めることができるようです。
+[幾つかのサイト](https://blog.malwarebytes.com/privacy-2/2021/04/how-to-opt-out-of-the-google-floc-trial/)でその手順が紹介されています。
+ここは確認していないので実際にどうなのかはわかりません。
+
+設定 → プライバシーとセキュリティ → Cookieと他のサイトデータ → サードパーティのCookieをブロックする
+で止められます。
+
+
+## プライバシーサンドボックスをブロックする
+
+プライバシーとセキュリティ設定の[一番下にプライバシーサンドボックスの項目が出てくる](https://forest.watch.impress.co.jp/docs/news/1315651.html)と書かれてるのですが、私の手元(90.0.4430.85)では見当たらないんですよね。
+
+![01.png](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/26088/e405d4b0-17d2-d885-9e51-4b9827b51387.png)
+
+これはFLoCの対象外ということかな？
+
+まあ、おそらくそのうち生えてくるので、そのときに改めて拒否しましょう。
+
+## サーバ側で拒否する
+
+こちらはサーバ側で行うもので、ユーザができるものではありません。
+
+HTTPレスポンスヘッダ`Permissions-Policy: interest-cohort=()`を発行すると、自分のサーバをFLoCの分析対象から外すことができます。
+
+
+# 感想
+
+ここは非対応という消極的対策ではなく、もっと積極的な対策を取ってみてはどうだろうか。
+アクセスするたびにまったくランダムなグループIDを送りつけるとか。
+
+
+ところでネット的にはいまいち評判のよろしくないウェブメディアGigazineですが、FLoCの件に関しては何故か精力的に追っていて参考になりました。
+まあ、ソースに当たってみるとそんなこと言ってないやんけってなることもたまにあるのですが。
+
+https://gigazine.net/news/20210126-google-chrome-privacy-sandbox-floc/
+https://gigazine.net/news/20210204-google-replacing-cookie-antitrust/
+https://gigazine.net/news/20210305-googles-floc-terrible-idea/
+https://gigazine.net/news/20210310-oracle-google-privacy-sandbox-floc/
+https://gigazine.net/news/20210317-google-privacy-sandbox-texas-antitrust-suit/
+https://gigazine.net/news/20210319-google-privacy-antitrust-scrutiny/
+https://gigazine.net/news/20210413-brave-disables-floc/
+https://gigazine.net/news/20210414-google-vivaldi-floc/
+https://gigazine.net/news/20210419-wordpress-automatically-disable-google-floc/
+
+
+[^1]: 実際は[sensitiveな情報は含めない](https://github.com/WICG/floc#sensitive-categories)と言っていますが、ではそのsensitiveをどう判断するのでしょうか。`It should be clear that FLoC will never be able to prevent all misuse.` 不正を全て防ぐことはできないのは明らかだ、だそうです。

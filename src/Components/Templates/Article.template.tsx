@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { default as content } from '../../sample/SampleText';
+import { default as content } from '../../sample/SampleText2';
+import Style from './Article.template.module.scss';
 import { MarkdownConverter } from './Markdown';
 
 interface Props {}
@@ -9,7 +10,12 @@ class ArticleTemplate extends Component<Props, States> {
     render() {
         return (
             <>
-                <MarkdownConverter content={content} />
+                <main className={Style.Container}>
+                    <MarkdownConverter
+                        className={Style.Article}
+                        content={content}
+                    />
+                </main>
             </>
         );
     }

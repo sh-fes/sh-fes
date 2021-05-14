@@ -1,23 +1,70 @@
 article {
-    .H1 {
-        color: red;
-    }
-    .UL {
-        color: blue;
-        .LI {
-            color: blue;
-            .UL {
-                color: green;
-                .LI {
-                    color: green;
-                    .UL {
-                        color: red;
-                        .LI {
-                            color: red;
-                        }
-                    }
-                }
+    .H1,
+    .H2,
+    .H3,
+    .H4,
+    .H5,
+    .H6 {
+        margin-top: 2em;
+        margin-bottom: 2.2rem;
+        padding: 0.5em;
+
+        border-bottom: solid 1.5px rgb(191, 191, 191);
+        .H_Link {
+            text-decoration: none;
+
+            color: black;
+        }
+        &:hover {
+            .H_Link {
+                text-decoration: underline;
             }
         }
     }
+    .Title {
+        font-size: 2em;
+
+        border-bottom: solid 2px black;
+    }
+    .H1 {
+        font-size: 1.5em;
+
+        background-color: #efa29a;
+    }
+    .H2 {
+        font-size: 1.17em;
+
+        background-color: #efcd9a;
+    }
+    .H3 {
+        background-color: #e7ef9a;
+    }
+    .H4 {
+        background-color: #bcef9a;
+    }
+    .H5 {
+        background-color: #9aefa2;
+    }
+    .H6 {
+        background-color: #9aefcd;
+    }
+
+    // .UL {
+    //     color: blue;
+    //     .LI {
+    //         color: blue;
+    //         .UL {
+    //             color: green;
+    //             .LI {
+    //                 color: green;
+    //                 .UL {
+    //                     color: red;
+    //                     .LI {
+    //                         color: red;
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 }
