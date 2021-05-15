@@ -2,15 +2,20 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Style from '../Markdown.module.scss';
 
-interface Props {}
+interface Props {
+    children: string;
+}
 interface States {}
 
 class MD_h5 extends Component<Props, States> {
     render() {
         return (
             <>
-                <h5 className={Style.H5}>
-                    <Link to='#' className={Style.H_Link}>
+                <h5 id={this.props.children} className={Style.H5}>
+                    <Link
+                        to={`#${this.props.children}`}
+                        className={Style.H_Link}
+                    >
                         {this.props.children}
                     </Link>
                 </h5>
