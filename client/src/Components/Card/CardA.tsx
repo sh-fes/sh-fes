@@ -1,14 +1,13 @@
 import IconButton from '@material-ui/core/IconButton';
 import React, { Component } from 'react';
-import './Card.module.scss';
-import Style from './Card.module.scss';
+import Style from './CardA.module.scss';
 
 interface Props {}
 interface States {
     active: boolean;
 }
 
-class Card extends Component<Props, States> {
+class CardA extends Component<Props, States> {
     constructor(props: Props) {
         super(props);
         this.state = { active: false };
@@ -96,4 +95,4 @@ class Card extends Component<Props, States> {
     }
 }
 
-export default Card;
+export default CardA;

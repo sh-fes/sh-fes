@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
-import { Card } from '../Components';
+import { CardA, CardB } from '../Components';
 import Base from './PageBase';
 
 interface Props {}
@@ -23,7 +23,8 @@ class Products extends Component<Props, States> {
                             <li>asdasdasd</li>
                             <li>asdasdasd</li>
                         </ul>
-                        <Card />
+                        <CardA />
+                        <CardB />
                         <div style={{ height: '200vh' }}></div>
                     </div>
                 </Base>
