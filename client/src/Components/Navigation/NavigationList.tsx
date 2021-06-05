@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Style from './Navigation.module.scss';
-import NavPart from './NavPart';
-import NavigationConfig, { TNavigationConfig } from './NavPartConfig';
+import NavPart from './NavigationListItem';
+import NavigationConfig, { TNavigationConfig } from './NavigationListItemConfig';
 
 interface Props {}
 interface States {}
