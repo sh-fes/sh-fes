@@ -1,0 +1,185 @@
+.Card {
+    position: relative;
+
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 480px;
+    margin-bottom: 1%;
+
+    transition: all 400ms cubic-bezier(0.22, 0.25, 0, 1);
+
+    border-radius: 24px;
+    background: rgba(200, 200, 200, 0.6);
+
+// box-shadow: 0 0 16px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2.5rem 2rem -2rem hsl(200, 50%, 20% / 40%);
+
+    backdrop-filter: blur(5px);
+
+    // &::before {
+    //     position: absolute;
+    //     z-index: -2;
+    //     top: 0;
+    //     right: 0;
+    //     bottom: 0;
+    //     left: 0;
+
+    //     content: '';
+    //     transition: all 400ms cubic-bezier(0.22, 0.25, 0, 1);
+
+    //     background-color: rgb(200, 167, 238);
+    // }
+    // &::after {
+    //     position: absolute;
+    //     z-index: -1;
+    //     top: 0;
+    //     right: 0;
+    //     bottom: 0;
+    //     left: 0;
+
+    //     margin: 6px;
+    //     padding: 6px;
+
+    //     content: '';
+    //     transition: all 400ms cubic-bezier(0.22, 0.25, 0, 1);
+
+    //     border-radius: 18px;
+    //     background-color: rgba(255, 255, 255, 0.1);
+    //     box-shadow: -20px -20px 30px rgba(255, 255, 255, 0.1),
+    //     20px 20px 30px rgba(100, 100, 100, 0.1),
+    //     inset -20px -20px 30px rgba(255, 255, 255, 0.1),
+    //     inset 20px 20px 30px rgba(100, 100, 100, 0.1);
+    // }
+
+    .Head {
+        position: relative;
+
+        display: flex;
+        align-items: flex-start;
+        flex: none;
+
+        width: 100%;
+        height: 30%;
+        .Thumbnail {
+            position: relative;
+
+            overflow: hidden;
+
+            width: 30%;
+            padding-bottom: 30%;
+
+            border-top-left-radius: 24px;
+            border-bottom-right-radius: 12px;
+
+            .ThumbnailImage {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+
+                display: block;
+
+                width: 100%;
+                height: 100%;
+
+                object-fit: cover;
+            }
+        }
+        .Title {
+            line-height: 1.4rem;
+
+            display: -webkit-box;
+            overflow: hidden;
+            -webkit-box-orient: vertical;
+
+            width: 70%;
+            max-height: 4.2rem;
+            margin: 12px 0;
+            padding: 0 12px;
+
+            -webkit-line-clamp: 3;
+            .TitleLink {
+                text-decoration: none;
+
+                color: black;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+    .Body {
+        position: relative;
+
+        visibility: hidden;
+        overflow: hidden;
+
+        height: 0;
+        margin: 0 18px;
+
+        transition: all 400ms cubic-bezier(0.22, 0.25, 0, 1);
+
+        .Description {
+            line-height: 1.4rem;
+
+            padding: 6px 0;
+
+            transition: all 400ms cubic-bezier(0.22, 0.25, 0, 1);
+
+            color: black;
+        }
+    }
+    .Foot {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        display: flex;
+        justify-content: space-between;
+
+        margin: 0 6px 6px;
+
+        transition: all 400ms cubic-bezier(0.22, 0.25, 0, 1);
+        .More {
+            display: inline-block;
+            visibility: hidden;
+
+            margin: 6px 12px;
+
+            color: black;
+        }
+        .Pull {
+            margin: 0 3px;
+            .Pull_SVG {
+                .Pull_SVG_Path {
+                    transition: all 400ms cubic-bezier(0.22, 0.25, 0, 1);
+                    transform: rotate(180deg);
+                    transform-origin: center;
+                }
+            }
+        }
+    }
+    &_Active {
+        .Body {
+            visibility: visible;
+        }
+        .Foot {
+            position: relative;
+            .More {
+                visibility: visible;
+            }
+            .Pull {
+                .Pull_SVG {
+                    .Pull_SVG_Path {
+                        transform: rotate(0);
+                    }
+                }
+            }
+        }
+    }
+}
