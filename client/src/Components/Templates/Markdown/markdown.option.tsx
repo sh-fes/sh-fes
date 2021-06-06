@@ -12,7 +12,7 @@ import {
 } from './Components/';
 
 const options: MarkdownToJSX.Options = {
-    wrapper: 'article',
+    wrapper: 'main',
     overrides: {
         Title,
         h1: {
