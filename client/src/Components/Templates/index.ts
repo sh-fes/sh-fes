@@ -1,1 +1,1 @@
-export { default as ArticleTemplates } from './Article.template';
+export { default as ArticleTemplate } from './Article.template';
