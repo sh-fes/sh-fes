@@ -1,9 +1,2 @@
-import Home from './Home'
-import Products from './Products'
-import Reports from './Reports'
-
-export {
-    Home,
-    Reports,
-    Products
-}
+export { default as IndexPage } from './Index.page';
+export { default as Article } from './Article.page';

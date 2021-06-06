@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
-import { Helmet } from 'react-helmet';
-import { CardA, CardB } from '../Components';
-import Base from './PageBase';
+import { CardA, CardB, CardC, IndexLayout } from '../Components';
 
 interface Props {}
 interface States {}
 
-class Products extends Component<Props, States> {
+class IndexPage extends Component<Props, States> {
     render() {
+        interface cardCItems {
+            id: number;
+        }
+        const list: cardCItems[] = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
         return (
             <>
-                <Helmet>
-                    <title>Products</title>
-                </Helmet>
-                <Base>
+                <IndexLayout title='Index Page'>
                     <div className='products'>
                         <h1>Products</h1>
                         <ul>
@@ -25,12 +24,14 @@ class Products extends Component<Props, States> {
                         </ul>
                         <CardA />
                         <CardB />
-                        <div style={{ height: '200vh' }}></div>
+                        {list.map((value, key) => (
+                            <CardC id={`CardC-${key}`} />
+                        ))}
                     </div>
-                </Base>
+                </IndexLayout>
             </>
         );
     }
 }
 
-export default Products;
+export default IndexPage;
