@@ -5,9 +5,13 @@
     padding: 20px;
 
     background-color: #efcd9a;
-}
-.Article {
-    padding: 20px;
+    .Article {
+        padding: 20px;
 
-    background-color: #ffffff;
+        background-color: #ffffff;
+        *:not(:-webkit-any(h1, h2, h3, h4, h5, h6)) {
+            margin: revert;
+            padding: revert;
+        }
+    }
 }
