@@ -1,0 +1,1 @@
+export { default as ArticleTemplate } from './Article.template';

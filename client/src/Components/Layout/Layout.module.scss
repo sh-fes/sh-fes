@@ -1,0 +1,12 @@
+.Container {
+    display: flex;
+    .LeftContainer {
+        background-color: red;
+    }
+    .MainContainer {
+        background-color: blue;
+    }
+    .RightContainer {
+        background-color: green;
+    }
+}
