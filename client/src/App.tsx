@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.module.scss';
-import { Navigation } from './Components';
-import { Home, Products, Reports } from './pages';
+import { Header, Navigation } from './Components';
+import { Article, IndexPage } from './pages';
 
 interface Props {}
 interface States {}
@@ -11,13 +11,12 @@ class App extends Component<Props, States> {
     render() {
         return (
             <Router>
-                {/* <Header /> */}
-                <Navigation />
+                <Header />
                 <Switch>
-                    <Route path='/' exact component={Home} />
-                    <Route path='/reports' component={Reports} />
-                    <Route path='/products' component={Products} />
+                    <Route path='/' exact component={Article} />
+                    <Route path='/index' component={IndexPage} />
                 </Switch>
+                <Navigation />
             </Router>
         );
     }
