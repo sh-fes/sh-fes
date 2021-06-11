@@ -1,12 +1,61 @@
 .Container {
-    display: flex;
-    .LeftContainer {
-        background-color: red;
+    .RightContainer {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        height: 56px;
+        padding: 6px;
+
+        background-color: rgb(235, 160, 160);
     }
     .MainContainer {
-        background-color: blue;
+        max-width: 800px;
     }
-    .RightContainer {
-        background-color: green;
+    .LeftContainer {
+        min-height: 56px;
+        padding: 6px;
+
+        background-color: rgb(231, 231, 141);
+    }
+}
+
+@media screen and (min-width: 480px) {
+    .Container {
+        display: grid;
+
+        max-width: 856px;
+        margin: auto;
+
+        grid-template-areas:
+            'side index'
+            'side main';
+        grid-template-columns: 56px 1fr;
+        .RightContainer {
+            position: revert;
+            right: unset;
+            bottom: unset;
+            left: unset;
+
+            height: unset;
+
+            grid-area: side;
+        }
+        .MainContainer {
+            grid-area: main;
+        }
+        .LeftContainer {
+            grid-area: index;
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .Container {
+        max-width: 1156px;
+
+        grid-template-areas: 'side main index';
+        grid-template-columns: 56px 1fr 300px;
     }
 }

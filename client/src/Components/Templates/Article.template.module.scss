@@ -1,17 +1,18 @@
 .Container {
-    width: 800px;
     max-width: 800px;
-    margin: 20px;
-    padding: 20px;
 
-    background-color: #efcd9a;
+    // background-color: #efcd9a;
     .Article {
-        padding: 20px;
+        padding: 6px;
 
         background-color: #ffffff;
-        *:not(:-webkit-any(h1, h2, h3, h4, h5, h6)) {
+        * {
             margin: revert;
             padding: revert;
+        }
+        *:-webkit-any(h1, h2, h3, h4, h5, h6){
+            margin: inherit;
+            padding: inherit;
         }
     }
 }
