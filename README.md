@@ -3,9 +3,13 @@
 ## Install
 
 ```bash
-git clone https://github.com/otkrickey/sh-fes2021
+git clone https://github.com/otkrickey/react_sh-fes2021
 
-cd sh-fes2021
+cd react_sh-fes2021
+
+yarn install
+
+cd client
 
 yarn install
 ```
