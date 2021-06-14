@@ -7,7 +7,7 @@ class TopRightSidebar extends Component<Props, States> {
     render() {
         return (
             <>
-                Right Sidebar
+                Right
             </>
         );
     }

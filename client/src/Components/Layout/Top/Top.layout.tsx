@@ -3,7 +3,6 @@ import InstagramIcon from '@material-ui/icons/Instagram';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
-import { ArticleIndexBar } from '.';
 import { LayoutStyle } from '..';
 import { background } from '../../../public';
 
@@ -34,22 +33,9 @@ class ArticleLayout extends Component<Props, States> {
                         <InstagramIcon className={LayoutStyle.ShareIcon} />
                         <FacebookIcon className={LayoutStyle.ShareIcon} />
                     </aside>
-                    <main className={LayoutStyle.MainContainer}>
-                        <div className={LayoutStyle.Identity}>
-                            <img
-                                src={background}
-                                alt='fill'
-                                className={LayoutStyle.AuthorIcon}
-                            />
-                            <div className={LayoutStyle.AuthorName}>
-                                Otkrickey
-                            </div>
-                        </div>
+                    <main className={LayoutStyle.TopContainer}>
                         {this.props.children}
                     </main>
-                    <aside className={LayoutStyle.RightContainer}>
-                        <ArticleIndexBar />
-                    </aside>
                 </div>
             </>
         );

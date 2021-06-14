@@ -4,9 +4,9 @@ export type TNavigationConfig = {
 }
 const NavigationConfig: TNavigationConfig[] = [
     { title: 'Top', to: '/' },
-    { title: 'Musics', to: '/index' },
-    { title: 'Videos', to: '/index' },
-    { title: 'Notify', to: '/' },
-    { title: 'Privacy', to: '/' }
+    { title: 'Index', to: '/index' },
+    { title: 'Article', to: '/article' },
+    { title: 'Index', to: '/index' },
+    { title: 'Article', to: '/article' }
 ]
 export default NavigationConfig;
