@@ -1,6 +1,7 @@
 import IconButton from '@material-ui/core/IconButton';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { background } from '../../public';
 import Style from './CardC.module.scss';
 
 interface Props {
@@ -33,13 +34,14 @@ class CardC extends Component<Props, States> {
                         <div className={Style.Thumbnail}>
                             <img
                                 className={Style.ThumbnailImage}
-                                src='https://cdn.wallpaperhub.app/cloudcache/3/4/8/f/c/d/348fcd4929df4c3f60ea95239e476a7077adff23.jpg'
+                                src={background}
                                 alt='img'
                             />
                         </div>
                         <h4 className={Style.Title}>
                             <Link className={Style.TitleLink} to='/'>
-                                土曜になると駅に出没・・・女子大学生"盗撮"の男逮捕(13/12/09)
+                                【オンライン栄東祭】2021年10月に開催決定！
+                                2度目の試みであるオンライン栄東祭、増強したスタッフとともに再挑戦を図れるか。
                             </Link>
                         </h4>
                     </div>
@@ -58,8 +60,8 @@ class CardC extends Component<Props, States> {
                         }
                     >
                         <p className={Style.Description}>
-                            駅のホームで女子大学生のスカートの中を盗撮したとして、36歳の男が逮捕されました。男は、「盗撮しやすい土曜日を狙った」と話しています。　派遣社員の東海林英明容疑者は7日、東京の東急大井町線九品仏駅のホームで、21歳の女子大学生のスカートの中をデジタルカメラで盗撮した疑いです。
-                            駅のホームで女子大学生のスカートの中を盗撮したとして、36歳の男が逮捕されました。男は、「盗撮しやすい土曜日を狙った」と話しています。　派遣社員の東海林英明容疑者は7日、東京の東急大井町線九品仏駅のホームで、21歳の女子大学生のスカートの中をデジタルカメラで盗撮した疑いです。
+                            　オンライン栄東祭を2021年10月に開催することが決定しました。
+                            昨年度は推計約2000人が閲覧した栄東祭、今年は総勢70人のスタッフとともに制作されます。
                         </p>
                     </div>
                     <div className={Style.Foot}>
