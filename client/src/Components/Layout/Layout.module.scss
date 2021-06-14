@@ -51,10 +51,6 @@
     .MainContainer {
         max-width: 800px;
         min-height: 60vh;
-        * {
-            margin: revert;
-            padding: revert;
-        }
         .Identity {
             display: flex;
 
@@ -81,10 +77,6 @@
     }
     .TopContainer {
         min-height: 60vh;
-        * {
-            margin: revert;
-            padding: revert;
-        }
     }
     .RightContainer {
         min-height: 56px;
