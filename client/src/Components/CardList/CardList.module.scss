@@ -1,6 +1,8 @@
 @import '../../Global.module';
 .Container {
     .Identity {
+        z-index: 120;
+
         display: flex;
 
         height: 96px;
@@ -29,5 +31,8 @@
     }
     .CardList {
         transition: all 400ms cubic-bezier(0.22, 0.25, 0, 1);
+        & > article {
+            z-index: 110;
+        }
     }
 }

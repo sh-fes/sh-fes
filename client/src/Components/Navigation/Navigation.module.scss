@@ -21,7 +21,7 @@
 }
 .Container {
     position: fixed;
-    z-index: 200;
+    z-index: 300;
     .Nav {
         position: absolute;
 
@@ -71,7 +71,7 @@
 
                 width: 150%;
                 height: 100%;
-                @media screen and (min-width:1024px) {
+                @media screen and (min-width: 1024px) {
                     .CirclePart {
                         animation-name: Wave_NavCircle;
                         animation-timing-function: linear;
