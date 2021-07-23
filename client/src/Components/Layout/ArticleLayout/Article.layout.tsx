@@ -1,10 +1,7 @@
-import FacebookIcon from '@material-ui/icons/Facebook';
-import InstagramIcon from '@material-ui/icons/Instagram';
-import TwitterIcon from '@material-ui/icons/Twitter';
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { ArticleIndexBar } from '.';
-import { LayoutStyle } from '..';
+import { LayoutStyle, Share } from '..';
 import { background } from '../../../public';
 
 interface Props {
@@ -25,11 +22,7 @@ class ArticleLayout extends Component<Props, States> {
                         <div className={LayoutStyle.Mono}></div>
                     </div>
                     <div className={LayoutStyle.Container}>
-                        <aside className={LayoutStyle.Share}>
-                            <TwitterIcon className={LayoutStyle.ShareIcon} />
-                            <InstagramIcon className={LayoutStyle.ShareIcon} />
-                            <FacebookIcon className={LayoutStyle.ShareIcon} />
-                        </aside>
+                        <Share />
                         <main className={LayoutStyle.MainContainer}>
                             <div className={LayoutStyle.Identity}>
                                 <img
