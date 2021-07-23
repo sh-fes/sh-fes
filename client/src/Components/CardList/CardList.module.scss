@@ -1,0 +1,33 @@
+@import '../../Global.module';
+.Container {
+    .Identity {
+        display: flex;
+
+        height: 96px;
+
+        background: white;
+        .AuthorIcon {
+            width: 72px;
+            height: 72px;
+            margin: 12px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+            object-position: 50% 50%;
+        }
+        .AuthorName {
+            font-size: x-large;
+            font-weight: 500;
+            line-height: 72px;
+
+            flex: auto;
+
+            height: 72px;
+            margin: 12px;
+        }
+    }
+    .CardList {
+        background-color: inherit;
+    }
+}

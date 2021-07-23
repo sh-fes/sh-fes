@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.module.scss';
-import { Header, Navigation } from './Components';
+import { BackgroundImage, Header, Navigation } from './Components';
+// import { Header } from './Components';
 import { Article, IndexPage, Top } from './pages';
 
 interface Props {}
@@ -12,6 +13,7 @@ class App extends Component<Props, States> {
         return (
             <Router>
                 <Header />
+                <BackgroundImage />
                 <Switch>
                     <Route path='/' exact component={Top} />
                     <Route path='/index' component={IndexPage} />

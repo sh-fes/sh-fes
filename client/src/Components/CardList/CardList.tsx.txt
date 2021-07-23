@@ -1,0 +1,123 @@
+import React, { Component } from 'react';
+import { CardD } from '..';
+import { background } from '../../public';
+import Style from './CardList.module.scss';
+
+interface Props {
+    id: string;
+    title: string;
+    gutter: number;
+}
+interface States {}
+
+interface GridProps {
+    container: HTMLDivElement | null;
+    cardItems: NodeListOf<Element> | null;
+    gutter: number;
+    mount: () => void;
+    rtl?: boolean;
+}
+
+class CardList extends Component<Props, States> {
+    private CardData = [
+        { id: 'otkrickey-1' },
+        { id: 'otkrickey-2' },
+        { id: 'otkrickey-3' },
+        { id: 'otkrickey-4' },
+        { id: 'otkrickey-5' },
+        { id: 'otkrickey-6' },
+        { id: 'otkrickey-7' },
+        { id: 'otkrickey-8' },
+    ];
+    private CardList = React.createRef<HTMLDivElement>();
+    private Grid: GridProps = {
+        container: null,
+        cardItems: null,
+        gutter: 0,
+        mount: () => {
+            const { container, cardItems, gutter } = this.Grid;
+            if (!container) return false;
+            if (!cardItems || cardItems.length === 0) return false;
+            container.style.width = '';
+            let containerWidth = container.getBoundingClientRect().width;
+            const firstChildWidth =
+                (cardItems[0] as Element).getBoundingClientRect().width + gutter;
+            const cols = Math.max(Math.floor((containerWidth - gutter) / firstChildWidth), 1);
+            let count = 0;
+            containerWidth = firstChildWidth * cols + gutter;
+            container.style.width = `${containerWidth}px`;
+            container.style.position = 'relative';
+            let itemsPosX: number[] = [];
+            let itemsGutter: number[] = [];
+            for (let g = 0; g < cols; ++g) {
+                itemsPosX.push(g * firstChildWidth + gutter);
+                itemsGutter.push(gutter);
+            }
+            if (this.Grid.rtl) itemsPosX.reverse();
+            (cardItems as NodeListOf<HTMLElement>).forEach((item) => {
+                let itemIndex = itemsGutter
+                    .slice(0)
+                    .sort(function (a, b) {
+                        return a - b;
+                    })
+                    .shift();
+                if (itemIndex) {
+                    itemIndex = itemsGutter.indexOf(itemIndex);
+                    const posX = itemsPosX[itemIndex];
+                    const posY = itemsGutter[itemIndex];
+                    item.style.position = 'absolute';
+                    item.style.transform = `translate(${posX}px,${posY}px)`;
+                    itemsGutter[itemIndex] += item.getBoundingClientRect().height + gutter;
+                    count = count + 1;
+                }
+            });
+            container.style.display = '';
+            const containerHeight =
+                itemsGutter
+                    .slice(0)
+                    .sort(function (a, b) {
+                        return a - b;
+                    })
+                    .pop() ?? 0;
+            container.style.height = `${containerHeight}px`;
+        },
+    };
+    constructor(props: Props) {
+        super(props);
+        console.log()
+        // setInterval(() => {
+        //     this.Grid.mount();
+        // }, 100);
+    }
+    componentDidMount() {
+        this.Grid.container = this.CardList.current;
+        this.Grid.cardItems =
+            this.Grid.container?.querySelectorAll(`.${Style.CardList} > *`) ?? null;
+        this.Grid.gutter =
+            typeof this.props.gutter === 'number' &&
+            isFinite(this.props.gutter) &&
+            Math.floor(this.props.gutter) === this.props.gutter
+                ? this.props.gutter
+                : 0;
+        this.Grid.mount();
+    }
+    render() {
+        return (
+            <>
+                <div className={Style.Container} id={this.props.id}>
+                    <div className={Style.Identity}>
+                        <img src={background} alt='fill' className={Style.AuthorIcon} />
+                        <div className={Style.AuthorName}>{this.props.title}</div>
+                    </div>
+                    <div className={Style.CardList} ref={this.CardList}>
+                        {this.CardData.map((data, key) => (
+                            <CardD id={data.id} key={key} onChange={this.Grid.mount} />
+                        ))}
+                    </div>
+                </div>
+            </>
+        );
+    }
+}
+
+export default CardList;

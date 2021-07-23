@@ -11,9 +11,10 @@
 
     transition: all 400ms cubic-bezier(0.22, 0.25, 0, 1);
 
-    border-radius: 24px;
+    border-radius: 12px;
     background: rgba(200, 200, 200, 0.6);
     box-shadow: 0 20px 32px -32px hsl(200, 50%, 20% / 40%);
+
     backdrop-filter: blur(5px);
     .Head {
         position: relative;
@@ -32,7 +33,7 @@
             width: 30%;
             padding-bottom: 30%;
 
-            border-top-left-radius: 24px;
+            border-top-left-radius: 12px;
             border-bottom-right-radius: 12px;
 
             .ThumbnailImage {

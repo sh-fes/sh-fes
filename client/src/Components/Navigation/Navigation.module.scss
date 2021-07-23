@@ -1,59 +1,55 @@
 :root {
+    --nav-circle-height: var(--navigation-min1000);
+    --nav-circle-width: var(--navigation-min500);
     --navigation-min100: min(20vw, 100px);
-    --navigation-min1000: min(200vw, 1000px);
+    --navigation-min1000: min(200vw, 1000px, 100vh);
     --navigation-min20: min(4vw, 20px);
-    --navigation-min200: min(40vw, 200px);
+    --navigation-min200: min(40vw, 200px, 20vh);
     --navigation-min30: min(6vw, 30px);
     --navigation-min50: min(10vw, 50px);
-    --navigation-min500: min(100vw, 500px);
+    --navigation-min500: min(100vw, 500px, 50vh);
 }
-.Container {
-    position: fixed;
+.Container,
+.Nav,
+.NavCircle,
+.PartsList {
     right: 0;
     bottom: 0;
 
     width: 0;
     height: 0;
-    .NavCircle {
+}
+.Container {
+    position: fixed;
+    z-index: 200;
+    .Nav {
         position: absolute;
-        right: 0;
-        bottom: 0;
 
-        width: 0;
-        height: 0;
+        transition: all 300ms ease;
+        .NavCircle {
+            position: absolute;
 
-        animation: A_NavCircle_hide 400ms ease;
-        .c {
-            transition: all 600ms ease;
-
-            cx: 1133;
-            cy: 1133;
-            r: 0;
+            transition: all 300ms ease;
         }
-    }
-    .PartsList {
-        position: absolute;
-        right: 0;
-        bottom: 0;
+        .PartsList {
+            position: absolute;
 
-        justify-content: center;
+            justify-content: center;
 
-        width: 0;
-        height: 0;
-        margin: 0;
-        padding: 0;
+            margin: 0;
+            padding: 0;
 
-        animation: A_NavContent_SlideOut 200ms ease;
+            transition: all 300ms ease;
+            .Parts {
+                margin: var(--navigation-min20);
 
-        .Parts {
-            margin: var(--navigation-min20);
+                list-style: none;
+                .PartsLink {
+                    font-size: var(--navigation-min30);
 
-            list-style: none;
-        }
-        .PartsLink {
-            font-size: var(--navigation-min30);
-
-            color: black;
+                    color: black;
+                }
+            }
         }
     }
     .NavButton {
@@ -65,60 +61,61 @@
         }
     }
     &_Active {
-        .NavCircle {
-            width: var(--navigation-min500);
-            height: var(--navigation-min1000);
+        .Nav {
+            overflow: hidden;
 
-            animation: A_NavCircle_display 300ms ease;
-            .c {
-                &:nth-child(1),
-                &:nth-child(2) {
-                    transform-origin: 810px 760px;
-                    animation: A_NavCircle_wave 4s linear infinite;
+            width: var(--nav-circle-width);
+            height: var(--nav-circle-height);
+            .NavCircle {
+                right: -50%;
 
-                    cx: 800;
-                    cy: 750;
-                    r: 750;
-                }
-                &:nth-child(3) {
-                    transform-origin: 780px 730px;
-                    animation: A_NavCircle_wave 3s linear infinite;
-
-                    cx: 770;
-                    cy: 720;
-                    r: 720;
-                }
-                &:nth-child(4) {
-                    transform-origin: 760px 710px;
-                    animation: A_NavCircle_wave 5s linear infinite;
-
-                    cx: 750;
-                    cy: 700;
-                    r: 700;
+                width: 150%;
+                height: 100%;
+                @media screen and (min-width:1024px) {
+                    .CirclePart {
+                        animation-name: Wave_NavCircle;
+                        animation-timing-function: linear;
+                        animation-iteration-count: infinite;
+                        @keyframes Wave_NavCircle {
+                            0% {
+                                transform: rotate(0deg);
+                            }
+                            100% {
+                                transform: rotate(360deg);
+                            }
+                        }
+                        &:nth-child(1),
+                        &:nth-child(2) {
+                            transform-origin: 101px 89px;
+                            animation-duration: 4s;
+                        }
+                        &:nth-child(3) {
+                            transform-origin: 98px 86px;
+                            animation-duration: 3s;
+                        }
+                        &:nth-child(4) {
+                            transform-origin: 95px 83px;
+                            animation-duration: 5s;
+                        }
+                    }
                 }
             }
-        }
-        .PartsList {
-            right: var(--navigation-min50);
-            bottom: var(--navigation-min200);
+            .PartsList {
+                right: var(--navigation-min50);
+                bottom: var(--navigation-min200);
 
-            width: var(--navigation-min200);
-            height: min-content;
-
-            animation: A_NavContent_SlideIn 400ms ease;
+                width: var(--navigation-min200);
+                height: min-content;
+            }
         }
         .NavButton {
             .Line:nth-child(1) {
                 transform: rotate(-135deg) translate(0px, 5px);
             }
             .Line:nth-child(2) {
-                width: 2px;
-
                 transform: rotate(360deg);
 
-                opacity: 0.3;
-
-                x: 11;
+                opacity: 0;
             }
             .Line:nth-child(3) {
                 transform: rotate(135deg) translate(0px, -5px);
@@ -130,79 +127,4 @@
     position: absolute;
     right: var(--navigation-min100);
     bottom: var(--navigation-min100);
-}
-
-@keyframes A_NavCircle_wave {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes A_NavCircle_hide {
-    0% {
-        width: var(--navigation-min500);
-        height: var(--navigation-min1000);
-    }
-    40% {
-        width: var(--navigation-min500);
-        height: var(--navigation-min1000);
-    }
-    100% {
-        width: 0;
-        height: 0;
-    }
-}
-@keyframes A_NavCircle_display {
-    0% {
-        width: 0;
-        height: 0;
-    }
-    100% {
-        width: var(--navigation-min500);
-        height: var(--navigation-min1000);
-    }
-}
-@keyframes A_NavContent_SlideIn {
-    0% {
-        transform: translateX(64px);
-
-        opacity: 0;
-    }
-    40% {
-        transform: translateX(64px);
-
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0);
-
-        opacity: 1;
-    }
-}
-@keyframes A_NavContent_SlideOut {
-    0% {
-        right: var(--navigation-min50);
-        bottom: var(--navigation-min200);
-
-        width: var(--navigation-min200);
-        height: min-content;
-
-        transform: translateX(0);
-
-        opacity: 1;
-    }
-    100% {
-        right: var(--navigation-min50);
-        bottom: var(--navigation-min200);
-
-        width: var(--navigation-min200);
-        height: min-content;
-
-        transform: translateX(64px);
-
-        opacity: 0;
-    }
 }

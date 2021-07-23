@@ -1,17 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
 :root {
-    --otkrickey-color-base: #002b75;
-    --otkrickey-color-content: #ffffff;
-    --otkrickey-color-left-sidebar: #0b57d9;
-    --otkrickey-color-left-sidebar: #8fb6ff;
-    --otkrickey-color-right-sidebar: #d0eaff;
     --otkrickey-color-1: #002b75;
     --otkrickey-color-2: #0038a6;
     --otkrickey-color-3: #0059f0;
     --otkrickey-color-4: #0b57d9;
     --otkrickey-color-5: #0c63f7;
     --otkrickey-color-6: #0c63f7;
-    --otkrickey-color-base: #acd3ff;
+    --otkrickey-color-base: #002b75;
+
+// --otkrickey-color-base: #acd3ff;
+    --otkrickey-color-base: #070b6f;
+    --otkrickey-color-content: #ffffff;
+
+// --otkrickey-color-left-sidebar: #0b57d9;
+    // --otkrickey-color-left-sidebar: #8fb6ff;
+    --otkrickey-color-left-sidebar: #a1a3e0;
+    --otkrickey-color-right-sidebar: #d0eaff;
 }
 * {
     font-family: 'Noto Sans JP', sans-serif;
