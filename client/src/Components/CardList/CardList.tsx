@@ -64,6 +64,7 @@ class CardList extends Component<Props, States> {
             container.style.width = `${this.Grid.c.rW}px`;
             (cardItems as NodeListOf<HTMLElement>).forEach((item) => {
                 item.style.position = `absolute`;
+                item.style.margin = '0';
             });
             this.Grid.cal(container, cardItems, gutter);
         },
