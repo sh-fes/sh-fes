@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { background } from '../../public';
-import { CardListContent } from './CardListContent';
 import Style from './CardList.module.scss';
+import { CardListContent } from './CardListContent';
+import { Introduction } from './Introduction';
 
 interface Props {
     id: string;
     title: string;
+    introduction?: string;
     gutter: number;
     cardsData: CardData[];
 }
@@ -24,6 +26,9 @@ class CardList extends Component<Props, States> {
                         <img src={background} alt='fill' className={Style.AuthorIcon} />
                         <div className={Style.AuthorName}>{this.props.title}</div>
                     </div>
+                    {this.props.introduction && (
+                        <Introduction introduction={this.props.introduction} />
+                    )}
                     <CardListContent gutter={this.props.gutter} cardsData={this.props.cardsData} />
                 </div>
             </>

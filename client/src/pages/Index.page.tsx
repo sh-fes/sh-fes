@@ -55,15 +55,16 @@ class IndexPage extends Component<Props, States> {
             <>
                 <IndexLayout title='Index Page'>
                     <CardList
-                        title='otkrickey'
                         id={'otkrickey-list'}
-                        gutter={12}
+                        title='otkrickey'
+                        introduction={`　こんにちは、写真部です。言葉にできない「何か」を伝えるコミュニケーションツールである写真。私たち写真部は、ファインダー越しに見える異世界を探してシャッターを切っています。撮影者の「ものがたり」を追体験し、少しでも感情がうごめいてくれたらと思います。`}
+                        gutter={6}
                         cardsData={this.CardsData}
                     />
                     <CardList
-                        title='おすすめの記事'
                         id={'recommended'}
-                        gutter={12}
+                        title='おすすめの記事'
+                        gutter={6}
                         cardsData={[
                             {
                                 title: '【オンライン栄東祭】2021年10月に開催決定！2度目の試みであるオンライン栄東祭、増強したスタッフとともに再挑戦を図れるか。',
