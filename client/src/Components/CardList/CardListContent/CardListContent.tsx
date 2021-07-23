@@ -11,6 +11,7 @@ interface GridProps {
     container: HTMLDivElement | null;
     cardItems: NodeListOf<HTMLElement> | null;
     gutter: number;
+    enabled: boolean;
     c: {
         _rW: number;
         _rH: number;
@@ -36,6 +37,7 @@ class CardListContent extends Component<Props, States> {
         container: null,
         cardItems: null,
         gutter: 0,
+        enabled: true,
         c: {
             _rW: 0,
             _rH: 0,
@@ -48,6 +50,7 @@ class CardListContent extends Component<Props, States> {
         },
         mount: () => {
             const { container, cardItems, gutter } = this.Grid;
+            if (!this.Grid.enabled) return false;
             if (!container) return false;
             if (!cardItems || cardItems.length === 0) return false;
             container.style.width = '';
@@ -66,6 +69,7 @@ class CardListContent extends Component<Props, States> {
         },
         recal: () => {
             const { container, cardItems, gutter } = this.Grid;
+            if (!this.Grid.enabled) return false;
             if (!container) return false;
             if (!cardItems || cardItems.length === 0) return false;
             container.style.width = '';
@@ -115,12 +119,13 @@ class CardListContent extends Component<Props, States> {
                 ? this.props.gutter
                 : 0;
         // if not mobile
-        if (
-            this.Grid.cardItems &&
-            (this.Grid.container?.getBoundingClientRect().width ?? 0) >
-                this.Grid.cardItems[0].getBoundingClientRect().width * 2 + this.Grid.gutter * 3
-        )
-            this.Grid.mount();
+        if (!this.Grid.cardItems) this.Grid.enabled = false;
+        else
+            this.Grid.enabled =
+                (this.Grid.container?.getBoundingClientRect().width ?? 0) >
+                this.Grid.cardItems[0].getBoundingClientRect().width * 2 + this.Grid.gutter * 3;
+
+        if (this.Grid.cardItems) this.Grid.mount();
     }
     render() {
         return (
