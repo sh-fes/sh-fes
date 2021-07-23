@@ -69,6 +69,19 @@ class IndexPage extends Component<Props, States> {
                         gutter={12}
                         cardsData={this.CardsData}
                     />
+                    <CardList
+                        title='おすすめの記事'
+                        id={'recommended'}
+                        gutter={12}
+                        cardsData={[
+                            {
+                                id: 'otkrickey-8',
+                                title: '【オンライン栄東祭】2021年10月に開催決定！2度目の試みであるオンライン栄東祭、増強したスタッフとともに再挑戦を図れるか。',
+                                description:
+                                    '　オンライン栄東祭を2021年10月に開催することが決定しました。昨年度は推計約2000人が閲覧した栄東祭、今年は総勢70人のスタッフとともに制作されます。',
+                            },
+                        ]}
+                    />
                 </IndexLayout>
             </>
         );
