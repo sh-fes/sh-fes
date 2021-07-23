@@ -5,7 +5,6 @@ import { background } from '../../public';
 import Style from './CardD.module.scss';
 
 interface Props {
-    id: string;
     title: string;
     description: string;
     onChange: () => void;
@@ -44,7 +43,6 @@ class CardC extends Component<Props, States> {
             <>
                 <article
                     className={[Style.Card, this.state.active ? Style.Card_Active : null].join(' ')}
-                    id={this.props.id}
                     ref={this.root}
                 >
                     <div className={Style.HeadContainer}>
