@@ -38,6 +38,7 @@
     "yarn": "^1.22.10"
   },
   "scripts": {
+    "production": "pm2 start --name react serve -- -s build -l 8000",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
