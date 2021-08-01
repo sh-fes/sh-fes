@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import './App.module.scss';
 import { BackgroundImage, Header, Navigation } from './Components';
 // import { Header } from './Components';
 import { Article, IndexPage, Top } from './pages';
 
-interface Props {}
-interface States {}
+interface Props { }
+interface States { }
 
 class App extends Component<Props, States> {
     render() {
@@ -17,7 +17,8 @@ class App extends Component<Props, States> {
                 <Switch>
                     <Route path='/' exact component={Top} />
                     <Route path='/index' component={IndexPage} />
-                    <Route path='/article' component={Article} />
+                    <Route path='/article/:id' component={Article} />
+                    <Redirect path='/article' to='/' />
                 </Switch>
                 <Navigation />
             </Router>

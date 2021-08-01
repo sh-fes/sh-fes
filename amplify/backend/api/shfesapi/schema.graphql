@@ -1,5 +1,12 @@
-type Todo @model {
-  id: ID!
-  name: String!
-  description: String
+type Group @model {
+    id: ID!
+    name: String!
+    posts: [Article] @connection(keyName: "byGroup", fields: ["id"])
+}
+type Article @model @key(name: "byGroup", fields: ["groupID", "content"]) {
+    id: ID!
+    title: String!
+    groupID: ID!
+    group: Group @connection(fields: ["groupID"])
+    content: String
 }
