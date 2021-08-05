@@ -60,7 +60,7 @@
             transform-origin: center;
         }
     }
-    &_Active {
+    &[data-active="true"] {
         .Nav {
             overflow: hidden;
 
