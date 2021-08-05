@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card } from '../..';
+import { Card } from '../Card';
 import Style from '../CardList.module.scss';
 
 interface Props {

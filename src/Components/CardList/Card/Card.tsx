@@ -1,7 +1,7 @@
 import IconButton from '@material-ui/core/IconButton';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { background } from '../../public';
+import { background } from '../../../public';
 import Style from './Card.module.scss';
 
 interface Props {
