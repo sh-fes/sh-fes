@@ -1,8 +1,8 @@
 import IconButton from '@material-ui/core/IconButton';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { background } from '../../public';
-import Style from './CardD.module.scss';
+import { background } from '../../../public';
+import Style from './Card.module.scss';
 
 interface Props {
     title: string;
@@ -13,7 +13,7 @@ interface States {
     active: boolean;
 }
 
-class CardC extends Component<Props, States> {
+class Card extends Component<Props, States> {
     private root = React.createRef<HTMLElement>();
     private rh = (): number => {
         return this.root.current?.getBoundingClientRect().height ?? 0;
@@ -95,4 +95,4 @@ class CardC extends Component<Props, States> {
     }
 }
 
-export default CardC;
+export default Card;
