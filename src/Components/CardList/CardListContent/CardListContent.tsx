@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CardD } from '../..';
+import { Card } from '../..';
 import Style from '../CardList.module.scss';
 
 interface Props {
@@ -132,7 +132,7 @@ class CardListContent extends Component<Props, States> {
             <>
                 <div className={Style.CardList} ref={this.CardList}>
                     {this.props.cardsData.map((data, key) => (
-                        <CardD {...data} key={key} onChange={this.Grid.recal} />
+                        <Card {...data} key={key} onChange={this.Grid.recal} />
                     ))}
                 </div>
             </>
