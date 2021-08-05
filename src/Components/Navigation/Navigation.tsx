@@ -5,7 +5,7 @@ import NavButton from './NavigationButton';
 import NavCircle from './NavigationCircle';
 import NavContent from './NavigationList';
 
-interface Props {}
+interface Props { }
 interface States {
     active: boolean;
 }
@@ -23,10 +23,8 @@ class Navigation extends Component<Props, States> {
         return (
             <>
                 <div
-                    className={[
-                        Style.Container,
-                        this.state.active ? Style.Container_Active : null,
-                    ].join(' ')}
+                    className={Style.Container}
+                    data-active={this.state.active}
                 >
                     <nav className={Style.Nav}>
                         <NavCircle />

@@ -42,7 +42,8 @@ class CardC extends Component<Props, States> {
         return (
             <>
                 <article
-                    className={[Style.Card, this.state.active ? Style.Card_Active : null].join(' ')}
+                    className={Style.Card}
+                    data-active={this.state.active}
                     ref={this.root}
                 >
                     <div className={Style.HeadContainer}>

@@ -111,7 +111,7 @@
                 }
             }
         }
-        &_Active {
+        &[data-active="true"] {
             .Body {
                 padding: 12px 0;
                 .Description {
