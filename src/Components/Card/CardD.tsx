@@ -57,7 +57,7 @@ class CardC extends Component<Props, States> {
                     </div>
                     <div
                         className={Style.Body}
-                        style={{ height: `${this.state.active ? this.height : 0}px` }}
+                        style={{ height: this.state.active ? this.height : 0 }}
                     >
                         <p className={Style.Description} ref={this.heightEl}>
                             {this.props.description}
