@@ -5,8 +5,8 @@ import { BackgroundImage, Header, Navigation } from './Components';
 // import { Header } from './Components';
 import { Article, IndexPage, Top } from './pages';
 
-interface Props { }
-interface States { }
+interface Props {}
+interface States {}
 
 class App extends Component<Props, States> {
     render() {

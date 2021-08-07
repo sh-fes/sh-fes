@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { ArticleLayout, ArticleTemplate } from '../Components';
 
 interface Props {
-    articleId: number
+    articleId: number;
 }
-interface States { }
+interface States {}
 
 class Article extends Component<Props, States> {
     render() {

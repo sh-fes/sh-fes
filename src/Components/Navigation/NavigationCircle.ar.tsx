@@ -29,26 +29,10 @@ class NavCircle extends Component<Props, States> {
                     viewBox='0 0 300 500'
                     className={Style.NavCircle}
                 >
-                    <circle
-                        className={Style.CirclePart}
-                        {...data[0]}
-                        fill='#ffffff99'
-                    />
-                    <circle
-                        className={Style.CirclePart}
-                        {...data[0]}
-                        fill='#45d9fa83'
-                    />
-                    <circle
-                        className={Style.CirclePart}
-                        {...data[1]}
-                        fill='#60e2e667'
-                    />
-                    <circle
-                        className={Style.CirclePart}
-                        {...data[2]}
-                        fill='#60bbe667'
-                    />
+                    <circle className={Style.CirclePart} {...data[0]} fill='#ffffff99' />
+                    <circle className={Style.CirclePart} {...data[0]} fill='#45d9fa83' />
+                    <circle className={Style.CirclePart} {...data[1]} fill='#60e2e667' />
+                    <circle className={Style.CirclePart} {...data[2]} fill='#60bbe667' />
                 </svg>
             </>
         );

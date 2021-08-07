@@ -9,8 +9,8 @@ export type CreateGroupInput = {
 
 export type ModelGroupConditionInput = {
   name?: ModelStringInput | null,
-  and?: Array< ModelGroupConditionInput | null > | null,
-  or?: Array< ModelGroupConditionInput | null > | null,
+  and?: Array<ModelGroupConditionInput | null> | null,
+  or?: Array<ModelGroupConditionInput | null> | null,
   not?: ModelGroupConditionInput | null,
 };
 
@@ -23,7 +23,7 @@ export type ModelStringInput = {
   gt?: string | null,
   contains?: string | null,
   notContains?: string | null,
-  between?: Array< string | null > | null,
+  between?: Array<string | null> | null,
   beginsWith?: string | null,
   attributeExists?: boolean | null,
   attributeType?: ModelAttributeTypes | null,
@@ -51,7 +51,7 @@ export type ModelSizeInput = {
   lt?: number | null,
   ge?: number | null,
   gt?: number | null,
-  between?: Array< number | null > | null,
+  between?: Array<number | null> | null,
 };
 
 export type Group = {
@@ -65,7 +65,7 @@ export type Group = {
 
 export type ModelArticleConnection = {
   __typename: "ModelArticleConnection",
-  items?:  Array<Article | null > | null,
+  items?: Array<Article | null> | null,
   nextToken?: string | null,
 };
 
@@ -100,8 +100,8 @@ export type ModelArticleConditionInput = {
   title?: ModelStringInput | null,
   groupID?: ModelIDInput | null,
   content?: ModelStringInput | null,
-  and?: Array< ModelArticleConditionInput | null > | null,
-  or?: Array< ModelArticleConditionInput | null > | null,
+  and?: Array<ModelArticleConditionInput | null> | null,
+  or?: Array<ModelArticleConditionInput | null> | null,
   not?: ModelArticleConditionInput | null,
 };
 
@@ -114,7 +114,7 @@ export type ModelIDInput = {
   gt?: string | null,
   contains?: string | null,
   notContains?: string | null,
-  between?: Array< string | null > | null,
+  between?: Array<string | null> | null,
   beginsWith?: string | null,
   attributeExists?: boolean | null,
   attributeType?: ModelAttributeTypes | null,
@@ -135,14 +135,14 @@ export type DeleteArticleInput = {
 export type ModelGroupFilterInput = {
   id?: ModelIDInput | null,
   name?: ModelStringInput | null,
-  and?: Array< ModelGroupFilterInput | null > | null,
-  or?: Array< ModelGroupFilterInput | null > | null,
+  and?: Array<ModelGroupFilterInput | null> | null,
+  or?: Array<ModelGroupFilterInput | null> | null,
   not?: ModelGroupFilterInput | null,
 };
 
 export type ModelGroupConnection = {
   __typename: "ModelGroupConnection",
-  items?:  Array<Group | null > | null,
+  items?: Array<Group | null> | null,
   nextToken?: string | null,
 };
 
@@ -151,8 +151,8 @@ export type ModelArticleFilterInput = {
   title?: ModelStringInput | null,
   groupID?: ModelIDInput | null,
   content?: ModelStringInput | null,
-  and?: Array< ModelArticleFilterInput | null > | null,
-  or?: Array< ModelArticleFilterInput | null > | null,
+  and?: Array<ModelArticleFilterInput | null> | null,
+  or?: Array<ModelArticleFilterInput | null> | null,
   not?: ModelArticleFilterInput | null,
 };
 
@@ -162,13 +162,13 @@ export type CreateGroupMutationVariables = {
 };
 
 export type CreateGroupMutation = {
-  createGroup?:  {
+  createGroup?: {
     __typename: "Group",
     id: string,
     name: string,
-    posts?:  {
+    posts?: {
       __typename: "ModelArticleConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Article",
         id: string,
         title: string,
@@ -176,7 +176,7 @@ export type CreateGroupMutation = {
         content?: string | null,
         createdAt: string,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -190,13 +190,13 @@ export type UpdateGroupMutationVariables = {
 };
 
 export type UpdateGroupMutation = {
-  updateGroup?:  {
+  updateGroup?: {
     __typename: "Group",
     id: string,
     name: string,
-    posts?:  {
+    posts?: {
       __typename: "ModelArticleConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Article",
         id: string,
         title: string,
@@ -204,7 +204,7 @@ export type UpdateGroupMutation = {
         content?: string | null,
         createdAt: string,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -218,13 +218,13 @@ export type DeleteGroupMutationVariables = {
 };
 
 export type DeleteGroupMutation = {
-  deleteGroup?:  {
+  deleteGroup?: {
     __typename: "Group",
     id: string,
     name: string,
-    posts?:  {
+    posts?: {
       __typename: "ModelArticleConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Article",
         id: string,
         title: string,
@@ -232,7 +232,7 @@ export type DeleteGroupMutation = {
         content?: string | null,
         createdAt: string,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -246,16 +246,16 @@ export type CreateArticleMutationVariables = {
 };
 
 export type CreateArticleMutation = {
-  createArticle?:  {
+  createArticle?: {
     __typename: "Article",
     id: string,
     title: string,
     groupID: string,
-    group?:  {
+    group?: {
       __typename: "Group",
       id: string,
       name: string,
-      posts?:  {
+      posts?: {
         __typename: "ModelArticleConnection",
         nextToken?: string | null,
       } | null,
@@ -274,16 +274,16 @@ export type UpdateArticleMutationVariables = {
 };
 
 export type UpdateArticleMutation = {
-  updateArticle?:  {
+  updateArticle?: {
     __typename: "Article",
     id: string,
     title: string,
     groupID: string,
-    group?:  {
+    group?: {
       __typename: "Group",
       id: string,
       name: string,
-      posts?:  {
+      posts?: {
         __typename: "ModelArticleConnection",
         nextToken?: string | null,
       } | null,
@@ -302,16 +302,16 @@ export type DeleteArticleMutationVariables = {
 };
 
 export type DeleteArticleMutation = {
-  deleteArticle?:  {
+  deleteArticle?: {
     __typename: "Article",
     id: string,
     title: string,
     groupID: string,
-    group?:  {
+    group?: {
       __typename: "Group",
       id: string,
       name: string,
-      posts?:  {
+      posts?: {
         __typename: "ModelArticleConnection",
         nextToken?: string | null,
       } | null,
@@ -329,13 +329,13 @@ export type GetGroupQueryVariables = {
 };
 
 export type GetGroupQuery = {
-  getGroup?:  {
+  getGroup?: {
     __typename: "Group",
     id: string,
     name: string,
-    posts?:  {
+    posts?: {
       __typename: "ModelArticleConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Article",
         id: string,
         title: string,
@@ -343,7 +343,7 @@ export type GetGroupQuery = {
         content?: string | null,
         createdAt: string,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -358,19 +358,19 @@ export type ListGroupsQueryVariables = {
 };
 
 export type ListGroupsQuery = {
-  listGroups?:  {
+  listGroups?: {
     __typename: "ModelGroupConnection",
-    items?:  Array< {
+    items?: Array<{
       __typename: "Group",
       id: string,
       name: string,
-      posts?:  {
+      posts?: {
         __typename: "ModelArticleConnection",
         nextToken?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
-    } | null > | null,
+    } | null> | null,
     nextToken?: string | null,
   } | null,
 };
@@ -380,16 +380,16 @@ export type GetArticleQueryVariables = {
 };
 
 export type GetArticleQuery = {
-  getArticle?:  {
+  getArticle?: {
     __typename: "Article",
     id: string,
     title: string,
     groupID: string,
-    group?:  {
+    group?: {
       __typename: "Group",
       id: string,
       name: string,
-      posts?:  {
+      posts?: {
         __typename: "ModelArticleConnection",
         nextToken?: string | null,
       } | null,
@@ -409,14 +409,14 @@ export type ListArticlesQueryVariables = {
 };
 
 export type ListArticlesQuery = {
-  listArticles?:  {
+  listArticles?: {
     __typename: "ModelArticleConnection",
-    items?:  Array< {
+    items?: Array<{
       __typename: "Article",
       id: string,
       title: string,
       groupID: string,
-      group?:  {
+      group?: {
         __typename: "Group",
         id: string,
         name: string,
@@ -426,19 +426,19 @@ export type ListArticlesQuery = {
       content?: string | null,
       createdAt: string,
       updatedAt: string,
-    } | null > | null,
+    } | null> | null,
     nextToken?: string | null,
   } | null,
 };
 
 export type OnCreateGroupSubscription = {
-  onCreateGroup?:  {
+  onCreateGroup?: {
     __typename: "Group",
     id: string,
     name: string,
-    posts?:  {
+    posts?: {
       __typename: "ModelArticleConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Article",
         id: string,
         title: string,
@@ -446,7 +446,7 @@ export type OnCreateGroupSubscription = {
         content?: string | null,
         createdAt: string,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -455,13 +455,13 @@ export type OnCreateGroupSubscription = {
 };
 
 export type OnUpdateGroupSubscription = {
-  onUpdateGroup?:  {
+  onUpdateGroup?: {
     __typename: "Group",
     id: string,
     name: string,
-    posts?:  {
+    posts?: {
       __typename: "ModelArticleConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Article",
         id: string,
         title: string,
@@ -469,7 +469,7 @@ export type OnUpdateGroupSubscription = {
         content?: string | null,
         createdAt: string,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -478,13 +478,13 @@ export type OnUpdateGroupSubscription = {
 };
 
 export type OnDeleteGroupSubscription = {
-  onDeleteGroup?:  {
+  onDeleteGroup?: {
     __typename: "Group",
     id: string,
     name: string,
-    posts?:  {
+    posts?: {
       __typename: "ModelArticleConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Article",
         id: string,
         title: string,
@@ -492,7 +492,7 @@ export type OnDeleteGroupSubscription = {
         content?: string | null,
         createdAt: string,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
     createdAt: string,
@@ -501,16 +501,16 @@ export type OnDeleteGroupSubscription = {
 };
 
 export type OnCreateArticleSubscription = {
-  onCreateArticle?:  {
+  onCreateArticle?: {
     __typename: "Article",
     id: string,
     title: string,
     groupID: string,
-    group?:  {
+    group?: {
       __typename: "Group",
       id: string,
       name: string,
-      posts?:  {
+      posts?: {
         __typename: "ModelArticleConnection",
         nextToken?: string | null,
       } | null,
@@ -524,16 +524,16 @@ export type OnCreateArticleSubscription = {
 };
 
 export type OnUpdateArticleSubscription = {
-  onUpdateArticle?:  {
+  onUpdateArticle?: {
     __typename: "Article",
     id: string,
     title: string,
     groupID: string,
-    group?:  {
+    group?: {
       __typename: "Group",
       id: string,
       name: string,
-      posts?:  {
+      posts?: {
         __typename: "ModelArticleConnection",
         nextToken?: string | null,
       } | null,
@@ -547,16 +547,16 @@ export type OnUpdateArticleSubscription = {
 };
 
 export type OnDeleteArticleSubscription = {
-  onDeleteArticle?:  {
+  onDeleteArticle?: {
     __typename: "Article",
     id: string,
     title: string,
     groupID: string,
-    group?:  {
+    group?: {
       __typename: "Group",
       id: string,
       name: string,
-      posts?:  {
+      posts?: {
         __typename: "ModelArticleConnection",
         nextToken?: string | null,
       } | null,

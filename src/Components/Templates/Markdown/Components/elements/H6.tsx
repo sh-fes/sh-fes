@@ -12,10 +12,7 @@ class MD_h6 extends Component<Props, States> {
         return (
             <>
                 <h6 id={this.props.children} className={Style.H6}>
-                    <Link
-                        to={`#${this.props.children}`}
-                        className={Style.H_Link}
-                    >
+                    <Link to={`#${this.props.children}`} className={Style.H_Link}>
                         {this.props.children}
                     </Link>
                 </h6>

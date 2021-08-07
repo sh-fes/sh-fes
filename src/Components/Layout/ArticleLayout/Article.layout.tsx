@@ -6,7 +6,7 @@ import { LayoutStyle, Share } from '..';
 interface Props {
     title?: string;
 }
-interface States { }
+interface States {}
 
 class ArticleLayout extends Component<Props, States> {
     render() {
@@ -22,9 +22,7 @@ class ArticleLayout extends Component<Props, States> {
                     </div>
                     <div className={LayoutStyle.Container}>
                         <Share />
-                        <main className={LayoutStyle.MainContainer}>
-                            {this.props.children}
-                        </main>
+                        <main className={LayoutStyle.MainContainer}>{this.props.children}</main>
                         <aside className={LayoutStyle.RightContainer}>
                             <ArticleIndexBar />
                         </aside>

@@ -12,11 +12,7 @@ class NavContent extends Component<Props, States> {
             <>
                 <ul className={Style.PartsList}>
                     {NavigationConfig.map((config: TNavigationConfig, key) => (
-                        <NavPart
-                            to={config.to}
-                            title={config.title}
-                            key={key}
-                        />
+                        <NavPart to={config.to} title={config.title} key={key} />
                     ))}
                 </ul>
             </>

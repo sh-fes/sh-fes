@@ -41,11 +41,7 @@ class Card extends Component<Props, States> {
     render() {
         return (
             <>
-                <article
-                    className={Style.Card}
-                    data-active={this.state.active}
-                    ref={this.root}
-                >
+                <article className={Style.Card} data-active={this.state.active} ref={this.root}>
                     <div className={Style.HeadContainer}>
                         <div className={Style.Head}>
                             <img className={Style.Thumbnail} src={background} alt='img' />

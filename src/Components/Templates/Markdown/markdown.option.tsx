@@ -1,15 +1,5 @@
 import { MarkdownToJSX } from 'markdown-to-jsx';
-import {
-    MD_H1,
-    MD_H2,
-    MD_H3,
-    MD_H4,
-    MD_H5,
-    MD_H6,
-    MD_LI,
-    MD_UL,
-    Title,
-} from './Components/';
+import { MD_H1, MD_H2, MD_H3, MD_H4, MD_H5, MD_H6, MD_LI, MD_UL, Title } from './Components/';
 
 const options: MarkdownToJSX.Options = {
     wrapper: 'main',

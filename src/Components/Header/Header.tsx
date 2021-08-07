@@ -17,8 +17,7 @@ class NameOfClass extends Component<Props, States> {
         window.addEventListener(
             'scroll',
             () => {
-                const st =
-                    window.pageYOffset || document.documentElement.scrollTop;
+                const st = window.pageYOffset || document.documentElement.scrollTop;
                 this.setState({
                     active: st < this.state.last,
                     last: st <= 0 ? 0 : st,
@@ -34,13 +33,7 @@ class NameOfClass extends Component<Props, States> {
                     <header className={Style.Header}>
                         <div className={Style.Container}>
                             <svg width='360' height='90' viewBox='0 0 400 100'>
-                                <circle
-                                    cx='120'
-                                    cy='-300'
-                                    r='400'
-                                    stroke='red'
-                                    fill='#00000000'
-                                />
+                                <circle cx='120' cy='-300' r='400' stroke='red' fill='#00000000' />
                             </svg>
                         </div>
                         <div className={Style.Icon}></div>

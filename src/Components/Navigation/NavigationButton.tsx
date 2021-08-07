@@ -8,12 +8,7 @@ class NavButton extends Component<Props, States> {
     render() {
         return (
             <>
-                <svg
-                    className={Style.NavButton}
-                    width='24'
-                    height='24'
-                    viewBox='0 0 24 24'
-                >
+                <svg className={Style.NavButton} width='24' height='24' viewBox='0 0 24 24'>
                     <rect
                         className={Style.Line}
                         x='3'
