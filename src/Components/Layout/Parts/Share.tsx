@@ -3,7 +3,7 @@ import LinkIcon from '@material-ui/icons/Link';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import YouTubeIcon from '@material-ui/icons/YouTube';
 import React, { Component } from 'react';
-import LayoutStyle from './Layout.module.scss';
+import { LayoutStyle } from '..';
 
 interface Props {}
 interface States {}

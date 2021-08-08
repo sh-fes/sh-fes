@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CardList, IndexLayout } from '../Components';
+import { CardList } from '../Components';
 interface Props {}
 interface States {}
 interface CardData {
@@ -53,27 +53,25 @@ class IndexPage extends Component<Props, States> {
     render() {
         return (
             <>
-                <IndexLayout title='Index Page'>
-                    <CardList
-                        id={'otkrickey-list'}
-                        title='otkrickey'
-                        introduction={`　こんにちは、写真部です。言葉にできない「何か」を伝えるコミュニケーションツールである写真。私たち写真部は、ファインダー越しに見える異世界を探してシャッターを切っています。撮影者の「ものがたり」を追体験し、少しでも感情がうごめいてくれたらと思います。`}
-                        gutter={6}
-                        cardsData={this.CardsData}
-                    />
-                    <CardList
-                        id={'recommended'}
-                        title='おすすめの記事'
-                        gutter={6}
-                        cardsData={[
-                            {
-                                title: '【オンライン栄東祭】2021年10月に開催決定！2度目の試みであるオンライン栄東祭、増強したスタッフとともに再挑戦を図れるか。',
-                                description:
-                                    '　オンライン栄東祭を2021年10月に開催することが決定しました。昨年度は推計約2000人が閲覧した栄東祭、今年は総勢70人のスタッフとともに制作されます。',
-                            },
-                        ]}
-                    />
-                </IndexLayout>
+                <CardList
+                    id={'otkrickey-list'}
+                    title='otkrickey'
+                    introduction={`　こんにちは、写真部です。言葉にできない「何か」を伝えるコミュニケーションツールである写真。私たち写真部は、ファインダー越しに見える異世界を探してシャッターを切っています。撮影者の「ものがたり」を追体験し、少しでも感情がうごめいてくれたらと思います。`}
+                    gutter={6}
+                    cardsData={this.CardsData}
+                />
+                <CardList
+                    id={'recommended'}
+                    title='おすすめの記事'
+                    gutter={6}
+                    cardsData={[
+                        {
+                            title: '【オンライン栄東祭】2021年10月に開催決定！2度目の試みであるオンライン栄東祭、増強したスタッフとともに再挑戦を図れるか。',
+                            description:
+                                '　オンライン栄東祭を2021年10月に開催することが決定しました。昨年度は推計約2000人が閲覧した栄東祭、今年は総勢70人のスタッフとともに制作されます。',
+                        },
+                    ]}
+                />
             </>
         );
     }
