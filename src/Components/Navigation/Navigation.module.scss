@@ -3,10 +3,7 @@
     --nav-circle-width: var(--navigation-min500);
     --navigation-min100: min(20vw, 100px);
     --navigation-min1000: min(200vw, 1000px, 100vh);
-    --navigation-min20: min(4vw, 20px);
-    --navigation-min200: min(40vw, 200px, 20vh);
     --navigation-min30: min(6vw, 30px);
-    --navigation-min50: min(10vw, 50px);
     --navigation-min500: min(100vw, 500px, 50vh);
 }
 .Container,
@@ -25,6 +22,9 @@
     .Nav {
         position: absolute;
 
+        width: 0;
+        height: 0;
+
         transition: all 300ms ease;
         .NavCircle {
             position: absolute;
@@ -33,15 +33,22 @@
         }
         .PartsList {
             position: absolute;
+            top: 50%;
+            left: 100%;
 
             justify-content: center;
 
+            width: 40%;
+            height: min-content;
             margin: 0;
             padding: 0;
 
             transition: all 300ms ease;
+
+            opacity: 0;
             .Parts {
-                margin: var(--navigation-min20);
+                width: 80%;
+                margin: 10%;
 
                 list-style: none;
                 .PartsLink {
@@ -101,11 +108,10 @@
                 }
             }
             .PartsList {
-                right: var(--navigation-min50);
-                bottom: var(--navigation-min200);
+                top: 50%;
+                left: 55%;
 
-                width: var(--navigation-min200);
-                height: min-content;
+                opacity: 1;
             }
         }
         .NavButton {
