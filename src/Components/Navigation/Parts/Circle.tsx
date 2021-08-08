@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Style from './Navigation.module.scss';
+import Style from '../Navigation.module.scss';
 
 interface Props {}
 interface States {}

@@ -1,9 +1,7 @@
 import Fab from '@material-ui/core/Fab';
 import React, { Component } from 'react';
 import Style from './Navigation.module.scss';
-import NavButton from './NavigationButton';
-import NavCircle from './NavigationCircle';
-import NavContent from './NavigationList';
+import { NavButton, NavCircle, NavContent } from './Parts';
 
 interface Props {}
 interface States {

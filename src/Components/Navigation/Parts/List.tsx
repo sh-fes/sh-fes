@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Style from './Navigation.module.scss';
-import NavigationConfig, { TNavigationConfig } from './NavigationListItemConfig';
+import Style from '../Navigation.module.scss';
+import NavigationConfig, { TNavigationConfig } from './ListItems';
 
 interface Props {}
 interface States {}
