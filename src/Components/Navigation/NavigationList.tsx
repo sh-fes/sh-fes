@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Style from './Navigation.module.scss';
-import NavPart from './NavigationListItem';
 import NavigationConfig, { TNavigationConfig } from './NavigationListItemConfig';
 
 interface Props {}
@@ -12,7 +12,11 @@ class NavContent extends Component<Props, States> {
             <>
                 <ul className={Style.PartsList}>
                     {NavigationConfig.map((config: TNavigationConfig, key) => (
-                        <NavPart to={config.to} title={config.title} key={key} />
+                        <li className={Style.Parts} key={key}>
+                            <Link className={Style.PartsLink} to={config.to}>
+                                {config.title}
+                            </Link>
+                        </li>
                     ))}
                 </ul>
             </>
