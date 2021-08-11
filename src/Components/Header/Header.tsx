@@ -1,35 +1,18 @@
 import Slide from '@material-ui/core/Slide';
 import React, { Component } from 'react';
+import { GlobalStateContext } from '../../Global';
 import Style from './Header.module.scss';
 
 interface Props {}
-interface States {
-    active: boolean;
-    last: number;
-}
+interface States {}
 
 class NameOfClass extends Component<Props, States> {
-    constructor(props: Props) {
-        super(props);
-        this.state = { active: true, last: 0 };
-    }
-    componentDidMount() {
-        window.addEventListener(
-            'scroll',
-            () => {
-                const st = window.pageYOffset || document.documentElement.scrollTop;
-                this.setState({
-                    active: st < this.state.last,
-                    last: st <= 0 ? 0 : st,
-                });
-            },
-            false,
-        );
-    }
+    static contextType = GlobalStateContext;
+    context!: React.ContextType<typeof GlobalStateContext>;
     render() {
         return (
             <>
-                <Slide appear={false} direction='down' in={this.state.active}>
+                <Slide appear={false} direction='down' in={this.context?.scroll?.down ?? false}>
                     <header className={Style.Header}>
                         <div className={Style.Container}>
                             <svg width='360' height='90' viewBox='0 0 400 100'>
