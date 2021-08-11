@@ -1,10 +1,8 @@
 :root {
-    --nav-circle-height: var(--navigation-min1000);
-    --nav-circle-width: var(--navigation-min500);
-    --navigation-min100: min(20vw, 100px);
-    --navigation-min1000: min(200vw, 1000px, 100vh);
-    --navigation-min30: min(6vw, 30px);
-    --navigation-min500: min(100vw, 500px, 50vh);
+    --shfes-nav-min100: min(20vw, 100px);
+    --shfes-nav-min1000: min(200vw, 1000px, 100vh);
+    --shfes-nav-min30: min(6vw, 30px);
+    --shfes-nav-min500: min(100vw, 500px, 50vh);
 }
 .Container,
 .Nav,
@@ -52,7 +50,7 @@
 
                 list-style: none;
                 .PartsLink {
-                    font-size: var(--navigation-min30);
+                    font-size: var(--shfes-nav-min30);
 
                     color: black;
                 }
@@ -71,8 +69,8 @@
         .Nav {
             overflow: hidden;
 
-            width: var(--nav-circle-width);
-            height: var(--nav-circle-height);
+            width: var(--shfes-nav-min500);
+            height: var(--shfes-nav-min1000);
             .NavCircle {
                 right: -50%;
 
@@ -131,6 +129,6 @@
 }
 .FAB {
     position: absolute;
-    right: var(--navigation-min100);
-    bottom: var(--navigation-min100);
+    right: var(--shfes-nav-min100);
+    bottom: var(--shfes-nav-min100);
 }

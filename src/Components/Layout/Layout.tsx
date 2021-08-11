@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { LayoutStyle } from '.';
+import RootStyle from '../../App.module.scss';
 import { IndexBar, Share } from './Parts';
 
 type LayoutProfileName = 'top' | 'index' | 'article';
@@ -18,11 +18,11 @@ function ShareBarSwitcher({ layout: profile }: SwitcherProps) {
 function MainSwitcher({ layout: profile, children }: SwitcherProps) {
     switch (profile) {
         case 'top':
-            return <main className={LayoutStyle.TopContainer}>{children}</main>;
+            return <main className={RootStyle.TopContainer}>{children}</main>;
         case 'index':
-            return <main className={LayoutStyle.TopContainer}>{children}</main>;
+            return <main className={RootStyle.TopContainer}>{children}</main>;
         case 'article':
-            return <main className={LayoutStyle.MainContainer}>{children}</main>;
+            return <main className={RootStyle.MainContainer}>{children}</main>;
         default:
             return null;
     }
@@ -49,12 +49,12 @@ class Layout extends Component<Props, States> {
                 <Helmet>
                     <title>{this.props.title ?? 'No Title'}</title>
                 </Helmet>
-                <div className={LayoutStyle.Main}>
-                    <div className={LayoutStyle.Slid}>
-                        <div className={LayoutStyle.Fade}></div>
-                        <div className={LayoutStyle.Mono}></div>
+                <div className={RootStyle.Layout}>
+                    <div className={RootStyle.Slid}>
+                        <div className={RootStyle.Fade}></div>
+                        <div className={RootStyle.Mono}></div>
                     </div>
-                    <div className={LayoutStyle.Container}>
+                    <div className={RootStyle.Container}>
                         <ShareBarSwitcher layout={this.props.layout} />
                         <MainSwitcher children={this.props.children} layout={this.props.layout} />
                         <SidebarSwitcher layout={this.props.layout} />

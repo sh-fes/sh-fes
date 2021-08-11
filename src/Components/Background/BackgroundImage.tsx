@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LayoutStyle from '../Layout/Layout.module.scss';
+import RootStyle from '../../App.module.scss';
 
 interface Props {}
 interface States {}
@@ -8,9 +8,9 @@ class BackgroundImage extends Component<Props, States> {
     render() {
         return (
             <>
-                <div className={LayoutStyle.BackgroundImage}>
+                <div className={RootStyle.BackgroundImage}>
                     <svg
-                        className={LayoutStyle.SVG_TopLeft}
+                        className={RootStyle.SVG_TopLeft}
                         width='450'
                         height='512'
                         viewBox='0 0 450 512'
@@ -22,7 +22,7 @@ class BackgroundImage extends Component<Props, States> {
                         <circle cx='-44' cy='367' r='145' fill='#FF9BE9' fillOpacity='0.5' />
                     </svg>
                     <svg
-                        className={LayoutStyle.SVG_BottomLeft}
+                        className={RootStyle.SVG_BottomLeft}
                         width='324'
                         height='475'
                         viewBox='0 0 324 475'
@@ -33,7 +33,7 @@ class BackgroundImage extends Component<Props, States> {
                         <circle cx='140' cy='377' r='122' fill='#ACFAF5' fillOpacity='0.42' />
                     </svg>
                     <svg
-                        className={LayoutStyle.SVG_TopRight}
+                        className={RootStyle.SVG_TopRight}
                         width='168'
                         height='416'
                         viewBox='0 0 168 416'
@@ -43,7 +43,7 @@ class BackgroundImage extends Component<Props, States> {
                         <circle cx='168' cy='248' r='168' fill='#F39E50' fillOpacity='0.48' />
                     </svg>
                     <svg
-                        className={LayoutStyle.SVG_BottomRight}
+                        className={RootStyle.SVG_BottomRight}
                         width='446'
                         height='451'
                         viewBox='0 0 446 451'
@@ -55,7 +55,7 @@ class BackgroundImage extends Component<Props, States> {
                         <circle cx='108' cy='451' r='108' fill='#FC6767' fillOpacity='0.61' />
                     </svg>
                     <svg
-                        className={LayoutStyle.SVG_Center}
+                        className={RootStyle.SVG_Center}
                         width='347'
                         height='1024'
                         viewBox='0 0 347 1024'
