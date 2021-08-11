@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
+import { ThemeSwitcher } from '../Components/Theme';
 import { GlobalStateContext } from '../Global';
-import { ThemeSwitcher } from '../Global/Theme';
 
 interface Props {}
 interface States {}
