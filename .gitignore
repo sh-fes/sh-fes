@@ -119,6 +119,7 @@ yarn-error.log*
 .npm/
 yarn.lock
 *.mm.md
+*.diff
 
 #amplify
 amplify/\#current-cloud-backend
