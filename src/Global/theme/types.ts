@@ -1,4 +1,4 @@
-import { Action } from '../../Global';
+import { Action } from '..';
 
 export enum ThemePayloadType {
     LIGHT = 'light',

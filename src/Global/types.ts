@@ -1,4 +1,4 @@
-import { ThemeActionType, ThemePayloadType } from '../Components/Theme/types'
+import { ThemeActionType, ThemePayloadType } from './theme/types'
 import { ScrollActionType, ScrollPayloadType } from './Scroll/types'
 
 export { ThemePayloadType as PayloadThemeType }
