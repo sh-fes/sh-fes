@@ -1,6 +1,6 @@
 import React from 'react';
 import { useGlobalDispatch, useGlobalState } from '../../Global';
-import { ThemePayloadType } from '../../Global/theme/types';
+import { ThemePayloadType } from '../../Global/Theme/types';
 
 /** ThemeSwitcher */
 export const ThemeSwitcher = () => {
