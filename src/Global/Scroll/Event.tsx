@@ -18,9 +18,5 @@ export function ScrollEvent() {
         window.addEventListener('scroll', handle);
         return () => window.removeEventListener('scroll', handle);
     });
-    return (
-        <>
-            <div className={'ScrollEvent'} data-last={state.scroll?.last}></div>
-        </>
-    );
+    return <></>;
 }
