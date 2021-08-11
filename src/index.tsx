@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App';
 import awsExports from './aws-exports';
+import { GlobalProvider } from './Global';
 
 Amplify.configure(awsExports);
 
@@ -33,7 +34,9 @@ const render = () =>
         <React.StrictMode>
             <ApolloProvider client={client}>
                 <HelmetProvider>
-                    <App />
+                    <GlobalProvider>
+                        <App />
+                    </GlobalProvider>
                 </HelmetProvider>
             </ApolloProvider>
         </React.StrictMode>,
