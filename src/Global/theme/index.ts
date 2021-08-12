@@ -1,1 +1,1 @@
-export { };
+export { SwitchTheme } from './SwitchTheme';
