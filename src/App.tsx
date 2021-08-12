@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-d
 import './App.module.scss';
 import { BackgroundImage, Header, Navigation } from './Components';
 import Layout from './Components/Layout/Layout';
-// import { Header } from './Components';
 import { Article, IndexPage, Top } from './pages';
 
 interface Props {}
