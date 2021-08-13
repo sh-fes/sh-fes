@@ -38,8 +38,9 @@ body {
 }
 /* DARK THEME */
 [data-theme='dark']:root {
-    --shfes-color-content: #212121;
-    --shfes-color-content-text: rgba(255, 255, 255, 0.7);
+    --shfes-color-base: #00023b;
+    // --shfes-color-content: #212121;
+    // --shfes-color-content-text: rgba(255, 255, 255, 0.7);
 }
 /*  */
 /* Component/Background */
