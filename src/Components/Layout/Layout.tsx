@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Helmet } from 'react-helmet-async';
 import RootStyle from '../../App.module.scss';
 import { IndexBar, Share } from './Parts';
 
@@ -37,7 +36,6 @@ function SidebarSwitcher({ layout: profile }: SwitcherProps) {
 }
 
 interface Props {
-    title?: string;
     layout: LayoutProfileName;
 }
 interface States {}
@@ -46,9 +44,6 @@ class Layout extends Component<Props, States> {
     render() {
         return (
             <>
-                <Helmet>
-                    <title>{this.props.title ?? 'No Title'}</title>
-                </Helmet>
                 <div className={RootStyle.Layout}>
                     <div className={RootStyle.Slid}>
                         <div className={RootStyle.Fade}></div>
