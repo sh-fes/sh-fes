@@ -1,0 +1,55 @@
+type Group
+    @model
+    # auth
+    @auth(
+        rules: [
+            { allow: owner, ownerField: "author", operations: [read, create, update, delete] }
+            { allow: public, operations: [read] }
+        ]
+    )
+    # query
+    @key(name: "byGroupID", fields: ["groupID", "createdAt"], queryField: "GroupByGroupID") {
+    id: ID!
+    groupID: ID!
+    groupName: String!
+
+    # author
+    author: String!
+
+    # date
+    createdAt: AWSDateTime!
+
+    # link
+    articles: [Article] @connection(keyName: "byGroup", fields: ["id"])
+}
+type Article
+    @model
+    # auth
+    @auth(
+        rules: [
+            { allow: owner, ownerField: "author", operations: [read, create, update, delete] }
+            { allow: public, operations: [read] }
+        ]
+    )
+    # link
+    @key(name: "byGroup", fields: ["groupID"])
+    # query
+    @key(
+        name: "byArticleID"
+        fields: ["articleID", "createdAt"]
+        queryField: "ArticleByArticleID"
+    ) {
+    id: ID!
+    articleID: ID!
+    title: String!
+
+    # author
+    author: String!
+
+    # date
+    createdAt: AWSDateTime!
+
+    # link
+    groupID: ID!
+    group: Group @connection(name: "byGroupID", fields: ["groupID"])
+}

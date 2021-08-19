@@ -1,9 +1,9 @@
 import { useGlobalState } from '..';
-import { ThemePayloadType } from './types';
+import { PayloadTheme } from '../types';
 
 export const SwitchTheme = () => {
     const state = useGlobalState();
     const root = document.querySelector('html');
-    root?.setAttribute('data-theme', state.theme ?? ThemePayloadType.LIGHT);
+    root?.setAttribute('data-theme', state.theme ?? PayloadTheme.LIGHT);
     return <></>;
 };

@@ -1,21 +1,6 @@
 {
-  "hosting": {
-    "amplifyhosting": {
-      "service": "amplifyhosting",
-      "providerPlugin": "awscloudformation",
-      "type": "manual"
-    }
-  },
-  "auth": {
-    "reactshfes2021cfc79161": {
-      "service": "Cognito",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [],
-      "customAuth": false
-    }
-  },
   "api": {
-    "shfesapi": {
+    "shfes": {
       "service": "AppSync",
       "providerPlugin": "awscloudformation",
       "output": {
@@ -24,12 +9,50 @@
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 7,
-              "description": "Bf0mBKdk2XbCcIbiNOWBYIaXnGJCubmUahanrtyy"
+              "description": ""
             }
           },
-          "additionalAuthenticationProviders": []
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authshfes3baf733c"
+              }
+            }
+          ]
         }
       }
+    }
+  },
+  "auth": {
+    "shfes3baf733c": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "loginMechanism": [
+          "PREFERRED_USERNAME"
+        ],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ]
+      }
+    }
+  },
+  "hosting": {
+    "amplifyhosting": {
+      "service": "amplifyhosting",
+      "providerPlugin": "awscloudformation",
+      "type": "manual"
     }
   }
 }

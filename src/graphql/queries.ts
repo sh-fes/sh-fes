@@ -6,20 +6,23 @@ export const getGroup = /* GraphQL */ `
   query GetGroup($id: ID!) {
     getGroup(id: $id) {
       id
-      name
-      posts {
+      groupID
+      groupName
+      author
+      createdAt
+      updatedAt
+      articles {
         items {
           id
+          articleID
           title
-          groupID
-          content
+          author
           createdAt
+          groupID
           updatedAt
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -32,12 +35,46 @@ export const listGroups = /* GraphQL */ `
     listGroups(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        name
-        posts {
-          nextToken
-        }
+        groupID
+        groupName
+        author
         createdAt
         updatedAt
+        articles {
+          nextToken
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const groupByGroupID = /* GraphQL */ `
+  query GroupByGroupID(
+    $groupID: ID
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelGroupFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    GroupByGroupID(
+      groupID: $groupID
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        groupID
+        groupName
+        author
+        createdAt
+        updatedAt
+        articles {
+          nextToken
+        }
       }
       nextToken
     }
@@ -47,20 +84,23 @@ export const getArticle = /* GraphQL */ `
   query GetArticle($id: ID!) {
     getArticle(id: $id) {
       id
+      articleID
       title
+      author
+      createdAt
       groupID
+      updatedAt
       group {
         id
-        name
-        posts {
-          nextToken
-        }
+        groupID
+        groupName
+        author
         createdAt
         updatedAt
+        articles {
+          nextToken
+        }
       }
-      content
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -73,17 +113,58 @@ export const listArticles = /* GraphQL */ `
     listArticles(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        articleID
         title
+        author
+        createdAt
         groupID
+        updatedAt
         group {
           id
-          name
+          groupID
+          groupName
+          author
           createdAt
           updatedAt
         }
-        content
+      }
+      nextToken
+    }
+  }
+`;
+export const articleByArticleID = /* GraphQL */ `
+  query ArticleByArticleID(
+    $articleID: ID
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelArticleFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    ArticleByArticleID(
+      articleID: $articleID
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        articleID
+        title
+        author
         createdAt
+        groupID
         updatedAt
+        group {
+          id
+          groupID
+          groupName
+          author
+          createdAt
+          updatedAt
+        }
       }
       nextToken
     }

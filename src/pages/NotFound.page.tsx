@@ -5,13 +5,13 @@ import { GlobalStateContext } from '../Global';
 interface Props {}
 interface States {}
 
-class TopPage extends Component<Props, States> {
+class NotFoundPage extends Component<Props, States> {
     static contextType = GlobalStateContext;
     context!: React.ContextType<typeof GlobalStateContext>;
     render() {
         return (
             <>
-                <h1>Top Page</h1>
+                <h1>Not Found</h1>
                 <ThemeSwitcher />
                 <p>{JSON.stringify(this.context)}</p>
             </>
@@ -19,4 +19,4 @@ class TopPage extends Component<Props, States> {
     }
 }
 
-export default TopPage;
+export default NotFoundPage;

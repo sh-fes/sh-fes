@@ -1,6 +1,6 @@
 import React from 'react';
 import { useGlobalDispatch, useGlobalState } from '../../Global';
-import { ThemePayloadType } from '../../Global/Theme/types';
+import { PayloadTheme } from '../../Global/types';
 
 /** ThemeSwitcher */
 export const ThemeSwitcher = () => {
@@ -8,12 +8,16 @@ export const ThemeSwitcher = () => {
     const dispatch = useGlobalDispatch();
 
     const setDark = () => {
-        dispatch({ type: 'SET_Theme', payload: ThemePayloadType.DARK });
+        dispatch({ type: 'SET_Theme', payload: PayloadTheme.DARK });
     };
 
     const setLight = () => {
-        dispatch({ type: 'SET_Theme', payload: ThemePayloadType.LIGHT });
+        dispatch({ type: 'SET_Theme', payload: PayloadTheme.LIGHT });
     };
 
-    return <button onClick={state.theme === ThemePayloadType.LIGHT ? setDark : setLight}>Change</button>;
+    return (
+        <button onClick={state.theme === PayloadTheme.LIGHT ? setDark : setLight}>
+            Change Theme
+        </button>
+    );
 };

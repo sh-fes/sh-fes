@@ -9,20 +9,23 @@ export const createGroup = /* GraphQL */ `
   ) {
     createGroup(input: $input, condition: $condition) {
       id
-      name
-      posts {
+      groupID
+      groupName
+      author
+      createdAt
+      updatedAt
+      articles {
         items {
           id
+          articleID
           title
-          groupID
-          content
+          author
           createdAt
+          groupID
           updatedAt
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -33,20 +36,23 @@ export const updateGroup = /* GraphQL */ `
   ) {
     updateGroup(input: $input, condition: $condition) {
       id
-      name
-      posts {
+      groupID
+      groupName
+      author
+      createdAt
+      updatedAt
+      articles {
         items {
           id
+          articleID
           title
-          groupID
-          content
+          author
           createdAt
+          groupID
           updatedAt
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -57,20 +63,23 @@ export const deleteGroup = /* GraphQL */ `
   ) {
     deleteGroup(input: $input, condition: $condition) {
       id
-      name
-      posts {
+      groupID
+      groupName
+      author
+      createdAt
+      updatedAt
+      articles {
         items {
           id
+          articleID
           title
-          groupID
-          content
+          author
           createdAt
+          groupID
           updatedAt
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -81,20 +90,23 @@ export const createArticle = /* GraphQL */ `
   ) {
     createArticle(input: $input, condition: $condition) {
       id
+      articleID
       title
+      author
+      createdAt
       groupID
+      updatedAt
       group {
         id
-        name
-        posts {
-          nextToken
-        }
+        groupID
+        groupName
+        author
         createdAt
         updatedAt
+        articles {
+          nextToken
+        }
       }
-      content
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -105,20 +117,23 @@ export const updateArticle = /* GraphQL */ `
   ) {
     updateArticle(input: $input, condition: $condition) {
       id
+      articleID
       title
+      author
+      createdAt
       groupID
+      updatedAt
       group {
         id
-        name
-        posts {
-          nextToken
-        }
+        groupID
+        groupName
+        author
         createdAt
         updatedAt
+        articles {
+          nextToken
+        }
       }
-      content
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -129,20 +144,23 @@ export const deleteArticle = /* GraphQL */ `
   ) {
     deleteArticle(input: $input, condition: $condition) {
       id
+      articleID
       title
+      author
+      createdAt
       groupID
+      updatedAt
       group {
         id
-        name
-        posts {
-          nextToken
-        }
+        groupID
+        groupName
+        author
         createdAt
         updatedAt
+        articles {
+          nextToken
+        }
       }
-      content
-      createdAt
-      updatedAt
     }
   }
 `;

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import RootStyle from '../../App.module.scss';
+import { NotFound } from '../../pages';
 import { IndexBar, Share } from './Parts';
 
-type LayoutProfileName = 'top' | 'index' | 'article';
+type LayoutProfileName = 'top' | 'index' | 'article' | 'admin' | 'notfound';
 interface SwitcherProps {
     layout: LayoutProfileName;
     children?: React.ReactNode;
@@ -22,6 +23,14 @@ function MainSwitcher({ layout: profile, children }: SwitcherProps) {
             return <main className={RootStyle.TopContainer}>{children}</main>;
         case 'article':
             return <main className={RootStyle.MainContainer}>{children}</main>;
+        case 'admin':
+            return <main className={RootStyle.TopContainer}>{children}</main>;
+        case 'notfound':
+            return (
+                <main className={RootStyle.TopContainer}>
+                    <NotFound />
+                </main>
+            );
         default:
             return null;
     }
