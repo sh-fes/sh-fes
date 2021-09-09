@@ -131,14 +131,12 @@ body {
     }
     .Container {
         position: relative;
+
         overflow: hidden;
 
         background-color: var(--shfes-color-content);
         & * {
             color: var(--shfes-color-content-text);
-        }
-        & p {
-            word-wrap: break-word;
         }
         .Share {
             position: fixed;
