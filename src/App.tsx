@@ -41,8 +41,8 @@ class App extends Component<Props, States> {
                         </Route>
                         <Route path={['/admin']}>
                             <Layout layout={'admin'}>
-                                <DebugUI />
                                 <Route path={'/admin'} component={AdminUI} />
+                                <DebugUI />
                             </Layout>
                         </Route>
                         <Redirect path='/article' to='/' />
