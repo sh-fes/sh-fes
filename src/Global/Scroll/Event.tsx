@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useGlobalDispatch, useGlobalState } from '..';
-import { ScrollPayloadType } from './types';
+import { PayloadScroll } from '../types';
 
 export function ScrollEvent() {
     const state = useGlobalState();
@@ -8,7 +8,7 @@ export function ScrollEvent() {
     useEffect(() => {
         const handle = () => {
             const st = window.pageYOffset || document.documentElement.scrollTop;
-            const payload: ScrollPayloadType = {
+            const payload: PayloadScroll = {
                 up: st > (state.scroll?.last ?? 0),
                 down: st < (state.scroll?.last ?? 0),
                 last: st <= 0 ? 0 : st,

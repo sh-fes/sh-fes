@@ -1,45 +1,26 @@
-import { ApolloClient, ApolloProvider, createHttpLink, from, InMemoryCache } from '@apollo/client';
 import Amplify from 'aws-amplify';
-import { createAuthLink } from 'aws-appsync-auth-link';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import App from './App';
 import awsExports from './aws-exports';
 import { GlobalProvider } from './Global';
+import './Global.module.scss';
+import { InitApolloProvider } from './GraphqlClient';
 
 Amplify.configure(awsExports);
 
-const authConfig = {
-    url: awsExports.aws_appsync_graphqlEndpoint,
-    region: awsExports.aws_appsync_region,
-    auth: {
-        type: awsExports.aws_appsync_authenticationType,
-        apiKey: awsExports.aws_appsync_apiKey,
-    },
-};
-const link = from([
-    // @ts-ignore
-    createAuthLink(authConfig),
-    createHttpLink({ uri: authConfig.url }),
-]);
-
-const client = new ApolloClient({
-    link,
-    cache: new InMemoryCache(),
-});
-
 const render = () =>
     ReactDOM.render(
-        <React.StrictMode>
-            <ApolloProvider client={client}>
-                <HelmetProvider>
-                    <GlobalProvider>
+        <React.Fragment>
+            <GlobalProvider>
+                <InitApolloProvider>
+                    <HelmetProvider>
                         <App />
-                    </GlobalProvider>
-                </HelmetProvider>
-            </ApolloProvider>
-        </React.StrictMode>,
+                    </HelmetProvider>
+                </InitApolloProvider>
+            </GlobalProvider>
+        </React.Fragment>,
         document.getElementById('root'),
     );
 

@@ -38,8 +38,9 @@ body {
 }
 /* DARK THEME */
 [data-theme='dark']:root {
-    --shfes-color-content: #212121;
-    --shfes-color-content-text: rgba(255, 255, 255, 0.7);
+    --shfes-color-base: #00023b;
+    // --shfes-color-content: #212121;
+    // --shfes-color-content-text: rgba(255, 255, 255, 0.7);
 }
 /*  */
 /* Component/Background */
@@ -131,6 +132,8 @@ body {
     .Container {
         position: relative;
 
+        overflow: hidden;
+
         background-color: var(--shfes-color-content);
         & * {
             color: var(--shfes-color-content-text);
@@ -156,6 +159,10 @@ body {
         }
         .TopContainer {
             min-height: 100vh;
+        }
+        .AdminContainer {
+            min-height: 100vh;
+            padding-bottom: 50vh;
         }
         .RightContainer {
             min-height: 56px;
@@ -195,6 +202,10 @@ body {
                 grid-column: 2 / 3;
                 grid-row: 1 / 3;
             }
+            .AdminContainer {
+                grid-column: 1 / 3;
+                grid-row: 1 / 3;
+            }
             .RightContainer {
                 grid-area: index;
             }
@@ -211,6 +222,10 @@ body {
             grid-template-columns: 44px 1fr 300px;
             .TopContainer {
                 grid-column: 2 / 4;
+                grid-row: revert;
+            }
+            .AdminContainer {
+                grid-column: 1 / 4;
                 grid-row: revert;
             }
         }

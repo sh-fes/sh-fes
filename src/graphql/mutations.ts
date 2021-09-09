@@ -9,20 +9,31 @@ export const createGroup = /* GraphQL */ `
   ) {
     createGroup(input: $input, condition: $condition) {
       id
-      name
-      posts {
+      groupID
+      groupName
+      groupKind
+      tags
+      icon
+      thumb
+      author
+      createdAt
+      isActive
+      updatedAt
+      articles {
         items {
           id
+          articleID
           title
-          groupID
-          content
+          tags
+          thumb
+          author
           createdAt
+          groupID
+          isActive
           updatedAt
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -33,20 +44,31 @@ export const updateGroup = /* GraphQL */ `
   ) {
     updateGroup(input: $input, condition: $condition) {
       id
-      name
-      posts {
+      groupID
+      groupName
+      groupKind
+      tags
+      icon
+      thumb
+      author
+      createdAt
+      isActive
+      updatedAt
+      articles {
         items {
           id
+          articleID
           title
-          groupID
-          content
+          tags
+          thumb
+          author
           createdAt
+          groupID
+          isActive
           updatedAt
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -57,20 +79,31 @@ export const deleteGroup = /* GraphQL */ `
   ) {
     deleteGroup(input: $input, condition: $condition) {
       id
-      name
-      posts {
+      groupID
+      groupName
+      groupKind
+      tags
+      icon
+      thumb
+      author
+      createdAt
+      isActive
+      updatedAt
+      articles {
         items {
           id
+          articleID
           title
-          groupID
-          content
+          tags
+          thumb
+          author
           createdAt
+          groupID
+          isActive
           updatedAt
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -81,20 +114,46 @@ export const createArticle = /* GraphQL */ `
   ) {
     createArticle(input: $input, condition: $condition) {
       id
+      articleID
       title
-      groupID
-      group {
-        id
-        name
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      content
+      tags
+      thumb
+      author
       createdAt
+      groupID
+      isActive
       updatedAt
+      group {
+        items {
+          id
+          groupID
+          groupName
+          groupKind
+          tags
+          icon
+          thumb
+          author
+          createdAt
+          isActive
+          updatedAt
+        }
+        nextToken
+      }
+      recommend {
+        items {
+          id
+          articleID
+          title
+          tags
+          thumb
+          author
+          createdAt
+          groupID
+          isActive
+          updatedAt
+        }
+        nextToken
+      }
     }
   }
 `;
@@ -105,20 +164,46 @@ export const updateArticle = /* GraphQL */ `
   ) {
     updateArticle(input: $input, condition: $condition) {
       id
+      articleID
       title
-      groupID
-      group {
-        id
-        name
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      content
+      tags
+      thumb
+      author
       createdAt
+      groupID
+      isActive
       updatedAt
+      group {
+        items {
+          id
+          groupID
+          groupName
+          groupKind
+          tags
+          icon
+          thumb
+          author
+          createdAt
+          isActive
+          updatedAt
+        }
+        nextToken
+      }
+      recommend {
+        items {
+          id
+          articleID
+          title
+          tags
+          thumb
+          author
+          createdAt
+          groupID
+          isActive
+          updatedAt
+        }
+        nextToken
+      }
     }
   }
 `;
@@ -129,20 +214,46 @@ export const deleteArticle = /* GraphQL */ `
   ) {
     deleteArticle(input: $input, condition: $condition) {
       id
+      articleID
       title
-      groupID
-      group {
-        id
-        name
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      content
+      tags
+      thumb
+      author
       createdAt
+      groupID
+      isActive
       updatedAt
+      group {
+        items {
+          id
+          groupID
+          groupName
+          groupKind
+          tags
+          icon
+          thumb
+          author
+          createdAt
+          isActive
+          updatedAt
+        }
+        nextToken
+      }
+      recommend {
+        items {
+          id
+          articleID
+          title
+          tags
+          thumb
+          author
+          createdAt
+          groupID
+          isActive
+          updatedAt
+        }
+        nextToken
+      }
     }
   }
 `;

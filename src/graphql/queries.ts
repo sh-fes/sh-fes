@@ -6,20 +6,31 @@ export const getGroup = /* GraphQL */ `
   query GetGroup($id: ID!) {
     getGroup(id: $id) {
       id
-      name
-      posts {
+      groupID
+      groupName
+      groupKind
+      tags
+      icon
+      thumb
+      author
+      createdAt
+      isActive
+      updatedAt
+      articles {
         items {
           id
+          articleID
           title
-          groupID
-          content
+          tags
+          thumb
+          author
           createdAt
+          groupID
+          isActive
           updatedAt
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
@@ -32,12 +43,56 @@ export const listGroups = /* GraphQL */ `
     listGroups(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        name
-        posts {
+        groupID
+        groupName
+        groupKind
+        tags
+        icon
+        thumb
+        author
+        createdAt
+        isActive
+        updatedAt
+        articles {
           nextToken
         }
+      }
+      nextToken
+    }
+  }
+`;
+export const groupByGroupID = /* GraphQL */ `
+  query GroupByGroupID(
+    $groupID: ID
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelGroupFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    GroupByGroupID(
+      groupID: $groupID
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        groupID
+        groupName
+        groupKind
+        tags
+        icon
+        thumb
+        author
         createdAt
+        isActive
         updatedAt
+        articles {
+          nextToken
+        }
       }
       nextToken
     }
@@ -47,20 +102,46 @@ export const getArticle = /* GraphQL */ `
   query GetArticle($id: ID!) {
     getArticle(id: $id) {
       id
+      articleID
       title
-      groupID
-      group {
-        id
-        name
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      content
+      tags
+      thumb
+      author
       createdAt
+      groupID
+      isActive
       updatedAt
+      group {
+        items {
+          id
+          groupID
+          groupName
+          groupKind
+          tags
+          icon
+          thumb
+          author
+          createdAt
+          isActive
+          updatedAt
+        }
+        nextToken
+      }
+      recommend {
+        items {
+          id
+          articleID
+          title
+          tags
+          thumb
+          author
+          createdAt
+          groupID
+          isActive
+          updatedAt
+        }
+        nextToken
+      }
     }
   }
 `;
@@ -73,17 +154,60 @@ export const listArticles = /* GraphQL */ `
     listArticles(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        articleID
         title
-        groupID
-        group {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        content
+        tags
+        thumb
+        author
         createdAt
+        groupID
+        isActive
         updatedAt
+        group {
+          nextToken
+        }
+        recommend {
+          nextToken
+        }
+      }
+      nextToken
+    }
+  }
+`;
+export const articleByArticleID = /* GraphQL */ `
+  query ArticleByArticleID(
+    $articleID: ID
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelArticleFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    ArticleByArticleID(
+      articleID: $articleID
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        articleID
+        title
+        tags
+        thumb
+        author
+        createdAt
+        groupID
+        isActive
+        updatedAt
+        group {
+          nextToken
+        }
+        recommend {
+          nextToken
+        }
       }
       nextToken
     }

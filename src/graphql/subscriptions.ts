@@ -3,128 +3,239 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateGroup = /* GraphQL */ `
-  subscription OnCreateGroup {
-    onCreateGroup {
+  subscription OnCreateGroup($author: String) {
+    onCreateGroup(author: $author) {
       id
-      name
-      posts {
+      groupID
+      groupName
+      groupKind
+      tags
+      icon
+      thumb
+      author
+      createdAt
+      isActive
+      updatedAt
+      articles {
         items {
           id
+          articleID
           title
-          groupID
-          content
+          tags
+          thumb
+          author
           createdAt
+          groupID
+          isActive
           updatedAt
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onUpdateGroup = /* GraphQL */ `
-  subscription OnUpdateGroup {
-    onUpdateGroup {
+  subscription OnUpdateGroup($author: String) {
+    onUpdateGroup(author: $author) {
       id
-      name
-      posts {
+      groupID
+      groupName
+      groupKind
+      tags
+      icon
+      thumb
+      author
+      createdAt
+      isActive
+      updatedAt
+      articles {
         items {
           id
+          articleID
           title
-          groupID
-          content
+          tags
+          thumb
+          author
           createdAt
+          groupID
+          isActive
           updatedAt
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onDeleteGroup = /* GraphQL */ `
-  subscription OnDeleteGroup {
-    onDeleteGroup {
+  subscription OnDeleteGroup($author: String) {
+    onDeleteGroup(author: $author) {
       id
-      name
-      posts {
+      groupID
+      groupName
+      groupKind
+      tags
+      icon
+      thumb
+      author
+      createdAt
+      isActive
+      updatedAt
+      articles {
         items {
           id
+          articleID
           title
-          groupID
-          content
+          tags
+          thumb
+          author
           createdAt
+          groupID
+          isActive
           updatedAt
         }
         nextToken
       }
-      createdAt
-      updatedAt
     }
   }
 `;
 export const onCreateArticle = /* GraphQL */ `
-  subscription OnCreateArticle {
-    onCreateArticle {
+  subscription OnCreateArticle($author: String) {
+    onCreateArticle(author: $author) {
       id
+      articleID
       title
-      groupID
-      group {
-        id
-        name
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      content
+      tags
+      thumb
+      author
       createdAt
+      groupID
+      isActive
       updatedAt
+      group {
+        items {
+          id
+          groupID
+          groupName
+          groupKind
+          tags
+          icon
+          thumb
+          author
+          createdAt
+          isActive
+          updatedAt
+        }
+        nextToken
+      }
+      recommend {
+        items {
+          id
+          articleID
+          title
+          tags
+          thumb
+          author
+          createdAt
+          groupID
+          isActive
+          updatedAt
+        }
+        nextToken
+      }
     }
   }
 `;
 export const onUpdateArticle = /* GraphQL */ `
-  subscription OnUpdateArticle {
-    onUpdateArticle {
+  subscription OnUpdateArticle($author: String) {
+    onUpdateArticle(author: $author) {
       id
+      articleID
       title
-      groupID
-      group {
-        id
-        name
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      content
+      tags
+      thumb
+      author
       createdAt
+      groupID
+      isActive
       updatedAt
+      group {
+        items {
+          id
+          groupID
+          groupName
+          groupKind
+          tags
+          icon
+          thumb
+          author
+          createdAt
+          isActive
+          updatedAt
+        }
+        nextToken
+      }
+      recommend {
+        items {
+          id
+          articleID
+          title
+          tags
+          thumb
+          author
+          createdAt
+          groupID
+          isActive
+          updatedAt
+        }
+        nextToken
+      }
     }
   }
 `;
 export const onDeleteArticle = /* GraphQL */ `
-  subscription OnDeleteArticle {
-    onDeleteArticle {
+  subscription OnDeleteArticle($author: String) {
+    onDeleteArticle(author: $author) {
       id
+      articleID
       title
-      groupID
-      group {
-        id
-        name
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      content
+      tags
+      thumb
+      author
       createdAt
+      groupID
+      isActive
       updatedAt
+      group {
+        items {
+          id
+          groupID
+          groupName
+          groupKind
+          tags
+          icon
+          thumb
+          author
+          createdAt
+          isActive
+          updatedAt
+        }
+        nextToken
+      }
+      recommend {
+        items {
+          id
+          articleID
+          title
+          tags
+          thumb
+          author
+          createdAt
+          groupID
+          isActive
+          updatedAt
+        }
+        nextToken
+      }
     }
   }
 `;

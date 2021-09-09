@@ -1,5 +1,6 @@
+import { Button } from '@material-ui/core';
 import React, { Component } from 'react';
-import { ThemeSwitcher } from '../Components/Theme';
+import { Link } from 'react-router-dom';
 import { GlobalStateContext } from '../Global';
 
 interface Props {}
@@ -12,16 +13,9 @@ class TopPage extends Component<Props, States> {
         return (
             <>
                 <h1>Top Page</h1>
-                {/** There is three way to use context
-                 *   1. Use Context.Consumer
-                 *   2. Use contextType
-                 *   3. Use useContext (this is react hook)
-                 */}
-                <GlobalStateContext.Consumer>
-                    {(state) => state?.theme ?? undefined}
-                </GlobalStateContext.Consumer>
-                <ThemeSwitcher />
-                {this.context?.scroll?.last ?? undefined}
+                <Button variant={'contained'} color={'secondary'} component={Link} to={'/admin'}>
+                    Admin UI
+                </Button>
             </>
         );
     }

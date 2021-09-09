@@ -1,0 +1,85 @@
+enum GroupKind {
+    Athletic
+    Culture
+    Grade1
+    Grade2
+    Grade3
+    Grade4
+    Grade5
+    Grade6
+    Teacher
+    None
+}
+type Group
+    @model
+    # auth
+    @auth(
+        rules: [
+            { allow: owner, ownerField: "author", operations: [read, create, update, delete] }
+            { allow: groups, groups: ["Admin"], operations: [read, create, update, delete] }
+            { allow: public, operations: [read] }
+        ]
+    )
+    # query
+    @key(name: "byGroupID", fields: ["groupID", "createdAt"], queryField: "GroupByGroupID") {
+    id: ID!
+    groupID: ID!
+    groupName: String!
+    groupKind: GroupKind!
+
+    tags: [String!]
+    icon: String!
+    thumb: String!
+
+    # author
+    author: String!
+
+    # date
+    createdAt: AWSDateTime!
+
+    # link
+    articles: [Article] @connection(keyName: "byGroup", fields: ["groupID"])
+
+    # state
+    isActive: Boolean!
+}
+type Article
+    @model
+    # auth
+    @auth(
+        rules: [
+            { allow: owner, ownerField: "author", operations: [read, create, update, delete] }
+            { allow: groups, groups: ["Admin"], operations: [read, create, update, delete] }
+            { allow: public, operations: [read] }
+        ]
+    )
+    # link
+    @key(name: "byGroup", fields: ["groupID"])
+    # query
+    @key(
+        name: "byArticleID"
+        fields: ["articleID", "createdAt"]
+        queryField: "ArticleByArticleID"
+    ) {
+    id: ID!
+    articleID: ID!
+    title: String!
+
+    tags: [String!]
+    thumb: String!
+
+    recommend: [Article] @connection(keyName: "byGroup", fields: ["groupID"])
+
+    # author
+    author: String!
+
+    # date
+    createdAt: AWSDateTime!
+
+    # link
+    groupID: ID!
+    group: [Group] @connection(keyName: "byGroupID", fields: ["groupID"])
+
+    # state
+    isActive: Boolean!
+}
