@@ -1,7 +1,8 @@
+import { Accordion, AccordionDetails, AccordionSummary, Container } from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Auth } from 'aws-amplify';
 import React, { Component } from 'react';
 import { GlobalStateContext } from '../../Global';
-import { ThemeSwitcher } from '../Theme';
 
 interface Props {}
 interface States {
@@ -24,13 +25,35 @@ class DebugUI extends Component<Props, States> {
     render() {
         return (
             <>
-                <h2>Debug Tool</h2>
-                <h3>State</h3>
-                <button onClick={this.update}>UpdateState</button>
-                <p>{this.state.authToken ?? 'undefined'}</p>
-                <h3>Context</h3>
-                <ThemeSwitcher />
-                <p>{JSON.stringify({ ...this.context, authClient: 'ApolloClient' })}</p>
+                <Container maxWidth={'lg'}>
+                    <h2>Debug Tools</h2>
+                    <Accordion onChange={this.update}>
+                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>State</AccordionSummary>
+                        <AccordionDetails>
+                            <p style={{ width: '100%', wordWrap: 'break-word' }}>
+                                {this.state.authToken ?? 'Click to update'}
+                            </p>
+                        </AccordionDetails>
+                    </Accordion>
+                    <Accordion>
+                        <AccordionSummary expandIcon={<ExpandMoreIcon />}>Context</AccordionSummary>
+                        <AccordionDetails>
+                            <p
+                                style={{
+                                    width: '100%',
+                                    wordWrap: 'break-word',
+                                    whiteSpace: 'pre-wrap',
+                                }}
+                            >
+                                {JSON.stringify(
+                                    { ...this.context, authClient: 'ApolloClient' },
+                                    null,
+                                    2,
+                                )}
+                            </p>
+                        </AccordionDetails>
+                    </Accordion>
+                </Container>
             </>
         );
     }
