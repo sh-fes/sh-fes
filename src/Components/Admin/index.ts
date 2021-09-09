@@ -1,1 +1,1 @@
-export { default as CreateGroupForm } from './CreateGroup';
+export { default as AdminUI } from './AdminUI';

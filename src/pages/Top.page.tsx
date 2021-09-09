@@ -1,5 +1,6 @@
+import { Button } from '@material-ui/core';
 import React, { Component } from 'react';
-import { ThemeSwitcher } from '../Components/Theme';
+import { Link } from 'react-router-dom';
 import { GlobalStateContext } from '../Global';
 
 interface Props {}
@@ -12,8 +13,9 @@ class TopPage extends Component<Props, States> {
         return (
             <>
                 <h1>Top Page</h1>
-                <ThemeSwitcher />
-                <p>{JSON.stringify(this.context)}</p>
+                <Button variant={'contained'} color={'secondary'} component={Link} to={'/admin'}>
+                    Admin UI
+                </Button>
             </>
         );
     }
