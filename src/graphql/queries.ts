@@ -8,17 +8,25 @@ export const getGroup = /* GraphQL */ `
       id
       groupID
       groupName
+      groupKind
+      tags
+      icon
+      thumb
       author
       createdAt
+      isActive
       updatedAt
       articles {
         items {
           id
           articleID
           title
+          tags
+          thumb
           author
           createdAt
           groupID
+          isActive
           updatedAt
         }
         nextToken
@@ -37,8 +45,13 @@ export const listGroups = /* GraphQL */ `
         id
         groupID
         groupName
+        groupKind
+        tags
+        icon
+        thumb
         author
         createdAt
+        isActive
         updatedAt
         articles {
           nextToken
@@ -69,8 +82,13 @@ export const groupByGroupID = /* GraphQL */ `
         id
         groupID
         groupName
+        groupKind
+        tags
+        icon
+        thumb
         author
         createdAt
+        isActive
         updatedAt
         articles {
           nextToken
@@ -86,20 +104,43 @@ export const getArticle = /* GraphQL */ `
       id
       articleID
       title
+      tags
+      thumb
       author
       createdAt
       groupID
+      isActive
       updatedAt
       group {
-        id
-        groupID
-        groupName
-        author
-        createdAt
-        updatedAt
-        articles {
-          nextToken
+        items {
+          id
+          groupID
+          groupName
+          groupKind
+          tags
+          icon
+          thumb
+          author
+          createdAt
+          isActive
+          updatedAt
         }
+        nextToken
+      }
+      recommend {
+        items {
+          id
+          articleID
+          title
+          tags
+          thumb
+          author
+          createdAt
+          groupID
+          isActive
+          updatedAt
+        }
+        nextToken
       }
     }
   }
@@ -115,17 +156,18 @@ export const listArticles = /* GraphQL */ `
         id
         articleID
         title
+        tags
+        thumb
         author
         createdAt
         groupID
+        isActive
         updatedAt
         group {
-          id
-          groupID
-          groupName
-          author
-          createdAt
-          updatedAt
+          nextToken
+        }
+        recommend {
+          nextToken
         }
       }
       nextToken
@@ -153,17 +195,18 @@ export const articleByArticleID = /* GraphQL */ `
         id
         articleID
         title
+        tags
+        thumb
         author
         createdAt
         groupID
+        isActive
         updatedAt
         group {
-          id
-          groupID
-          groupName
-          author
-          createdAt
-          updatedAt
+          nextToken
+        }
+        recommend {
+          nextToken
         }
       }
       nextToken

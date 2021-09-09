@@ -11,17 +11,25 @@ export const createGroup = /* GraphQL */ `
       id
       groupID
       groupName
+      groupKind
+      tags
+      icon
+      thumb
       author
       createdAt
+      isActive
       updatedAt
       articles {
         items {
           id
           articleID
           title
+          tags
+          thumb
           author
           createdAt
           groupID
+          isActive
           updatedAt
         }
         nextToken
@@ -38,17 +46,25 @@ export const updateGroup = /* GraphQL */ `
       id
       groupID
       groupName
+      groupKind
+      tags
+      icon
+      thumb
       author
       createdAt
+      isActive
       updatedAt
       articles {
         items {
           id
           articleID
           title
+          tags
+          thumb
           author
           createdAt
           groupID
+          isActive
           updatedAt
         }
         nextToken
@@ -65,17 +81,25 @@ export const deleteGroup = /* GraphQL */ `
       id
       groupID
       groupName
+      groupKind
+      tags
+      icon
+      thumb
       author
       createdAt
+      isActive
       updatedAt
       articles {
         items {
           id
           articleID
           title
+          tags
+          thumb
           author
           createdAt
           groupID
+          isActive
           updatedAt
         }
         nextToken
@@ -92,20 +116,43 @@ export const createArticle = /* GraphQL */ `
       id
       articleID
       title
+      tags
+      thumb
       author
       createdAt
       groupID
+      isActive
       updatedAt
       group {
-        id
-        groupID
-        groupName
-        author
-        createdAt
-        updatedAt
-        articles {
-          nextToken
+        items {
+          id
+          groupID
+          groupName
+          groupKind
+          tags
+          icon
+          thumb
+          author
+          createdAt
+          isActive
+          updatedAt
         }
+        nextToken
+      }
+      recommend {
+        items {
+          id
+          articleID
+          title
+          tags
+          thumb
+          author
+          createdAt
+          groupID
+          isActive
+          updatedAt
+        }
+        nextToken
       }
     }
   }
@@ -119,20 +166,43 @@ export const updateArticle = /* GraphQL */ `
       id
       articleID
       title
+      tags
+      thumb
       author
       createdAt
       groupID
+      isActive
       updatedAt
       group {
-        id
-        groupID
-        groupName
-        author
-        createdAt
-        updatedAt
-        articles {
-          nextToken
+        items {
+          id
+          groupID
+          groupName
+          groupKind
+          tags
+          icon
+          thumb
+          author
+          createdAt
+          isActive
+          updatedAt
         }
+        nextToken
+      }
+      recommend {
+        items {
+          id
+          articleID
+          title
+          tags
+          thumb
+          author
+          createdAt
+          groupID
+          isActive
+          updatedAt
+        }
+        nextToken
       }
     }
   }
@@ -146,20 +216,43 @@ export const deleteArticle = /* GraphQL */ `
       id
       articleID
       title
+      tags
+      thumb
       author
       createdAt
       groupID
+      isActive
       updatedAt
       group {
-        id
-        groupID
-        groupName
-        author
-        createdAt
-        updatedAt
-        articles {
-          nextToken
+        items {
+          id
+          groupID
+          groupName
+          groupKind
+          tags
+          icon
+          thumb
+          author
+          createdAt
+          isActive
+          updatedAt
         }
+        nextToken
+      }
+      recommend {
+        items {
+          id
+          articleID
+          title
+          tags
+          thumb
+          author
+          createdAt
+          groupID
+          isActive
+          updatedAt
+        }
+        nextToken
       }
     }
   }

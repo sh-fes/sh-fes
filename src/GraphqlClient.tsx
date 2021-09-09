@@ -1,6 +1,15 @@
-import { ApolloClient, ApolloProvider, createHttpLink, from, InMemoryCache } from '@apollo/client';
+import {
+    ApolloClient,
+    ApolloProvider,
+    createHttpLink,
+    from,
+    InMemoryCache,
+    split,
+} from '@apollo/client';
+import { getMainDefinition } from '@apollo/client/utilities';
 import Auth from '@aws-amplify/auth';
 import { AuthOptions, createAuthLink } from 'aws-appsync-auth-link';
+import { createSubscriptionHandshakeLink } from 'aws-appsync-subscription-link';
 import { ReactNode } from 'react';
 import awsExports from './aws-exports';
 
@@ -9,6 +18,7 @@ interface AuthConfig {
     region: string;
     auth: AuthOptions;
 }
+
 const defaultAuthConfig: AuthConfig = {
     url: awsExports.aws_appsync_graphqlEndpoint,
     region: awsExports.aws_appsync_region,
@@ -24,20 +34,46 @@ const adminAuthConfig: AuthConfig = {
         jwtToken: async () => (await Auth.currentSession()).getIdToken().getJwtToken(),
     } as AuthOptions,
 };
-export const defaultClient = new ApolloClient({
-    link: from([
+
+// client
+const DefaultLink = split(
+    ({ query }) => {
+        const definition = getMainDefinition(query);
+        return definition.kind === 'OperationDefinition' && definition.operation === 'subscription';
+    },
+    from([
+        // @ts-ignore
+        createAuthLink(defaultAuthConfig),
+        createSubscriptionHandshakeLink(defaultAuthConfig),
+    ]),
+    from([
         // @ts-ignore
         createAuthLink(defaultAuthConfig),
         createHttpLink({ uri: defaultAuthConfig.url }),
     ]),
-    cache: new InMemoryCache(),
-});
-export const adminClient = new ApolloClient({
-    link: from([
+);
+const AdminLink = split(
+    ({ query }) => {
+        const definition = getMainDefinition(query);
+        return definition.kind === 'OperationDefinition' && definition.operation === 'subscription';
+    },
+    from([
+        // @ts-ignore
+        createAuthLink(adminAuthConfig),
+        createSubscriptionHandshakeLink(adminAuthConfig),
+    ]),
+    from([
         // @ts-ignore
         createAuthLink(adminAuthConfig),
         createHttpLink({ uri: adminAuthConfig.url }),
     ]),
+);
+export const defaultClient = new ApolloClient({
+    link: DefaultLink,
+    cache: new InMemoryCache(),
+});
+export const adminClient = new ApolloClient({
+    link: AdminLink,
     cache: new InMemoryCache(),
 });
 

@@ -1,9 +1,22 @@
+enum GroupKind {
+    Athletic
+    Culture
+    Grade1
+    Grade2
+    Grade3
+    Grade4
+    Grade5
+    Grade6
+    Teacher
+    None
+}
 type Group
     @model
     # auth
     @auth(
         rules: [
             { allow: owner, ownerField: "author", operations: [read, create, update, delete] }
+            { allow: groups, groups: ["Admin"], operations: [read, create, update, delete] }
             { allow: public, operations: [read] }
         ]
     )
@@ -12,6 +25,11 @@ type Group
     id: ID!
     groupID: ID!
     groupName: String!
+    groupKind: GroupKind!
+
+    tags: [String!]
+    icon: String!
+    thumb: String!
 
     # author
     author: String!
@@ -20,7 +38,10 @@ type Group
     createdAt: AWSDateTime!
 
     # link
-    articles: [Article] @connection(keyName: "byGroup", fields: ["id"])
+    articles: [Article] @connection(keyName: "byGroup", fields: ["groupID"])
+
+    # state
+    isActive: Boolean!
 }
 type Article
     @model
@@ -28,6 +49,7 @@ type Article
     @auth(
         rules: [
             { allow: owner, ownerField: "author", operations: [read, create, update, delete] }
+            { allow: groups, groups: ["Admin"], operations: [read, create, update, delete] }
             { allow: public, operations: [read] }
         ]
     )
@@ -43,6 +65,11 @@ type Article
     articleID: ID!
     title: String!
 
+    tags: [String!]
+    thumb: String!
+
+    recommend: [Article] @connection(keyName: "byGroup", fields: ["groupID"])
+
     # author
     author: String!
 
@@ -51,5 +78,8 @@ type Article
 
     # link
     groupID: ID!
-    group: Group @connection(name: "byGroupID", fields: ["groupID"])
+    group: [Group] @connection(keyName: "byGroupID", fields: ["groupID"])
+
+    # state
+    isActive: Boolean!
 }

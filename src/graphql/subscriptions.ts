@@ -8,17 +8,25 @@ export const onCreateGroup = /* GraphQL */ `
       id
       groupID
       groupName
+      groupKind
+      tags
+      icon
+      thumb
       author
       createdAt
+      isActive
       updatedAt
       articles {
         items {
           id
           articleID
           title
+          tags
+          thumb
           author
           createdAt
           groupID
+          isActive
           updatedAt
         }
         nextToken
@@ -32,17 +40,25 @@ export const onUpdateGroup = /* GraphQL */ `
       id
       groupID
       groupName
+      groupKind
+      tags
+      icon
+      thumb
       author
       createdAt
+      isActive
       updatedAt
       articles {
         items {
           id
           articleID
           title
+          tags
+          thumb
           author
           createdAt
           groupID
+          isActive
           updatedAt
         }
         nextToken
@@ -56,17 +72,25 @@ export const onDeleteGroup = /* GraphQL */ `
       id
       groupID
       groupName
+      groupKind
+      tags
+      icon
+      thumb
       author
       createdAt
+      isActive
       updatedAt
       articles {
         items {
           id
           articleID
           title
+          tags
+          thumb
           author
           createdAt
           groupID
+          isActive
           updatedAt
         }
         nextToken
@@ -80,20 +104,43 @@ export const onCreateArticle = /* GraphQL */ `
       id
       articleID
       title
+      tags
+      thumb
       author
       createdAt
       groupID
+      isActive
       updatedAt
       group {
-        id
-        groupID
-        groupName
-        author
-        createdAt
-        updatedAt
-        articles {
-          nextToken
+        items {
+          id
+          groupID
+          groupName
+          groupKind
+          tags
+          icon
+          thumb
+          author
+          createdAt
+          isActive
+          updatedAt
         }
+        nextToken
+      }
+      recommend {
+        items {
+          id
+          articleID
+          title
+          tags
+          thumb
+          author
+          createdAt
+          groupID
+          isActive
+          updatedAt
+        }
+        nextToken
       }
     }
   }
@@ -104,20 +151,43 @@ export const onUpdateArticle = /* GraphQL */ `
       id
       articleID
       title
+      tags
+      thumb
       author
       createdAt
       groupID
+      isActive
       updatedAt
       group {
-        id
-        groupID
-        groupName
-        author
-        createdAt
-        updatedAt
-        articles {
-          nextToken
+        items {
+          id
+          groupID
+          groupName
+          groupKind
+          tags
+          icon
+          thumb
+          author
+          createdAt
+          isActive
+          updatedAt
         }
+        nextToken
+      }
+      recommend {
+        items {
+          id
+          articleID
+          title
+          tags
+          thumb
+          author
+          createdAt
+          groupID
+          isActive
+          updatedAt
+        }
+        nextToken
       }
     }
   }
@@ -128,20 +198,43 @@ export const onDeleteArticle = /* GraphQL */ `
       id
       articleID
       title
+      tags
+      thumb
       author
       createdAt
       groupID
+      isActive
       updatedAt
       group {
-        id
-        groupID
-        groupName
-        author
-        createdAt
-        updatedAt
-        articles {
-          nextToken
+        items {
+          id
+          groupID
+          groupName
+          groupKind
+          tags
+          icon
+          thumb
+          author
+          createdAt
+          isActive
+          updatedAt
         }
+        nextToken
+      }
+      recommend {
+        items {
+          id
+          articleID
+          title
+          tags
+          thumb
+          author
+          createdAt
+          groupID
+          isActive
+          updatedAt
+        }
+        nextToken
       }
     }
   }
