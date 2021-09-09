@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { AdminProvider } from './AdminContext';
 import Style from './AdminUI.module.scss';
 import { AdminDebugUI } from './Debug';
-import { Operation } from './Operation';
+import { GroupOperation } from './Operation';
 
 interface Props {}
 interface States {}
@@ -20,7 +20,7 @@ class AdminUI extends Component<Props, States> {
             <>
                 <AdminProvider>
                     <Title className={Style.AdminTitle} />
-                    <Operation />
+                    <GroupOperation />
                     <AdminDebugUI className={Style.DebugContainer} />
                 </AdminProvider>
             </>

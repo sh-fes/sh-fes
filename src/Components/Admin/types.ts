@@ -1,5 +1,17 @@
-import { GroupKind } from "../../API";
 import { Group } from "./API";
+
+export enum GroupKindDisplayValue {
+    Athletic = '運動部',
+    Culture = '文化部',
+    Grade1 = '中学1年生',
+    Grade2 = '中学2年生',
+    Grade3 = '中学3年生',
+    Grade4 = '高校1年生',
+    Grade5 = '高校2年生',
+    Grade6 = '高校3年生',
+    Teacher = '教員',
+    None = '指定なし',
+}
 
 export interface Action<Type, Payload> {
     type: Type

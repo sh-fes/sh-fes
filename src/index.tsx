@@ -5,13 +5,14 @@ import { HelmetProvider } from 'react-helmet-async';
 import App from './App';
 import awsExports from './aws-exports';
 import { GlobalProvider } from './Global';
+import './Global.module.scss';
 import { InitApolloProvider } from './GraphqlClient';
 
 Amplify.configure(awsExports);
 
 const render = () =>
     ReactDOM.render(
-        <React.StrictMode>
+        <React.Fragment>
             <GlobalProvider>
                 <InitApolloProvider>
                     <HelmetProvider>
@@ -19,7 +20,7 @@ const render = () =>
                     </HelmetProvider>
                 </InitApolloProvider>
             </GlobalProvider>
-        </React.StrictMode>,
+        </React.Fragment>,
         document.getElementById('root'),
     );
 
