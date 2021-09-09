@@ -9,22 +9,26 @@ interface SwitcherProps {
     children?: React.ReactNode;
 }
 
-function ShareBarSwitcher({ layout: profile }: SwitcherProps) {
-    switch (profile) {
-        default:
+function ShareBarSwitcher({ layout }: SwitcherProps) {
+    switch (layout) {
+        case 'top':
+        case 'index':
+        case 'article':
+        case 'notfound':
             return <Share />;
+        default:
+            return null;
     }
 }
-function MainSwitcher({ layout: profile, children }: SwitcherProps) {
-    switch (profile) {
+function MainSwitcher({ layout, children }: SwitcherProps) {
+    switch (layout) {
         case 'top':
-            return <main className={RootStyle.TopContainer}>{children}</main>;
         case 'index':
             return <main className={RootStyle.TopContainer}>{children}</main>;
         case 'article':
             return <main className={RootStyle.MainContainer}>{children}</main>;
         case 'admin':
-            return <main className={RootStyle.TopContainer}>{children}</main>;
+            return <main className={RootStyle.AdminContainer}>{children}</main>;
         case 'notfound':
             return (
                 <main className={RootStyle.TopContainer}>
@@ -35,8 +39,8 @@ function MainSwitcher({ layout: profile, children }: SwitcherProps) {
             return null;
     }
 }
-function SidebarSwitcher({ layout: profile }: SwitcherProps) {
-    switch (profile) {
+function SidebarSwitcher({ layout }: SwitcherProps) {
+    switch (layout) {
         case 'article':
             return <IndexBar />;
         default:
@@ -53,7 +57,10 @@ class Layout extends Component<Props, States> {
     render() {
         return (
             <>
-                <div className={RootStyle.Layout}>
+                <div
+                    className={RootStyle.Layout}
+                    style={this.props.layout === 'top' ? { marginTop: '100vh', paddingTop: 0 } : {}}
+                >
                     <div className={RootStyle.Slid}>
                         <div className={RootStyle.Fade}></div>
                         <div className={RootStyle.Mono}></div>
