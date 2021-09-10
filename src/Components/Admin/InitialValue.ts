@@ -1,27 +1,15 @@
-import { GroupKind } from "../../API";
-import { AdminState } from "./types";
+import { AdminState, GroupObject, GroupOperationHandler, Payload_Username } from "./types";
 
+export const UsernameInitialValue: Payload_Username = 'unknown-admin';
+export const GroupInitialValue = new GroupObject();
+export const GOHInitialValue: GroupOperationHandler = {
+    CurrentOperation: null,
+    DisableEditor: true,
+    DisableSubmit: true,
+    GroupChoices: [],
+};
 export const InitialValue: AdminState = {
-    Group: {
-        inputValue: '',
-        __typename: "Group",
-        id: '',
-        groupID: '',
-        groupName: '',
-        groupKind: GroupKind.None,
-        tags: [],
-        _tags: '',
-        icon: '',
-        thumb: '',
-        author: '',
-        createdAt: '',
-        isActive: true,
-        updatedAt: '',
-        articles: {
-            __typename: "ModelArticleConnection",
-            items: [],
-            nextToken: null,
-        },
-    },
-    Username: 'unknown-admin'
-}
+    Username: UsernameInitialValue,
+    Group: GroupInitialValue,
+    GOH: GOHInitialValue,
+};
