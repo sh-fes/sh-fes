@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { AdminProvider, useAdminDispatch } from './AdminContext';
 import Style from './AdminUI.module.scss';
 import { AdminDebugUI } from './Debug';
-import { ArticleOperation } from './Operation';
+import { GroupOperation } from './Operation';
 
 interface Props {}
 interface States {}
@@ -34,8 +34,7 @@ class AdminUI extends Component<Props, States> {
                 <AdminProvider>
                     <SetUsername />
                     <Title className={Style.AdminTitle} />
-                    <ArticleOperation />
-                    {/* <GroupOperation /> */}
+                    <GroupOperation />
                     <AdminDebugUI className={Style.DebugContainer} />
                 </AdminProvider>
             </>
