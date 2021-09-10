@@ -21,6 +21,7 @@ export const getGroup = /* GraphQL */ `
           id
           articleID
           title
+          content
           tags
           thumb
           author
@@ -104,6 +105,7 @@ export const getArticle = /* GraphQL */ `
       id
       articleID
       title
+      content
       tags
       thumb
       author
@@ -132,6 +134,7 @@ export const getArticle = /* GraphQL */ `
           id
           articleID
           title
+          content
           tags
           thumb
           author
@@ -156,6 +159,7 @@ export const listArticles = /* GraphQL */ `
         id
         articleID
         title
+        content
         tags
         thumb
         author
@@ -195,6 +199,7 @@ export const articleByArticleID = /* GraphQL */ `
         id
         articleID
         title
+        content
         tags
         thumb
         author

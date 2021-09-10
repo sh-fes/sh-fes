@@ -21,6 +21,7 @@ export const onCreateGroup = /* GraphQL */ `
           id
           articleID
           title
+          content
           tags
           thumb
           author
@@ -53,6 +54,7 @@ export const onUpdateGroup = /* GraphQL */ `
           id
           articleID
           title
+          content
           tags
           thumb
           author
@@ -85,6 +87,7 @@ export const onDeleteGroup = /* GraphQL */ `
           id
           articleID
           title
+          content
           tags
           thumb
           author
@@ -104,6 +107,7 @@ export const onCreateArticle = /* GraphQL */ `
       id
       articleID
       title
+      content
       tags
       thumb
       author
@@ -132,6 +136,7 @@ export const onCreateArticle = /* GraphQL */ `
           id
           articleID
           title
+          content
           tags
           thumb
           author
@@ -151,6 +156,7 @@ export const onUpdateArticle = /* GraphQL */ `
       id
       articleID
       title
+      content
       tags
       thumb
       author
@@ -179,6 +185,7 @@ export const onUpdateArticle = /* GraphQL */ `
           id
           articleID
           title
+          content
           tags
           thumb
           author
@@ -198,6 +205,7 @@ export const onDeleteArticle = /* GraphQL */ `
       id
       articleID
       title
+      content
       tags
       thumb
       author
@@ -226,6 +234,7 @@ export const onDeleteArticle = /* GraphQL */ `
           id
           articleID
           title
+          content
           tags
           thumb
           author
