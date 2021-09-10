@@ -65,6 +65,8 @@ type Article
     articleID: ID!
     title: String!
 
+    content: String!
+
     tags: [String!]
     thumb: String!
 
