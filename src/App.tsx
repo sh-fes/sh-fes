@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import './App.module.scss';
 import { BackgroundImage, Header, Navigation } from './Components';
-import { DebugUI } from './Components/DebugUI';
 import Layout from './Components/Layout/Layout';
 import { GlobalStateContext } from './Global';
 import { NotfoundEvent } from './Global/NotFount';
@@ -18,7 +17,13 @@ class App extends Component<Props, States> {
         return (
             <Router>
                 <NotfoundEvent />
-                <Header />
+                <Switch>
+                    <Route path={['/admin']}></Route>
+                    <Route path={'*'}>
+                        <Header />
+                    </Route>
+                </Switch>
+                {/* <Header /> */}
                 <BackgroundImage />
                 {this.context?.isNotfound ? (
                     <Layout layout={'notfound'} />
@@ -40,10 +45,10 @@ class App extends Component<Props, States> {
                             </Layout>
                         </Route>
                         <Route path={['/admin']}>
-                            <Layout layout={'admin'}>
-                                <Route path={'/admin'} component={AdminUI} />
-                                <DebugUI />
-                            </Layout>
+                            {/* <Layout layout={'admin'}> */}
+                            <Route path={'/admin'} component={AdminUI} />
+                            {/* <DebugUI /> */}
+                            {/* </Layout> */}
                         </Route>
                         <Redirect path='/article' to='/' />
                         <Route path={'*'}>

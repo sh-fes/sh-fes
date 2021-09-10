@@ -1,94 +1,105 @@
 .AdminTitle {
     margin: 20px;
 }
-.DebugContainer {
+.AdminMain {
     display: flex;
+    align-items: center;
     flex-direction: column;
 
-    margin: 20px;
+    margin-top: 30vh;
     padding: 20px;
 
-    background-color: rgb(255, 200, 200) !important;
-
     gap: 20px;
-}
-.GroupRootContainer {
-    display: flex;
-
-    margin: 20px;
-    padding: 20px;
-
-    background-color: rgb(200, 255, 200) !important;
-
-    gap: 20px;
-    .LeftContainer {
-        flex: 1;
-
-        .TableContainer {
-            padding: 20px;
-        }
-    }
-    .RightContainer {
+    .GroupRootContainer {
         display: flex;
-        flex: 1;
-        flex-direction: column;
+
+        max-width: 1200px;
+        padding: 20px;
+
+        background-color: rgb(200, 255, 200) !important;
 
         gap: 20px;
-        .OperationSelectorContainer {
+        .LeftContainer {
+            flex: 1;
+
+            .TableContainer {
+                padding: 20px;
+            }
+        }
+        .RightContainer {
             display: flex;
-            align-items: center;
+            flex: 1;
             flex-direction: column;
 
-            padding: 20px;
-
             gap: 20px;
-            .AutoComplete {
-                min-width: 300px;
-            }
-        }
-        .OperationEditorContainer {
-            padding: 20px;
-            .Form {
+            .OperationSelectorContainer {
                 display: flex;
+                align-items: center;
                 flex-direction: column;
 
+                padding: 20px;
+
                 gap: 20px;
-                .FormTextFieldGroup {
-                    width: min-content;
-                    width: 100%;
-                    padding: 20px;
-                    .Form_groupID {
-                        width: 50%;
-                        min-width: 200px;
-                    }
-                    .Form_groupKind {
-                        width: 50%;
-                        min-width: 200px;
-                    }
-                    .Form_groupName {
-                        width: 100%;
-                        min-width: 400px;
-                    }
-                    .Form_icon {
-                        width: 100%;
-                        min-width: 400px;
-                    }
-                    .Form_thumb {
-                        width: 100%;
-                        min-width: 400px;
-                    }
-                    .Form__tags {
-                        width: 100%;
-                        min-width: 400px;
-                    }
+                .AutoComplete {
+                    min-width: 300px;
                 }
-                .FormButtonGroup {
+            }
+            .OperationEditorContainer {
+                padding: 20px;
+                .Form {
                     display: flex;
-                    justify-content: flex-end;
+                    flex-direction: column;
 
                     gap: 20px;
+                    .FormTextFieldGroup {
+                        width: min-content;
+                        width: 100%;
+                        padding: 20px;
+                        .Form_groupID {
+                            width: 50%;
+                            min-width: 200px;
+                        }
+                        .Form_groupKind {
+                            width: 50%;
+                            min-width: 200px;
+                        }
+                        .Form_groupName {
+                            width: 100%;
+                            min-width: 400px;
+                        }
+                        .Form_icon {
+                            width: 100%;
+                            min-width: 400px;
+                        }
+                        .Form_thumb {
+                            width: 100%;
+                            min-width: 400px;
+                        }
+                        .Form__tags {
+                            width: 100%;
+                            min-width: 400px;
+                        }
+                    }
+                    .FormButtonGroup {
+                        display: flex;
+                        justify-content: flex-end;
+
+                        gap: 20px;
+                    }
                 }
             }
         }
+    }
+    .DebugContainer {
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        max-width: 1200px;
+        padding: 20px;
+
+        background-color: rgb(255, 200, 200) !important;
+
+        gap: 20px;
     }
 }

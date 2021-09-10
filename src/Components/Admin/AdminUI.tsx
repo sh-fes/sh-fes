@@ -1,13 +1,10 @@
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
-import { Typography } from '@material-ui/core';
+import { Paper, Typography } from '@material-ui/core';
 import React, { Component } from 'react';
 import { AdminProvider, useAdminDispatch } from './AdminContext';
 import Style from './AdminUI.module.scss';
 import { AdminDebugUI } from './Debug';
 import { GroupOperation } from './Operation';
-
-interface Props {}
-interface States {}
 
 const Title = ({ className }: { className?: string }) => (
     <Typography className={className} variant='h2' component='h1' gutterBottom>
@@ -27,6 +24,9 @@ const SetUsername = () => {
     return <></>;
 };
 
+interface Props {}
+interface States {}
+
 class AdminUI extends Component<Props, States> {
     render() {
         return (
@@ -34,8 +34,10 @@ class AdminUI extends Component<Props, States> {
                 <AdminProvider>
                     <SetUsername />
                     <Title className={Style.AdminTitle} />
-                    <GroupOperation />
-                    <AdminDebugUI className={Style.DebugContainer} />
+                    <Paper className={Style.AdminMain}>
+                        <GroupOperation />
+                        <AdminDebugUI className={Style.DebugContainer} />
+                    </Paper>
                 </AdminProvider>
             </>
         );

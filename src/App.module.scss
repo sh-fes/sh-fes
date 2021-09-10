@@ -98,6 +98,22 @@ body {
         max-height: 100%;
     }
 }
+
+.AdminContainer {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+
+    background-color: #ffffff88;
+    .SignOutButton {
+        position: fixed;
+        top: 0;
+        right: 0;
+
+        width: 300px;
+    }
+}
+
 /* Component/Layout */
 .Layout {
     position: relative;
@@ -160,10 +176,6 @@ body {
         .TopContainer {
             min-height: 100vh;
         }
-        .AdminContainer {
-            min-height: 100vh;
-            padding-bottom: 50vh;
-        }
         .RightContainer {
             min-height: 56px;
             padding: 6px;
@@ -202,10 +214,6 @@ body {
                 grid-column: 2 / 3;
                 grid-row: 1 / 3;
             }
-            .AdminContainer {
-                grid-column: 1 / 3;
-                grid-row: 1 / 3;
-            }
             .RightContainer {
                 grid-area: index;
             }
@@ -222,10 +230,6 @@ body {
             grid-template-columns: 44px 1fr 300px;
             .TopContainer {
                 grid-column: 2 / 4;
-                grid-row: revert;
-            }
-            .AdminContainer {
-                grid-column: 1 / 4;
                 grid-row: revert;
             }
         }
