@@ -1,1 +1,1 @@
-export { default as Article } from './Group';
+export { default as Group } from './Group';

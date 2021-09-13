@@ -118,7 +118,7 @@ export class GroupObject implements Group {
         const date = new Date(this.createdAt);
         return date.toLocaleString();
     }
-    private toInputType(): CreateGroupInput {
+    private toInputType(author?: string): CreateGroupInput {
         return {
             groupID: this.groupID,
             groupName: this.groupName,
@@ -126,20 +126,20 @@ export class GroupObject implements Group {
             tags: this.tags,
             icon: this.icon,
             thumb: this.thumb,
-            author: this.author,
+            author: author ?? this.author,
             isActive: this.isActive,
         };
     }
     public tagsToArray() {
         this.tags = this._tags.split(',').filter((e) => e !== '');
     }
-    public displayValue() {
+    public defaultDisplayValue() {
         return [
             { key: 'オブジェクトタイプ', value: this.__typename },
             { key: '公開設定', value: this.isActive ? '公開' : '非公開' },
-            { key: 'グループID', value: this.groupID },
-            { key: 'グループ名', value: this.groupName },
-            { key: 'グループの種類', value: this.displayGroupKind() },
+            { key: '団体ID', value: this.groupID },
+            { key: '団体名', value: this.groupName },
+            { key: '団体', value: this.displayGroupKind() },
             { key: 'タグ', value: this.displayTags() },
             { key: 'アイコンURL', value: this.icon },
             { key: 'サムネイルURL', value: this.thumb },
@@ -148,32 +148,91 @@ export class GroupObject implements Group {
             { key: '更新日時', value: this.displayUpdatedAt() },
         ];
     }
-    public Create(CreateGroup: (options?: MutationFunctionOptions<CreateGroupMutation, CreateGroupMutationVariables>) => Promise<FetchResult<CreateGroupMutation>>) {
-        const input = this.toInputType();
+    public tableDisplayValue() {
+        return [
+            { key: '団体ID', value: this.groupID },
+            { key: '団体名', value: this.groupName },
+            { key: '団体', value: this.displayGroupKind() },
+            { key: '公開設定', value: this.isActive ? '公開' : '非公開' },
+            { key: 'タグ', value: this.displayTags() },
+            { key: '編集者名', value: this.author },
+            { key: '作成日時', value: this.displayCreatedAt() },
+            { key: '更新日時', value: this.displayUpdatedAt() }
+        ];
+    }
+    public Create(CreateGroup: (options?: MutationFunctionOptions<CreateGroupMutation, CreateGroupMutationVariables>) => Promise<FetchResult<CreateGroupMutation>>, author: string) {
+        const input = this.toInputType(author);
         const variables: CreateGroupMutationVariables = { input };
         CreateGroup({ variables });
     }
 }
+export interface GroupHistory {
+    head: GroupObject;
+    history: GroupObject[];
+}
+export class GroupObjectArray {
+    public GroupObjects: GroupObject[] = [];
+    constructor(props?: GroupObject[]) {
+        if (props) this.GroupObjects = props;
+    }
+    public Add(group: GroupObject): void {
+        this.GroupObjects.push(group);
+    }
+    public uniqueIDs(): string[] {
+        return [...new Set(this.GroupObjects.map((group) => group.groupID))];
+    }
+    public byGroupID(groupID: string): GroupObject[] {
+        return this.GroupObjects.filter(group => group.groupID === groupID);
+    }
+    public GroupHistory(): GroupHistory[] {
+        const groupIDs = this.uniqueIDs();
+        return groupIDs.map((groupID) => {
+            const groupsByGroupID = this.byGroupID(groupID).sort((a, b) => new Date(b.createdAt).valueOf() - new Date(a.createdAt).valueOf());
+            const head = groupsByGroupID.shift() ?? new GroupObject();
+            const history = groupsByGroupID;
+            const groupHistory: GroupHistory = { head, history };
+            return groupHistory;
+        });
+    }
+    public GroupChoices(): GroupObject[] {
+        const groups = this.GroupObjects;
+        const groupIDs = [...new Set(groups.map((item) => item.groupID))];
+        const uniqueGroups = groupIDs.map((groupID) =>
+            groups
+                .filter((v) => v.groupID === groupID)
+                .reduce(
+                    (a, b) => (a && new Date(a.createdAt) > new Date(b.createdAt) ? a : b),
+                    GroupInitialProperties,
+                ),
+        );
+        const GroupChoices = uniqueGroups.map((group) => new GroupObject(group));
+        return GroupChoices;
+    }
+}
+
 export type OperationType = 'CREATE' | 'UPDATE' | 'DELETE' | 'RECREATE' | null;
 export interface GroupOperationHandler {
-    GroupChoices: GroupObject[];
     CurrentOperation: OperationType;
     DisableEditor: boolean;
     DisableSubmit: boolean;
 }
 
 type Username_ActionType = Action<'Username', Payload_Username>;
-type NewGroup_ActionType = Action<'GroupObject', GroupObject>;
+type Group_ActionType = Action<'GroupObject', GroupObject>;
+type AllGroup_ActionType = Action<'AllGroup', GroupObjectArray>;
+type AllGroup_Add_ActionType = Action<'AllGroup_Add', GroupObject>;
 type GroupOperationHandler_ActionType = Action<'GOH', Partial<GroupOperationHandler>>;
 
 export interface AdminState {
     Username: Payload_Username;
     Group: GroupObject;
+    AllGroup: GroupObjectArray;
     GOH: GroupOperationHandler;
 }
 
 export type ActionType =
     | Username_ActionType
-    | NewGroup_ActionType
+    | Group_ActionType
+    | AllGroup_ActionType
+    | AllGroup_Add_ActionType
     | GroupOperationHandler_ActionType;
-

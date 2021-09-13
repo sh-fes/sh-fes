@@ -148,7 +148,7 @@ const CancelButton = ({ className }: { className?: string }) => {
             type: 'GOH',
             payload: { CurrentOperation: null, DisableEditor: true, DisableSubmit: true },
         });
-        const groups = state.GOH.GroupChoices.filter(
+        const groups = state.AllGroup.GroupChoices().filter(
             (group) => group.groupID === state.Group.groupID,
         );
         if (groups.length > 0) dispatch({ type: 'GroupObject', payload: groups[0] });
@@ -185,7 +185,7 @@ export const OperationEditor = ({ className }: { className?: string }) => {
     );
     function onSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        state.Group.Create(CreateGroup);
+        state.Group.Create(CreateGroup, state.Username);
         dispatch({
             type: 'GOH',
             payload: { CurrentOperation: null, DisableEditor: true, DisableSubmit: true },

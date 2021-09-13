@@ -43,7 +43,11 @@ export const GroupField = ({ className }: { className?: string }) => {
                 },
             });
         } else if (value) {
-            dispatch({ type: 'GroupObject', payload: value });
+            const payload = value;
+            dispatch({ type: 'GroupObject', payload });
+        } else if ((event.currentTarget as Element).tagName === 'BUTTON') {
+            const payload = new GroupObject();
+            dispatch({ type: 'GroupObject', payload });
         }
     }
     const filter = createFilterOptions<GroupObject>();
@@ -75,7 +79,7 @@ export const GroupField = ({ className }: { className?: string }) => {
             value={state.Group}
             onChange={handleOnChange}
             filterOptions={filterOptions}
-            options={state.GOH.GroupChoices}
+            options={state.AllGroup.GroupChoices()}
             getOptionLabel={GetOptionLabel}
             renderOption={RenderOption}
             renderInput={RenderInput}
