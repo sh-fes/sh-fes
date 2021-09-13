@@ -1,101 +1,89 @@
+$gap: 12px;
+._flex_a {
+    display: flex;
+
+    padding: $gap;
+
+    gap: $gap;
+}
+._flex_b {
+    display: flex;
+
+    gap: $gap;
+}
 .AdminTitle {
-    margin: 20px;
+    margin: $gap;
 }
 .AdminMain {
-    display: flex;
     align-items: center;
     flex-direction: column;
 
     margin-top: 30vh;
-    padding: 20px;
 
-    gap: 20px;
-    .GroupTableContainer {
-        display: flex;
-
+    @extend ._flex_a;
+    .ObjectTableContainer {
         width: 100%;
         max-width: 2000px;
-        padding: 20px;
 
         background-color: rgb(255, 255, 143) !important;
 
-        gap: 20px;
+        @extend ._flex_a;
     }
-    .GroupRootContainer {
-        display: flex;
-
+    .ObjectEditorContainer {
         max-width: 1200px;
-        padding: 20px;
 
         background-color: rgb(199, 255, 199) !important;
 
-        gap: 20px;
+        @extend ._flex_a;
         .LeftContainer {
             flex: 1;
 
             .TableContainer {
-                padding: 20px;
+                padding: $gap;
             }
         }
         .RightContainer {
-            display: flex;
             flex: 1;
             flex-direction: column;
 
-            gap: 20px;
+            @extend ._flex_b;
             .OperationSelectorContainer {
-                display: flex;
                 align-items: center;
                 flex-direction: column;
 
-                padding: 20px;
-
-                gap: 20px;
+                @extend ._flex_a;
                 .AutoComplete {
                     min-width: 300px;
                 }
             }
             .OperationEditorContainer {
-                padding: 20px;
                 .Form {
-                    display: flex;
                     flex-direction: column;
 
-                    gap: 20px;
+                    @extend ._flex_a;
                     .FormTextFieldGroup {
                         width: min-content;
                         width: 100%;
-                        padding: 20px;
-                        .Form_groupID {
-                            width: 50%;
-                            min-width: 200px;
-                        }
+                        padding: $gap;
+                        .Form_groupID,
+                        .Form_articleID,
                         .Form_groupKind {
                             width: 50%;
                             min-width: 200px;
                         }
-                        .Form_groupName {
-                            width: 100%;
-                            min-width: 400px;
-                        }
-                        .Form_icon {
-                            width: 100%;
-                            min-width: 400px;
-                        }
-                        .Form_thumb {
-                            width: 100%;
-                            min-width: 400px;
-                        }
+                        .Form_groupName,
+                        .Form_title,
+                        .Form_icon,
+                        .Form_thumb,
                         .Form__tags {
                             width: 100%;
                             min-width: 400px;
                         }
                     }
                     .FormButtonGroup {
-                        display: flex;
                         justify-content: flex-end;
 
-                        gap: 20px;
+                        @extend ._flex_b;
                     }
                 }
             }
@@ -107,10 +95,10 @@
 
         width: 100%;
         max-width: 1200px;
-        padding: 20px;
+        padding: $gap;
 
         background-color: rgb(255, 199, 199) !important;
 
-        gap: 20px;
+        gap: $gap;
     }
 }
