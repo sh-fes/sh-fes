@@ -118,7 +118,7 @@ export class GroupObject implements Group {
         const date = new Date(this.createdAt);
         return date.toLocaleString();
     }
-    private toInputType(): CreateGroupInput {
+    private toInputType(author?: string): CreateGroupInput {
         return {
             groupID: this.groupID,
             groupName: this.groupName,
@@ -126,7 +126,7 @@ export class GroupObject implements Group {
             tags: this.tags,
             icon: this.icon,
             thumb: this.thumb,
-            author: this.author,
+            author: author ?? this.author,
             isActive: this.isActive,
         };
     }
@@ -148,8 +148,6 @@ export class GroupObject implements Group {
             { key: '更新日時', value: this.displayUpdatedAt() },
         ];
     }
-    public Create(CreateGroup: (options?: MutationFunctionOptions<CreateGroupMutation, CreateGroupMutationVariables>) => Promise<FetchResult<CreateGroupMutation>>) {
-        const input = this.toInputType();
     public tableDisplayValue() {
         return [
             { key: '団体ID', value: this.groupID },
@@ -162,6 +160,8 @@ export class GroupObject implements Group {
             { key: '更新日時', value: this.displayUpdatedAt() }
         ];
     }
+    public Create(CreateGroup: (options?: MutationFunctionOptions<CreateGroupMutation, CreateGroupMutationVariables>) => Promise<FetchResult<CreateGroupMutation>>, author: string) {
+        const input = this.toInputType(author);
         const variables: CreateGroupMutationVariables = { input };
         CreateGroup({ variables });
     }
