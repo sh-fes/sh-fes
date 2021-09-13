@@ -43,7 +43,8 @@ export const GroupField = ({ className }: { className?: string }) => {
                 },
             });
         } else if (value) {
-            dispatch({ type: 'GroupObject', payload: value });
+            const payload = value;
+            dispatch({ type: 'GroupObject', payload });
         }
     }
     const filter = createFilterOptions<GroupObject>();
