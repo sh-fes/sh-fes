@@ -150,6 +150,18 @@ export class GroupObject implements Group {
     }
     public Create(CreateGroup: (options?: MutationFunctionOptions<CreateGroupMutation, CreateGroupMutationVariables>) => Promise<FetchResult<CreateGroupMutation>>) {
         const input = this.toInputType();
+    public tableDisplayValue() {
+        return [
+            { key: '団体ID', value: this.groupID },
+            { key: '団体名', value: this.groupName },
+            { key: '団体', value: this.displayGroupKind() },
+            { key: '公開設定', value: this.isActive ? '公開' : '非公開' },
+            { key: 'タグ', value: this.displayTags() },
+            { key: '編集者名', value: this.author },
+            { key: '作成日時', value: this.displayCreatedAt() },
+            { key: '更新日時', value: this.displayUpdatedAt() }
+        ];
+    }
         const variables: CreateGroupMutationVariables = { input };
         CreateGroup({ variables });
     }
