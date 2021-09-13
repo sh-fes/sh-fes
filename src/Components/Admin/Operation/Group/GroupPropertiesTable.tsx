@@ -24,7 +24,7 @@ export const GroupPropertiesTable = ({ className }: { className?: string }) => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {state.Group.displayValue().map((row, key) => (
+                    {state.Group.defaultDisplayValue().map((row, key) => (
                         <TableRow key={key}>
                             <TableCell component='th' scope='row'>
                                 {row.key}

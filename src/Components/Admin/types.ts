@@ -133,13 +133,13 @@ export class GroupObject implements Group {
     public tagsToArray() {
         this.tags = this._tags.split(',').filter((e) => e !== '');
     }
-    public displayValue() {
+    public defaultDisplayValue() {
         return [
             { key: 'オブジェクトタイプ', value: this.__typename },
             { key: '公開設定', value: this.isActive ? '公開' : '非公開' },
-            { key: 'グループID', value: this.groupID },
-            { key: 'グループ名', value: this.groupName },
-            { key: 'グループの種類', value: this.displayGroupKind() },
+            { key: '団体ID', value: this.groupID },
+            { key: '団体名', value: this.groupName },
+            { key: '団体', value: this.displayGroupKind() },
             { key: 'タグ', value: this.displayTags() },
             { key: 'アイコンURL', value: this.icon },
             { key: 'サムネイルURL', value: this.thumb },
