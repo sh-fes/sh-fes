@@ -45,6 +45,9 @@ export const GroupField = ({ className }: { className?: string }) => {
         } else if (value) {
             const payload = value;
             dispatch({ type: 'GroupObject', payload });
+        } else if ((event.currentTarget as Element).tagName === 'BUTTON') {
+            const payload = new GroupObject();
+            dispatch({ type: 'GroupObject', payload });
         }
     }
     const filter = createFilterOptions<GroupObject>();
