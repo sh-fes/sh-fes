@@ -1,6 +1,6 @@
 import { TableCell, TableRow } from '@material-ui/core';
 import React, { ReactNode } from 'react';
-import { GroupObject } from '../../types';
+import { GroupObject } from '../../types/GroupObject';
 
 interface GroupTableCellsProps {
     group?: GroupObject;

@@ -1,5 +1,6 @@
 import { Reducer } from 'react';
-import { ActionType, AdminState, GroupObjectArray } from './types';
+import { GroupObjectArray } from './types/GroupObjectArray';
+import { ActionType, AdminState } from './types/types';
 
 /** AdminReducer */
 type AdminReducerType = Reducer<AdminState, ActionType>;

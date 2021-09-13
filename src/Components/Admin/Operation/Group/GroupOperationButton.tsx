@@ -5,8 +5,8 @@ import React, { useEffect, useState } from 'react';
 import { GroupByGroupIDQueryVariables } from '../../../../API';
 import { defaultClient } from '../../../../GraphqlClient';
 import { useAdminDispatch, useAdminState } from '../../AdminContext';
-import { GroupByGroupIDQuery } from '../../API';
-import { GroupObject } from '../../types';
+import { GroupByGroupIDQuery } from '../../types/API';
+import { GroupObject } from '../../types/GroupObject';
 
 export const OperationButton = ({ className }: { className?: string }) => {
     const state = useAdminState();

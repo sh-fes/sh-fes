@@ -5,7 +5,7 @@ import Autocomplete, {
 } from '@material-ui/lab/Autocomplete';
 import { FilterOptionsState } from '@material-ui/lab/useAutocomplete';
 import { useAdminDispatch, useAdminState } from '../../AdminContext';
-import { GroupObject } from '../../types';
+import { GroupObject } from '../../types/GroupObject';
 
 export const GroupField = ({ className }: { className?: string }) => {
     const state = useAdminState();

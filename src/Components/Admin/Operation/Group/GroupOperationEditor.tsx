@@ -5,7 +5,7 @@ import { createGroup } from '../../../../graphql/mutations';
 import { adminClient } from '../../../../GraphqlClient';
 import { useAdminDispatch, useAdminState } from '../../AdminContext';
 import Style from '../../AdminUI.module.scss';
-import { GroupKindDisplayValue, GroupObject } from '../../types';
+import { GroupKindDisplayValue, GroupObject } from '../../types/GroupObject';
 
 const TextFieldGroupID = ({ className }: { className?: string }) => {
     const state = useAdminState();

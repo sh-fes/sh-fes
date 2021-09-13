@@ -6,10 +6,11 @@ import { ListGroupsQueryVariables } from '../../API';
 import { defaultClient } from '../../GraphqlClient';
 import { AdminProvider, useAdminDispatch } from './AdminContext';
 import Style from './AdminUI.module.scss';
-import { ListGroupsQuery } from './API';
+import { ListGroupsQuery } from './types/API';
 import { AdminDebugUI } from './Debug';
 import { Group as GroupOperation, GroupTable } from './Operation';
-import { GroupObject, GroupObjectArray } from './types';
+import { GroupObject } from './types/GroupObject';
+import { GroupObjectArray } from './types/GroupObjectArray';
 
 const Title = ({ className }: { className?: string }) => (
     <Typography className={className} variant='h2' component='h1' gutterBottom>
