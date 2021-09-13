@@ -16,8 +16,11 @@ const GroupTable = () => {
                             <GroupTableCells th />
                         </TableHead>
                         <TableBody>
-                            {state.AllGroup.GroupHistory().map((GroupsByGroupID) => (
-                                <GroupTableRows groupHistory={GroupsByGroupID} />
+                            {state.AllGroup.GroupHistory().map((groupHistory) => (
+                                <GroupTableRows
+                                    key={groupHistory.head.id}
+                                    groupHistory={groupHistory}
+                                />
                             ))}
                         </TableBody>
                     </Table>
