@@ -9,8 +9,6 @@ export const GlobalReducer: GlobalReducerType = (state, action) => {
             return { ...state, theme: action.payload };
         case 'SET_Scroll':
             return { ...state, scroll: action.payload };
-        case 'SET_Notfound':
-            return { ...state, isNotfound: action.payload };
         default:
             throw new Error(`No Operation Type ${action} found`);
     }

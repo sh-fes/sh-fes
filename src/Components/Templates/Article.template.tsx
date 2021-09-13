@@ -14,10 +14,6 @@ interface States {}
 class ArticleTemplate extends Component<Props, States> {
     static contextType = GlobalDispatchContext;
     context!: React.ContextType<typeof GlobalDispatchContext>;
-    goNotFound() {
-        const dispatch = this.context;
-        if (dispatch) dispatch({ type: 'SET_Notfound', payload: true });
-    }
     render() {
         const { loading, error, data } = this.props.q;
         if (loading) return <p>Loading...</p>;
@@ -34,7 +30,6 @@ class ArticleTemplate extends Component<Props, States> {
                     <p>{data.getArticle.title}</p>
                 </>
             );
-        else this.goNotFound();
         return null;
     }
 }
