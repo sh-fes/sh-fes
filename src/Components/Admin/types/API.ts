@@ -1,10 +1,10 @@
-import { GroupKind } from "../../API";
+import { GroupKind } from "../../../API";
 
 export interface ListGroupsQuery {
-    listGroups: ModelGroupConnection
+    listGroups: ModelGroupConnection;
 }
 export interface GroupByGroupIDQuery {
-    GroupByGroupID: ModelGroupConnection
+    GroupByGroupID: ModelGroupConnection;
 }
 export interface ModelGroupConnection {
     __typename: "ModelGroupConnection",
@@ -25,7 +25,14 @@ export interface Group {
     createdAt: string,
     isActive: boolean,
     updatedAt: string,
-    articles: ModelArticleConnection
+    articles: ModelArticleConnection;
+}
+
+export interface ListArticlesQuery {
+    listArticles: ModelArticleConnection;
+}
+export interface ArticleByArticleIDQuery {
+    ArticleByArticleID: ModelArticleConnection;
 }
 export interface ModelArticleConnection {
     __typename: "ModelArticleConnection",
@@ -37,6 +44,7 @@ export interface Article {
     id: string,
     articleID: string,
     title: string,
+    content: string,
     tags: string[],
     thumb: string,
     author: string,
@@ -44,5 +52,6 @@ export interface Article {
     groupID: string,
     isActive: boolean,
     updatedAt: string,
+    group: ModelGroupConnection,
     recommend?: ModelArticleConnection,
 }

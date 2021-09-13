@@ -2,14 +2,22 @@ import { gql, SubscriptionHookOptions, useLazyQuery, useSubscription } from '@ap
 import { AuthState, onAuthUIStateChange } from '@aws-amplify/ui-components';
 import { Paper, Typography } from '@material-ui/core';
 import React, { Component, useEffect } from 'react';
-import { ListGroupsQueryVariables } from '../../API';
+import { ListArticlesQueryVariables, ListGroupsQueryVariables } from '../../API';
 import { defaultClient } from '../../GraphqlClient';
 import { AdminProvider, useAdminDispatch } from './AdminContext';
 import Style from './AdminUI.module.scss';
-import { ListGroupsQuery } from './API';
 import { AdminDebugUI } from './Debug';
-import { Group as GroupOperation, GroupTable } from './Operation';
-import { GroupObject, GroupObjectArray } from './types';
+import {
+    Article as ArticleOperation,
+    ArticleTable,
+    Group as GroupOperation,
+    GroupTable,
+} from './Operation';
+import { ListArticlesQuery, ListGroupsQuery } from './types/API';
+import { ArticleObject } from './types/ArticleObject';
+import { ArticleObjectArray } from './types/ArticleObjectArray';
+import { GroupObject } from './types/GroupObject';
+import { GroupObjectArray } from './types/GroupObjectArray';
 
 const Title = ({ className }: { className?: string }) => (
     <Typography className={className} variant='h2' component='h1' gutterBottom>
@@ -41,6 +49,21 @@ const AdminMain = () => {
             },
         },
     );
+    // Fetch Article Data
+    const GraphqlListArticles = `query ListArticles($filter:ModelArticleFilterInput,$limit:Int,$nextToken:String){listArticles(filter:$filter,limit:$limit,nextToken:$nextToken){items{id,articleID,title,content,tags,thumb,author,createdAt,groupID,isActive,updatedAt,group{items{id,groupID,groupName,groupKind,tags,icon,thumb,author,createdAt,isActive,updatedAt}},recommend{items{id,articleID,title,tags,thumb,author,createdAt,isActive,updatedAt},nextToken}}}}`;
+    const [getArticleList] = useLazyQuery<ListArticlesQuery, ListArticlesQueryVariables>(
+        gql(GraphqlListArticles),
+        {
+            client: defaultClient,
+            fetchPolicy: 'no-cache',
+            onCompleted: (data) => {
+                const articles = data.listArticles.items;
+                const ArticleObjects = articles.map((article) => new ArticleObject(article));
+                const payload = new ArticleObjectArray(ArticleObjects);
+                dispatch({ type: 'AllArticle', payload });
+            },
+        },
+    );
     // Check Update of Group List
     const SubscriptionOptions: SubscriptionHookOptions = {
         client: defaultClient,
@@ -55,12 +78,17 @@ const AdminMain = () => {
     useEffect(() => {
         getGroupList();
     }, [getGroupList]);
+    useEffect(() => {
+        getArticleList();
+    }, [getArticleList]);
     return (
         <>
             <Title className={Style.AdminTitle} />
             <Paper className={Style.AdminMain}>
                 <GroupTable />
                 <GroupOperation />
+                <ArticleTable />
+                <ArticleOperation />
                 <AdminDebugUI className={Style.DebugContainer} />
             </Paper>
         </>

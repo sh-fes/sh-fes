@@ -2,10 +2,10 @@ import { Paper, Table, TableBody, TableContainer, TableHead } from '@material-ui
 import React from 'react';
 import { useAdminState } from '../../AdminContext';
 import Style from '../../AdminUI.module.scss';
-import { GroupTableCells } from './GroupTableCells';
-import { GroupTableRows } from './GroupTableRows';
+import { ArticleTableCells } from './ArticleTableCells';
+import { ArticleTableRows } from './ArticleTableRows';
 
-const GroupTable = () => {
+const ArticleTable = () => {
     const state = useAdminState();
     return (
         <>
@@ -13,13 +13,13 @@ const GroupTable = () => {
                 <TableContainer component={Paper}>
                     <Table>
                         <TableHead>
-                            <GroupTableCells th />
+                            <ArticleTableCells th />
                         </TableHead>
                         <TableBody>
-                            {state.AllGroup.GroupHistory().map((groupHistory) => (
-                                <GroupTableRows
-                                    key={groupHistory.head.id}
-                                    groupHistory={groupHistory}
+                            {state.AllArticle.ArticleHistory().map((articleHistory) => (
+                                <ArticleTableRows
+                                    key={articleHistory.head.id}
+                                    articleHistory={articleHistory}
                                 />
                             ))}
                         </TableBody>
@@ -30,4 +30,4 @@ const GroupTable = () => {
     );
 };
 
-export default GroupTable;
+export default ArticleTable;

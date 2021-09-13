@@ -2,21 +2,21 @@ import { Paper } from '@material-ui/core';
 import React from 'react';
 import { useAdminState } from '../../AdminContext';
 import Style from '../../AdminUI.module.scss';
-import { GroupField } from './GroupField';
-import { OperationButton } from './GroupOperationButton';
-import { OperationEditor } from './GroupOperationEditor';
-import { GroupPropertiesTable } from './GroupPropertiesTable';
+import { ArticleField } from './ArticleField';
+import { OperationButton } from './ArticleOperationButton';
+import { OperationEditor } from './ArticleOperationEditor';
+import { ArticlePropertiesTable } from './ArticlePropertiesTable';
 
-const Group = () => {
+const Article = () => {
     const state = useAdminState();
     return state.Username ? (
         <Paper className={Style.ObjectEditorContainer}>
             <div className={Style.LeftContainer}>
-                <GroupPropertiesTable className={Style.TableContainer} />
+                <ArticlePropertiesTable className={Style.TableContainer} />
             </div>
             <div className={Style.RightContainer}>
                 <Paper className={Style.OperationSelectorContainer}>
-                    <GroupField className={Style.AutoComplete} />
+                    <ArticleField className={Style.AutoComplete} />
                     <OperationButton className={Style.ButtonGroup} />
                 </Paper>
                 <Paper className={Style.OperationEditorContainer}>
@@ -28,4 +28,4 @@ const Group = () => {
         <p>Loading Username</p>
     );
 };
-export default Group;
+export default Article;

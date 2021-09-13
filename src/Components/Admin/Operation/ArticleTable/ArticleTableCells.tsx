@@ -1,20 +1,20 @@
 import { TableCell, TableRow } from '@material-ui/core';
 import React, { ReactNode } from 'react';
-import { GroupObject } from '../../types/GroupObject';
+import { ArticleObject } from '../../types/ArticleObject';
 
-interface GroupTableCellsProps {
-    group?: GroupObject;
+interface ArticleTableCellsProps {
+    article?: ArticleObject;
     th?: boolean;
     icon?: ReactNode;
     style?: React.CSSProperties;
 }
-export const GroupTableCells = ({
-    group = new GroupObject(),
+export const ArticleTableCells = ({
+    article = new ArticleObject(),
     th = false,
     icon,
     style,
-}: GroupTableCellsProps) => {
-    const displayValues = group.tableDisplayValue();
+}: ArticleTableCellsProps) => {
+    const displayValues = article.tableDisplayValue();
     return (
         <TableRow style={style}>
             <TableCell>{icon}</TableCell>
