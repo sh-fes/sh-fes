@@ -75,7 +75,7 @@ export const GroupField = ({ className }: { className?: string }) => {
             value={state.Group}
             onChange={handleOnChange}
             filterOptions={filterOptions}
-            options={state.GOH.GroupChoices}
+            options={state.AllGroup.GroupChoices()}
             getOptionLabel={GetOptionLabel}
             renderOption={RenderOption}
             renderInput={RenderInput}

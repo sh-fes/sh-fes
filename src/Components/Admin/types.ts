@@ -154,26 +154,73 @@ export class GroupObject implements Group {
         CreateGroup({ variables });
     }
 }
+export interface GroupHistory {
+    head: GroupObject;
+    history: GroupObject[];
+}
+export class GroupObjectArray {
+    public GroupObjects: GroupObject[] = [];
+    constructor(props?: GroupObject[]) {
+        if (props) this.GroupObjects = props;
+    }
+    public Add(group: GroupObject): void {
+        this.GroupObjects.push(group);
+    }
+    public uniqueIDs(): string[] {
+        return [...new Set(this.GroupObjects.map((group) => group.groupID))];
+    }
+    public byGroupID(groupID: string): GroupObject[] {
+        return this.GroupObjects.filter(group => group.groupID === groupID);
+    }
+    public GroupHistory(): GroupHistory[] {
+        const groupIDs = this.uniqueIDs();
+        return groupIDs.map((groupID) => {
+            const groupsByGroupID = this.byGroupID(groupID).sort((a, b) => new Date(b.createdAt).valueOf() - new Date(a.createdAt).valueOf());
+            const head = groupsByGroupID.shift() ?? new GroupObject();
+            const history = groupsByGroupID;
+            const groupHistory: GroupHistory = { head, history };
+            return groupHistory;
+        });
+    }
+    public GroupChoices(): GroupObject[] {
+        const groups = this.GroupObjects;
+        const groupIDs = [...new Set(groups.map((item) => item.groupID))];
+        const uniqueGroups = groupIDs.map((groupID) =>
+            groups
+                .filter((v) => v.groupID === groupID)
+                .reduce(
+                    (a, b) => (a && new Date(a.createdAt) > new Date(b.createdAt) ? a : b),
+                    GroupInitialProperties,
+                ),
+        );
+        const GroupChoices = uniqueGroups.map((group) => new GroupObject(group));
+        return GroupChoices;
+    }
+}
+
 export type OperationType = 'CREATE' | 'UPDATE' | 'DELETE' | 'RECREATE' | null;
 export interface GroupOperationHandler {
-    GroupChoices: GroupObject[];
     CurrentOperation: OperationType;
     DisableEditor: boolean;
     DisableSubmit: boolean;
 }
 
 type Username_ActionType = Action<'Username', Payload_Username>;
-type NewGroup_ActionType = Action<'GroupObject', GroupObject>;
+type Group_ActionType = Action<'GroupObject', GroupObject>;
+type AllGroup_ActionType = Action<'AllGroup', GroupObjectArray>;
+type AllGroup_Add_ActionType = Action<'AllGroup_Add', GroupObject>;
 type GroupOperationHandler_ActionType = Action<'GOH', Partial<GroupOperationHandler>>;
 
 export interface AdminState {
     Username: Payload_Username;
     Group: GroupObject;
+    AllGroup: GroupObjectArray;
     GOH: GroupOperationHandler;
 }
 
 export type ActionType =
     | Username_ActionType
-    | NewGroup_ActionType
+    | Group_ActionType
+    | AllGroup_ActionType
+    | AllGroup_Add_ActionType
     | GroupOperationHandler_ActionType;
-
