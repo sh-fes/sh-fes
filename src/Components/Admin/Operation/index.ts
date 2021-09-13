@@ -1,1 +1,2 @@
-export { Article as GroupOperation } from './Group';
+export { Group } from './Group';
+export { GroupTable } from './GroupTable';
