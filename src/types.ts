@@ -1,4 +1,4 @@
-import { GroupKind } from "../../../API";
+import { GroupKind } from "./API";
 
 export interface ListGroupsQuery {
     listGroups: ModelGroupConnection;

@@ -13,7 +13,7 @@ export class ArticleObjectArray {
         this.ArticleObjects.push(article);
     }
     public uniqueIDs(): string[] {
-        return [...new Set(this.ArticleObjects.map((article) => article.articleID))];
+        return Array.from(new Set(this.ArticleObjects.map((article) => article.articleID)));
     }
     public byArticleID(articleID: string): ArticleObject[] {
         return this.ArticleObjects.filter(article => article.articleID === articleID);
@@ -29,10 +29,9 @@ export class ArticleObjectArray {
         });
     }
     public ArticleChoices(): ArticleObject[] {
-        const articles = this.ArticleObjects;
-        const articleIDs = [...new Set(articles.map((item) => item.articleID))];
+        const articleIDs = this.uniqueIDs();
         const uniqueArticles = articleIDs.map((articleID) =>
-            articles
+            this.ArticleObjects
                 .filter((v) => v.articleID === articleID)
                 .reduce(
                     (a, b) => (a && new Date(a.createdAt) > new Date(b.createdAt) ? a : b),

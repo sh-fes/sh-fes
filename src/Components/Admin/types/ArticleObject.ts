@@ -1,6 +1,6 @@
 import { FetchResult, MutationFunctionOptions } from "@apollo/client";
 import { CreateArticleInput, CreateArticleMutation, CreateArticleMutationVariables } from "../../../API";
-import { Article, ModelArticleConnection, ModelGroupConnection } from "./API";
+import { Article, ModelArticleConnection, ModelGroupConnection } from "../../../types";
 
 const GroupConnectionInitialProperties: ModelGroupConnection = {
     __typename: 'ModelGroupConnection',

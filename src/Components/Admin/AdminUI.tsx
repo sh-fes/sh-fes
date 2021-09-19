@@ -4,6 +4,7 @@ import { Paper, Typography } from '@material-ui/core';
 import React, { Component, useEffect } from 'react';
 import { ListArticlesQueryVariables, ListGroupsQueryVariables } from '../../API';
 import { defaultClient } from '../../GraphqlClient';
+import { ListArticlesQuery, ListGroupsQuery } from '../../types';
 import { AdminProvider, useAdminDispatch } from './AdminContext';
 import Style from './AdminUI.module.scss';
 import { AdminDebugUI } from './Debug';
@@ -13,7 +14,6 @@ import {
     Group as GroupOperation,
     GroupTable,
 } from './Operation';
-import { ListArticlesQuery, ListGroupsQuery } from './types/API';
 import { ArticleObject } from './types/ArticleObject';
 import { ArticleObjectArray } from './types/ArticleObjectArray';
 import { GroupObject } from './types/GroupObject';

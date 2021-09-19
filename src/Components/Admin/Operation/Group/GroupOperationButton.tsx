@@ -4,8 +4,8 @@ import gql from 'graphql-tag';
 import React, { useEffect, useState } from 'react';
 import { GroupByGroupIDQueryVariables } from '../../../../API';
 import { defaultClient } from '../../../../GraphqlClient';
+import { GroupByGroupIDQuery } from '../../../../types';
 import { useAdminDispatch, useAdminState } from '../../AdminContext';
-import { GroupByGroupIDQuery } from '../../types/API';
 import { GroupObject } from '../../types/GroupObject';
 
 export const OperationButton = ({ className }: { className?: string }) => {

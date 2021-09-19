@@ -3,8 +3,8 @@ import { Button, ButtonGroup } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { ArticleByArticleIDQueryVariables } from '../../../../API';
 import { defaultClient } from '../../../../GraphqlClient';
+import { ArticleByArticleIDQuery } from '../../../../types';
 import { useAdminDispatch, useAdminState } from '../../AdminContext';
-import { ArticleByArticleIDQuery } from '../../types/API';
 import { ArticleObject } from '../../types/ArticleObject';
 
 export const OperationButton = ({ className }: { className?: string }) => {

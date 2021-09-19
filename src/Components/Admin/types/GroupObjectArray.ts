@@ -13,7 +13,7 @@ export class GroupObjectArray {
         this.GroupObjects.push(group);
     }
     public uniqueIDs(): string[] {
-        return [...new Set(this.GroupObjects.map((group) => group.groupID))];
+        return Array.from(new Set(this.GroupObjects.map((group) => group.groupID)));
     }
     public byGroupID(groupID: string): GroupObject[] {
         return this.GroupObjects.filter(group => group.groupID === groupID);
@@ -29,10 +29,9 @@ export class GroupObjectArray {
         });
     }
     public GroupChoices(): GroupObject[] {
-        const groups = this.GroupObjects;
-        const groupIDs = [...new Set(groups.map((item) => item.groupID))];
+        const groupIDs = this.uniqueIDs();
         const uniqueGroups = groupIDs.map((groupID) =>
-            groups
+            this.GroupObjects
                 .filter((v) => v.groupID === groupID)
                 .reduce(
                     (a, b) => (a && new Date(a.createdAt) > new Date(b.createdAt) ? a : b),

@@ -1,6 +1,6 @@
 import { FetchResult, MutationFunctionOptions } from "@apollo/client";
 import { CreateGroupInput, CreateGroupMutation, CreateGroupMutationVariables, GroupKind } from "../../../API";
-import { Group } from "./API";
+import { Group } from "../../../types";
 
 export enum GroupKindDisplayValue {
     Athletic = '運動部',
