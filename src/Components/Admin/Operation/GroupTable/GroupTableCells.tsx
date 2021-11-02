@@ -1,15 +1,15 @@
 import { TableCell, TableRow } from '@material-ui/core';
 import React, { ReactNode } from 'react';
-import { GroupObject } from '../../types/GroupObject';
+import { AdminGroupObject } from '../../types/GroupModel';
 
 interface GroupTableCellsProps {
-    group?: GroupObject;
+    group?: AdminGroupObject;
     th?: boolean;
     icon?: ReactNode;
     style?: React.CSSProperties;
 }
 export const GroupTableCells = ({
-    group = new GroupObject(),
+    group = new AdminGroupObject(),
     th = false,
     icon,
     style,

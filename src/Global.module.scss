@@ -1,11 +1,15 @@
+body {
+    overflow: overlay;
+}
 ::-webkit-scrollbar {
-    width: 16px;
-
-    background-color: #181818;
+    background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    border: 4px solid transparent;
-    border-radius: 8px;
-    background-color: #aaaaaa;
+    border: 5px solid transparent;
+    border-radius: 10px;
+    background-color: #ffffff;
     background-clip: content-box;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
 }

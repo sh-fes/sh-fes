@@ -14,10 +14,10 @@ import {
     Group as GroupOperation,
     GroupTable,
 } from './Operation';
-import { ArticleObject } from './types/ArticleObject';
-import { ArticleObjectArray } from './types/ArticleObjectArray';
-import { GroupObject } from './types/GroupObject';
-import { GroupObjectArray } from './types/GroupObjectArray';
+import { AdminArticleObjectArray } from './types';
+import { AdminArticleModel } from './types/ArticleModel';
+import { AdminGroupObject } from './types/GroupModel';
+import { AdminGroupObjectArray } from './types/GroupModelArray';
 
 const Title = ({ className }: { className?: string }) => (
     <Typography className={className} variant='h2' component='h1' gutterBottom>
@@ -43,8 +43,8 @@ const AdminMain = () => {
             fetchPolicy: 'no-cache',
             onCompleted: (data) => {
                 const groups = data.listGroups.items;
-                const GroupObjects = groups.map((group) => new GroupObject(group));
-                const payload = new GroupObjectArray(GroupObjects);
+                const GroupObjects = groups.map((group) => new AdminGroupObject(group));
+                const payload = new AdminGroupObjectArray(GroupObjects);
                 dispatch({ type: 'AllGroup', payload });
             },
         },
@@ -58,8 +58,8 @@ const AdminMain = () => {
             fetchPolicy: 'no-cache',
             onCompleted: (data) => {
                 const articles = data.listArticles.items;
-                const ArticleObjects = articles.map((article) => new ArticleObject(article));
-                const payload = new ArticleObjectArray(ArticleObjects);
+                const ArticleObjects = articles.map((article) => new AdminArticleModel(article));
+                const payload = new AdminArticleObjectArray(ArticleObjects);
                 dispatch({ type: 'AllArticle', payload });
             },
         },

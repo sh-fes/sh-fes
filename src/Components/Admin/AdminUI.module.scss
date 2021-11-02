@@ -20,21 +20,23 @@ $gap: 12px;
 
     margin-top: 30vh;
 
-    @extend ._flex_a;
+@extend ._flex_a;
+
     .ObjectTableContainer {
         width: 100%;
         max-width: 2000px;
 
         background-color: rgb(255, 255, 143) !important;
 
-        @extend ._flex_a;
+@extend ._flex_a;
     }
     .ObjectEditorContainer {
         max-width: 1200px;
 
         background-color: rgb(199, 255, 199) !important;
 
-        @extend ._flex_a;
+@extend ._flex_a;
+
         .LeftContainer {
             flex: 1;
 
@@ -46,12 +48,14 @@ $gap: 12px;
             flex: 1;
             flex-direction: column;
 
-            @extend ._flex_b;
+@extend ._flex_b;
+
             .OperationSelectorContainer {
                 align-items: center;
                 flex-direction: column;
 
-                @extend ._flex_a;
+@extend ._flex_a;
+
                 .AutoComplete {
                     min-width: 300px;
                 }
@@ -60,7 +64,8 @@ $gap: 12px;
                 .Form {
                     flex-direction: column;
 
-                    @extend ._flex_a;
+@extend ._flex_a;
+
                     .FormTextFieldGroup {
                         width: min-content;
                         width: 100%;
@@ -79,11 +84,15 @@ $gap: 12px;
                             width: 100%;
                             min-width: 400px;
                         }
+                        .Form_content {
+                            width: 100%;
+                            min-width: 400px;
+                        }
                     }
                     .FormButtonGroup {
                         justify-content: flex-end;
 
-                        @extend ._flex_b;
+@extend ._flex_b;
                     }
                 }
             }

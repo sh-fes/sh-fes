@@ -15,9 +15,26 @@ export const createGroup = /* GraphQL */ `
       tags
       icon
       thumb
+      seo {
+        common {
+          title
+          description
+          keywords
+        }
+        og {
+          title
+          type
+          url
+          image
+          description
+          audio
+          video
+        }
+      }
       author
       createdAt
       isActive
+      isLatest
       updatedAt
       articles {
         items {
@@ -31,6 +48,7 @@ export const createGroup = /* GraphQL */ `
           createdAt
           groupID
           isActive
+          isLatest
           updatedAt
         }
         nextToken
@@ -51,9 +69,26 @@ export const updateGroup = /* GraphQL */ `
       tags
       icon
       thumb
+      seo {
+        common {
+          title
+          description
+          keywords
+        }
+        og {
+          title
+          type
+          url
+          image
+          description
+          audio
+          video
+        }
+      }
       author
       createdAt
       isActive
+      isLatest
       updatedAt
       articles {
         items {
@@ -67,6 +102,7 @@ export const updateGroup = /* GraphQL */ `
           createdAt
           groupID
           isActive
+          isLatest
           updatedAt
         }
         nextToken
@@ -87,9 +123,26 @@ export const deleteGroup = /* GraphQL */ `
       tags
       icon
       thumb
+      seo {
+        common {
+          title
+          description
+          keywords
+        }
+        og {
+          title
+          type
+          url
+          image
+          description
+          audio
+          video
+        }
+      }
       author
       createdAt
       isActive
+      isLatest
       updatedAt
       articles {
         items {
@@ -103,6 +156,7 @@ export const deleteGroup = /* GraphQL */ `
           createdAt
           groupID
           isActive
+          isLatest
           updatedAt
         }
         nextToken
@@ -122,10 +176,27 @@ export const createArticle = /* GraphQL */ `
       content
       tags
       thumb
+      seo {
+        common {
+          title
+          description
+          keywords
+        }
+        og {
+          title
+          type
+          url
+          image
+          description
+          audio
+          video
+        }
+      }
       author
       createdAt
       groupID
       isActive
+      isLatest
       updatedAt
       group {
         items {
@@ -139,6 +210,7 @@ export const createArticle = /* GraphQL */ `
           author
           createdAt
           isActive
+          isLatest
           updatedAt
         }
         nextToken
@@ -155,6 +227,7 @@ export const createArticle = /* GraphQL */ `
           createdAt
           groupID
           isActive
+          isLatest
           updatedAt
         }
         nextToken
@@ -174,10 +247,27 @@ export const updateArticle = /* GraphQL */ `
       content
       tags
       thumb
+      seo {
+        common {
+          title
+          description
+          keywords
+        }
+        og {
+          title
+          type
+          url
+          image
+          description
+          audio
+          video
+        }
+      }
       author
       createdAt
       groupID
       isActive
+      isLatest
       updatedAt
       group {
         items {
@@ -191,6 +281,7 @@ export const updateArticle = /* GraphQL */ `
           author
           createdAt
           isActive
+          isLatest
           updatedAt
         }
         nextToken
@@ -207,6 +298,7 @@ export const updateArticle = /* GraphQL */ `
           createdAt
           groupID
           isActive
+          isLatest
           updatedAt
         }
         nextToken
@@ -226,10 +318,27 @@ export const deleteArticle = /* GraphQL */ `
       content
       tags
       thumb
+      seo {
+        common {
+          title
+          description
+          keywords
+        }
+        og {
+          title
+          type
+          url
+          image
+          description
+          audio
+          video
+        }
+      }
       author
       createdAt
       groupID
       isActive
+      isLatest
       updatedAt
       group {
         items {
@@ -243,6 +352,7 @@ export const deleteArticle = /* GraphQL */ `
           author
           createdAt
           isActive
+          isLatest
           updatedAt
         }
         nextToken
@@ -259,6 +369,7 @@ export const deleteArticle = /* GraphQL */ `
           createdAt
           groupID
           isActive
+          isLatest
           updatedAt
         }
         nextToken

@@ -5,7 +5,7 @@ import { ArticleByArticleIDQueryVariables } from '../../../../API';
 import { defaultClient } from '../../../../GraphqlClient';
 import { ArticleByArticleIDQuery } from '../../../../types';
 import { useAdminDispatch, useAdminState } from '../../AdminContext';
-import { ArticleObject } from '../../types/ArticleObject';
+import { AdminArticleModel } from '../../types';
 
 export const OperationButton = ({ className }: { className?: string }) => {
     const state = useAdminState();
@@ -25,7 +25,7 @@ export const OperationButton = ({ className }: { className?: string }) => {
             const archive = data.ArticleByArticleID.items.filter((item) => item.isActive);
             if (archive.length > 0) {
                 const article = archive[0];
-                const payload = new ArticleObject(article);
+                const payload = new AdminArticleModel(article);
                 payload.isActive = true;
                 dispatch({ type: 'ArticleObject', payload });
             }
@@ -66,7 +66,7 @@ export const OperationButton = ({ className }: { className?: string }) => {
             type: 'AOH',
             payload: { CurrentOperation: 'CREATE', DisableEditor: false, DisableSubmit: false },
         });
-        const payload = new ArticleObject();
+        const payload = new AdminArticleModel();
         dispatch({ type: 'ArticleObject', payload });
     }
     function Update() {
@@ -88,7 +88,7 @@ export const OperationButton = ({ className }: { className?: string }) => {
             type: 'AOH',
             payload: { CurrentOperation: 'DELETE', DisableEditor: true, DisableSubmit: false },
         });
-        const payload = new ArticleObject();
+        const payload = new AdminArticleModel();
         payload.articleID = state.Article.articleID;
         payload.groupID = state.Article.groupID;
         payload.title = state.Article.title;

@@ -6,7 +6,7 @@ import Style from './Header.module.scss';
 interface Props {}
 interface States {}
 
-class NameOfClass extends Component<Props, States> {
+class Header extends Component<Props, States> {
     static contextType = GlobalStateContext;
     context!: React.ContextType<typeof GlobalStateContext>;
     render() {
@@ -27,4 +27,4 @@ class NameOfClass extends Component<Props, States> {
     }
 }
 
-export default NameOfClass;
+export default Header;

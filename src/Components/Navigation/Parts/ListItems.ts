@@ -1,12 +1,12 @@
 export type TNavigationConfig = {
-    to: string
+    to: string;
     title: string;
-}
+};
 const NavigationConfig: TNavigationConfig[] = [
     { title: 'Top', to: '/' },
-    { title: 'Index', to: '/index' },
+    { title: 'Group', to: '/group' },
     { title: 'Article', to: '/article' },
-    { title: 'Article-0', to: '/article/otkrickey-0' },
-    { title: 'Article-1', to: '/article/otkrickey-1' }
-]
+    { title: 'otkrickey-0', to: '/article/a-otkrickey-0' },
+    { title: 'otkrickey-1', to: '/article/a-otkrickey-1' }
+];
 export default NavigationConfig;

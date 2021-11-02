@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-  ]
+, "src/Components/Admin", "src/Components/Article", "src/pages/Article.page.tsx", ".stash/Background", "src/public/image"  ]
 }

@@ -5,18 +5,18 @@ import Autocomplete, {
 } from '@material-ui/lab/Autocomplete';
 import { FilterOptionsState } from '@material-ui/lab/useAutocomplete';
 import { useAdminDispatch, useAdminState } from '../../AdminContext';
-import { ArticleObject } from '../../types/ArticleObject';
+import { AdminArticleModel } from '../../types';
 
 export const ArticleField = ({ className }: { className?: string }) => {
     const state = useAdminState();
     const dispatch = useAdminDispatch();
     function handleOnChange(
         event: React.ChangeEvent<{}>,
-        value: string | ArticleObject | null,
+        value: string | AdminArticleModel | null,
     ): void {
         if (typeof value === 'string') {
             setTimeout(() => {
-                const payload = Object.assign(new ArticleObject(), state.Article);
+                const payload = Object.assign(new AdminArticleModel(), state.Article);
                 payload.inputValue = value;
                 payload.articleID = value;
                 dispatch({ type: 'ArticleObject', payload });
@@ -30,7 +30,7 @@ export const ArticleField = ({ className }: { className?: string }) => {
                 });
             });
         } else if (value?.inputValue) {
-            const payload = Object.assign(new ArticleObject(), state.Article);
+            const payload = Object.assign(new AdminArticleModel(), state.Article);
             payload.inputValue = value.inputValue;
             payload.articleID = value.inputValue;
             dispatch({ type: 'ArticleObject', payload });
@@ -46,35 +46,35 @@ export const ArticleField = ({ className }: { className?: string }) => {
             const payload = value;
             dispatch({ type: 'ArticleObject', payload });
         } else if ((event.currentTarget as Element).tagName === 'BUTTON') {
-            const payload = new ArticleObject();
+            const payload = new AdminArticleModel();
             dispatch({ type: 'ArticleObject', payload });
         }
     }
-    const filter = createFilterOptions<ArticleObject>();
+    const filter = createFilterOptions<AdminArticleModel>();
     function filterOptions(
-        options: ArticleObject[],
-        params: FilterOptionsState<ArticleObject>,
-    ): ArticleObject[] {
+        options: AdminArticleModel[],
+        params: FilterOptionsState<AdminArticleModel>,
+    ): AdminArticleModel[] {
         const filtered = filter(options, params);
         if (params.inputValue !== '') {
-            const payload = Object.assign(new ArticleObject(), state.Article);
+            const payload = Object.assign(new AdminArticleModel(), state.Article);
             payload.inputValue = params.inputValue;
             payload.articleID = `Add "${params.inputValue}"`;
             filtered.push(payload);
         }
         return filtered;
     }
-    function GetOptionLabel(option: ArticleObject) {
+    function GetOptionLabel(option: AdminArticleModel) {
         return option.inputValue ? option.inputValue : option.articleID;
     }
-    function RenderOption(option: ArticleObject) {
+    function RenderOption(option: AdminArticleModel) {
         return `${option.articleID} (${option.title})${option.isActive ? '' : ' *'}`;
     }
     function RenderInput(params: AutocompleteRenderInputParams): JSX.Element {
         return <TextField {...params} label='Enter ArticleID' variant='outlined' />;
     }
     return (
-        <Autocomplete<ArticleObject, false, undefined, true>
+        <Autocomplete<AdminArticleModel, false, undefined, true>
             className={className}
             value={state.Article}
             onChange={handleOnChange}

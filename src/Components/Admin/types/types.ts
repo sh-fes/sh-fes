@@ -1,7 +1,7 @@
-import { ArticleObject } from "./ArticleObject";
-import { ArticleObjectArray } from "./ArticleObjectArray";
-import { GroupObject } from "./GroupObject";
-import { GroupObjectArray } from "./GroupObjectArray";
+import { AdminArticleModel } from "./ArticleModel";
+import { AdminArticleObjectArray } from "./ArticleModelArray";
+import { AdminGroupObject } from "./GroupModel";
+import { AdminGroupObjectArray } from "./GroupModelArray";
 
 export interface Action<Type, Payload> {
     type: Type;
@@ -19,9 +19,9 @@ export interface GroupOperationHandler {
     DisableSubmit: boolean;
 }
 type GroupOperationHandler_ActionType = Action<'GOH', Partial<GroupOperationHandler>>;
-type Group_ActionType = Action<'GroupObject', GroupObject>;
-type AllGroup_ActionType = Action<'AllGroup', GroupObjectArray>;
-type AllGroup_Add_ActionType = Action<'AllGroup_Add', GroupObject>;
+type Group_ActionType = Action<'GroupObject', AdminGroupObject>;
+type AllGroup_ActionType = Action<'AllGroup', AdminGroupObjectArray>;
+type AllGroup_Add_ActionType = Action<'AllGroup_Add', AdminGroupObject>;
 
 export interface ArticleOperationHandler {
     CurrentOperation: OperationType;
@@ -29,20 +29,20 @@ export interface ArticleOperationHandler {
     DisableSubmit: boolean;
 }
 type ArticleOperationHandler_ActionType = Action<'AOH', Partial<ArticleOperationHandler>>;
-type Article_ActionType = Action<'ArticleObject', ArticleObject>;
-type AllArticle_ActionType = Action<'AllArticle', ArticleObjectArray>;
-type AllArticle_Add_ActionType = Action<'AllArticle_Add', ArticleObject>;
+type Article_ActionType = Action<'ArticleObject', AdminArticleModel>;
+type AllArticle_ActionType = Action<'AllArticle', AdminArticleObjectArray>;
+type AllArticle_Add_ActionType = Action<'AllArticle_Add', AdminArticleModel>;
 
 export interface AdminState {
     Username: Username;
 
     GOH: GroupOperationHandler;
-    Group: GroupObject;
-    AllGroup: GroupObjectArray;
+    Group: AdminGroupObject;
+    AllGroup: AdminGroupObjectArray;
 
     AOH: ArticleOperationHandler;
-    Article: ArticleObject;
-    AllArticle: ArticleObjectArray;
+    Article: AdminArticleModel;
+    AllArticle: AdminArticleObjectArray;
 }
 
 export type ActionType =

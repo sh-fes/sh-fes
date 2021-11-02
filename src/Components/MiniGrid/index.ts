@@ -1,0 +1,1 @@
+export { default as SortGrid } from './MiniGrid';

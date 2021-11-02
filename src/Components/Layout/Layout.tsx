@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import RootStyle from '../../App.module.scss';
-import { NotFound } from '../../pages';
-import { IndexBar, Share } from './Parts';
+import Style from '../../App.module.scss';
+import { LayoutProfileName } from '../../util';
+import { IndexBar } from './ArticleIndexBar';
+import { Footer } from './Footer';
+import { Share } from './Share';
 
-type LayoutProfileName = 'top' | 'index' | 'article' | 'admin' | 'notfound';
 interface SwitcherProps {
     layout: LayoutProfileName;
     children?: React.ReactNode;
@@ -11,7 +12,6 @@ interface SwitcherProps {
 
 function ShareBarSwitcher({ layout }: SwitcherProps) {
     switch (layout) {
-        case 'top':
         case 'index':
         case 'article':
         case 'notfound':
@@ -24,17 +24,11 @@ function MainSwitcher({ layout, children }: SwitcherProps) {
     switch (layout) {
         case 'top':
         case 'index':
-            return <main className={RootStyle.TopContainer}>{children}</main>;
         case 'article':
-            return <main className={RootStyle.MainContainer}>{children}</main>;
-        case 'admin':
-            return <main className={RootStyle.AdminContainer}>{children}</main>;
         case 'notfound':
-            return (
-                <main className={RootStyle.TopContainer}>
-                    <NotFound />
-                </main>
-            );
+            return <main className={Style.LayoutMain}>{children}</main>;
+        case 'admin':
+            return <main className={Style.AdminContainer}>{children}</main>;
         default:
             return null;
     }
@@ -47,31 +41,52 @@ function SidebarSwitcher({ layout }: SwitcherProps) {
             return null;
     }
 }
-
+const LayoutClassName = (layout: LayoutProfileName) => {
+    switch (layout) {
+        case 'top':
+            return Style.Layout_TopPage;
+        case 'index':
+            return Style.Layout_IndexPage;
+        case 'article':
+            return Style.Layout_ArticlePage;
+        case 'admin':
+            return Style.Layout_AdminPage;
+        default:
+            return Style.Layout_NotFound;
+    }
+};
 interface Props {
     layout: LayoutProfileName;
+    children?: React.ReactNode;
 }
 interface States {}
 
 class Layout extends Component<Props, States> {
     render() {
+        const { layout } = this.props;
         return (
-            <>
-                <div
-                    className={RootStyle.Layout}
-                    style={this.props.layout === 'top' ? { marginTop: '100vh', paddingTop: 0 } : {}}
-                >
-                    <div className={RootStyle.Slid}>
-                        <div className={RootStyle.Fade}></div>
-                        <div className={RootStyle.Mono}></div>
+            <div className={LayoutClassName(layout)}>
+                <div className={Style.Body}>
+                    <div
+                        id='layout-main-slid'
+                        className={Style.MainSlid}
+                        aria-label='main-slid'
+                        role='figure'
+                    >
+                        <div className={Style.MainSlidFade}></div>
+                        <div className={Style.MainSlidMono}></div>
                     </div>
-                    <div className={RootStyle.Container}>
-                        <ShareBarSwitcher layout={this.props.layout} />
-                        <MainSwitcher children={this.props.children} layout={this.props.layout} />
-                        <SidebarSwitcher layout={this.props.layout} />
+                    <div className={Style.LayoutMainContainer}>
+                        <ShareBarSwitcher layout={layout} />
+                        <MainSwitcher layout={layout} children={this.props.children} />
+                        <SidebarSwitcher layout={layout} />
                     </div>
                 </div>
-            </>
+                <div className={Style.Footer}>
+                    <div className={Style.FooterSlid}></div>
+                    <Footer />
+                </div>
+            </div>
         );
     }
 }

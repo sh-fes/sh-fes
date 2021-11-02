@@ -12,9 +12,26 @@ export const getGroup = /* GraphQL */ `
       tags
       icon
       thumb
+      seo {
+        common {
+          title
+          description
+          keywords
+        }
+        og {
+          title
+          type
+          url
+          image
+          description
+          audio
+          video
+        }
+      }
       author
       createdAt
       isActive
+      isLatest
       updatedAt
       articles {
         items {
@@ -28,6 +45,7 @@ export const getGroup = /* GraphQL */ `
           createdAt
           groupID
           isActive
+          isLatest
           updatedAt
         }
         nextToken
@@ -53,6 +71,7 @@ export const listGroups = /* GraphQL */ `
         author
         createdAt
         isActive
+        isLatest
         updatedAt
         articles {
           nextToken
@@ -90,6 +109,7 @@ export const groupByGroupID = /* GraphQL */ `
         author
         createdAt
         isActive
+        isLatest
         updatedAt
         articles {
           nextToken
@@ -108,10 +128,27 @@ export const getArticle = /* GraphQL */ `
       content
       tags
       thumb
+      seo {
+        common {
+          title
+          description
+          keywords
+        }
+        og {
+          title
+          type
+          url
+          image
+          description
+          audio
+          video
+        }
+      }
       author
       createdAt
       groupID
       isActive
+      isLatest
       updatedAt
       group {
         items {
@@ -125,6 +162,7 @@ export const getArticle = /* GraphQL */ `
           author
           createdAt
           isActive
+          isLatest
           updatedAt
         }
         nextToken
@@ -141,6 +179,7 @@ export const getArticle = /* GraphQL */ `
           createdAt
           groupID
           isActive
+          isLatest
           updatedAt
         }
         nextToken
@@ -166,6 +205,7 @@ export const listArticles = /* GraphQL */ `
         createdAt
         groupID
         isActive
+        isLatest
         updatedAt
         group {
           nextToken
@@ -206,6 +246,7 @@ export const articleByArticleID = /* GraphQL */ `
         createdAt
         groupID
         isActive
+        isLatest
         updatedAt
         group {
           nextToken

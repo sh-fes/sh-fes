@@ -5,18 +5,18 @@ import Autocomplete, {
 } from '@material-ui/lab/Autocomplete';
 import { FilterOptionsState } from '@material-ui/lab/useAutocomplete';
 import { useAdminDispatch, useAdminState } from '../../AdminContext';
-import { GroupObject } from '../../types/GroupObject';
+import { AdminGroupObject } from '../../types/GroupModel';
 
 export const GroupField = ({ className }: { className?: string }) => {
     const state = useAdminState();
     const dispatch = useAdminDispatch();
     function handleOnChange(
         event: React.ChangeEvent<{}>,
-        value: string | GroupObject | null,
+        value: string | AdminGroupObject | null,
     ): void {
         if (typeof value === 'string') {
             setTimeout(() => {
-                const payload = Object.assign(new GroupObject(), state.Group);
+                const payload = Object.assign(new AdminGroupObject(), state.Group);
                 payload.inputValue = value;
                 payload.groupID = value;
                 dispatch({ type: 'GroupObject', payload });
@@ -30,7 +30,7 @@ export const GroupField = ({ className }: { className?: string }) => {
                 });
             });
         } else if (value?.inputValue) {
-            const payload = Object.assign(new GroupObject(), state.Group);
+            const payload = Object.assign(new AdminGroupObject(), state.Group);
             payload.inputValue = value.inputValue;
             payload.groupID = value.inputValue;
             dispatch({ type: 'GroupObject', payload });
@@ -46,35 +46,35 @@ export const GroupField = ({ className }: { className?: string }) => {
             const payload = value;
             dispatch({ type: 'GroupObject', payload });
         } else if ((event.currentTarget as Element).tagName === 'BUTTON') {
-            const payload = new GroupObject();
+            const payload = new AdminGroupObject();
             dispatch({ type: 'GroupObject', payload });
         }
     }
-    const filter = createFilterOptions<GroupObject>();
+    const filter = createFilterOptions<AdminGroupObject>();
     function filterOptions(
-        options: GroupObject[],
-        params: FilterOptionsState<GroupObject>,
-    ): GroupObject[] {
+        options: AdminGroupObject[],
+        params: FilterOptionsState<AdminGroupObject>,
+    ): AdminGroupObject[] {
         const filtered = filter(options, params);
         if (params.inputValue !== '') {
-            const payload = Object.assign(new GroupObject(), state.Group);
+            const payload = Object.assign(new AdminGroupObject(), state.Group);
             payload.inputValue = params.inputValue;
             payload.groupID = `Add "${params.inputValue}"`;
             filtered.push(payload);
         }
         return filtered;
     }
-    function GetOptionLabel(option: GroupObject) {
+    function GetOptionLabel(option: AdminGroupObject) {
         return option.inputValue ? option.inputValue : option.groupID;
     }
-    function RenderOption(option: GroupObject) {
+    function RenderOption(option: AdminGroupObject) {
         return `${option.groupID} (${option.groupName})${option.isActive ? '' : ' *'}`;
     }
     function RenderInput(params: AutocompleteRenderInputParams): JSX.Element {
         return <TextField {...params} label='Enter GroupID' variant='outlined' />;
     }
     return (
-        <Autocomplete<GroupObject, false, undefined, true>
+        <Autocomplete<AdminGroupObject, false, undefined, true>
             className={className}
             value={state.Group}
             onChange={handleOnChange}

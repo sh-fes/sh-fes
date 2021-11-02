@@ -1,17 +1,17 @@
 import { gql, useMutation } from '@apollo/client';
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextareaAutosize, TextField } from '@material-ui/core';
 import { CreateArticleMutation, CreateArticleMutationVariables } from '../../../../API';
 import { createArticle } from '../../../../graphql/mutations';
 import { adminClient } from '../../../../GraphqlClient';
 import { useAdminDispatch, useAdminState } from '../../AdminContext';
 import Style from '../../AdminUI.module.scss';
-import { ArticleObject } from '../../types/ArticleObject';
+import { AdminArticleModel } from '../../types';
 
 const TextFieldArticleID = ({ className }: { className?: string }) => {
     const state = useAdminState();
     const dispatch = useAdminDispatch();
     function onChange(e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
-        const payload = Object.assign(new ArticleObject(), state.Article);
+        const payload = Object.assign(new AdminArticleModel(), state.Article);
         payload.articleID = e.target.value;
         dispatch({ type: 'ArticleObject', payload });
     }
@@ -28,37 +28,11 @@ const TextFieldArticleID = ({ className }: { className?: string }) => {
         />
     );
 };
-// const TextFieldArticleKind = ({ className }: { className?: string }) => {
-//     const state = useAdminState();
-//     const dispatch = useAdminDispatch();
-//     function onChange(e: React.ChangeEvent<{ name?: string | undefined; value: unknown }>) {
-//         const payload = Object.assign(new ArticleObject(), state.Article);
-//         payload.groupKind = e.target.value as ArticleKind;
-//         dispatch({ type: 'ArticleObject', payload });
-//     }
-//     const disabled = state.AOH.DisableEditor;
-//     return (
-//         <FormControl margin='dense' className={className} disabled={disabled}>
-//             <InputLabel>groupKind</InputLabel>
-//             <Select
-//                 MenuProps={{ disableScrollLock: true }}
-//                 value={state.Article.groupKind}
-//                 onChange={onChange}
-//             >
-//                 {Object.entries(ArticleKindDisplayValue).map(([value, displayValue], key) => (
-//                     <MenuItem key={key} value={value}>
-//                         {displayValue}
-//                     </MenuItem>
-//                 ))}
-//             </Select>
-//         </FormControl>
-//     );
-// };
 const TextFieldGroupID = ({ className }: { className?: string }) => {
     const state = useAdminState();
     const dispatch = useAdminDispatch();
     function onChange(e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
-        const payload = Object.assign(new ArticleObject(), state.Article);
+        const payload = Object.assign(new AdminArticleModel(), state.Article);
         payload.groupID = e.target.value;
         dispatch({ type: 'ArticleObject', payload });
     }
@@ -79,7 +53,7 @@ const TextFieldTitle = ({ className }: { className?: string }) => {
     const state = useAdminState();
     const dispatch = useAdminDispatch();
     function onChange(e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
-        const payload = Object.assign(new ArticleObject(), state.Article);
+        const payload = Object.assign(new AdminArticleModel(), state.Article);
         payload.title = e.target.value;
         dispatch({ type: 'ArticleObject', payload });
     }
@@ -100,7 +74,7 @@ const TextFieldThumb = ({ className }: { className?: string }) => {
     const state = useAdminState();
     const dispatch = useAdminDispatch();
     function onChange(e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
-        const payload = Object.assign(new ArticleObject(), state.Article);
+        const payload = Object.assign(new AdminArticleModel(), state.Article);
         payload.thumb = e.target.value;
         dispatch({ type: 'ArticleObject', payload });
     }
@@ -121,7 +95,7 @@ const TextFieldTags = ({ className }: { className?: string }) => {
     const state = useAdminState();
     const dispatch = useAdminDispatch();
     function onChange(e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
-        const payload = Object.assign(new ArticleObject(), state.Article);
+        const payload = Object.assign(new AdminArticleModel(), state.Article);
         payload._tags = e.target.value;
         payload.tagsToArray();
         dispatch({ type: 'ArticleObject', payload });
@@ -134,6 +108,24 @@ const TextFieldTags = ({ className }: { className?: string }) => {
             type='text'
             label='tags(?optional)'
             value={state.Article._tags}
+            onChange={onChange}
+            disabled={disabled}
+        />
+    );
+};
+const TextAreaContent = ({ className }: { className?: string }) => {
+    const state = useAdminState();
+    const dispatch = useAdminDispatch();
+    function onChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+        const payload = Object.assign(new AdminArticleModel(), state.Article);
+        payload.content = e.target.value;
+        dispatch({ type: 'ArticleObject', payload });
+    }
+    const disabled = state.AOH.DisableEditor;
+    return (
+        <TextareaAutosize
+            className={className}
+            minRows={3}
             onChange={onChange}
             disabled={disabled}
         />
@@ -152,7 +144,7 @@ const CancelButton = ({ className }: { className?: string }) => {
             (article) => article.articleID === state.Article.articleID,
         );
         if (articles.length > 0) dispatch({ type: 'ArticleObject', payload: articles[0] });
-        else dispatch({ type: 'ArticleObject', payload: new ArticleObject() });
+        else dispatch({ type: 'ArticleObject', payload: new AdminArticleModel() });
     }
     const disabled = state.AOH.DisableSubmit;
     return (
@@ -199,6 +191,7 @@ export const OperationEditor = ({ className }: { className?: string }) => {
                 <TextFieldTitle className={Style.Form_title} />
                 <TextFieldThumb className={Style.Form_thumb} />
                 <TextFieldTags className={Style.Form__tags} />
+                <TextAreaContent className={Style.Form_content} />
             </div>
             <div className={Style.FormButtonGroup}>
                 <CancelButton className={Style.Form_cancel} />

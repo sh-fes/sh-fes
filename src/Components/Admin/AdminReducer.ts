@@ -1,6 +1,6 @@
 import { Reducer } from 'react';
-import { ArticleObjectArray } from './types/ArticleObjectArray';
-import { GroupObjectArray } from './types/GroupObjectArray';
+import { AdminArticleObjectArray } from './types';
+import { AdminGroupObjectArray } from './types/GroupModelArray';
 import { ActionType, AdminState } from './types/types';
 
 /** AdminReducer */
@@ -13,7 +13,7 @@ export const AdminReducer: AdminReducerType = (state, action) => {
         case 'GroupObject': return { ...state, Group: action.payload };
         case 'AllGroup': return { ...state, AllGroup: action.payload };
         case 'AllGroup_Add':
-            const AllGroup = Object.assign(new GroupObjectArray(), state.AllGroup);
+            const AllGroup = Object.assign(new AdminGroupObjectArray(), state.AllGroup);
             AllGroup.Add(action.payload);
             return { ...state, AllGroup };
 
@@ -21,10 +21,9 @@ export const AdminReducer: AdminReducerType = (state, action) => {
         case 'ArticleObject': return { ...state, Article: action.payload };
         case 'AllArticle': return { ...state, AllArticle: action.payload };
         case 'AllArticle_Add':
-            const AllArticle = Object.assign(new ArticleObjectArray(), state.AllArticle);
+            const AllArticle = Object.assign(new AdminArticleObjectArray(), state.AllArticle);
             AllArticle.Add(action.payload);
             return { ...state, AllArticle };
-
         default:
             throw new Error(`No Operation Type ${action} found`);
     }

@@ -1,3 +1,5 @@
+import { Key } from "react";
+
 export function charRange(a: string, b: string): string[] {
     const from = a.charCodeAt(0);
     const to = b.charCodeAt(0);
@@ -10,3 +12,8 @@ export function randomString(c: string[], l: number) {
     const cl = c.length;
     return Array.from(Array(l), (v, k) => c[Math.floor(Math.random() * cl)]).join('');
 }
+export interface ArrayObject<T> {
+    [key: Key]: T;
+}
+export type LoadingStatus = 'loading' | 'loaded' | 'notfound';
+export type LayoutProfileName = 'top' | 'index' | 'article' | 'admin' | 'notfound';

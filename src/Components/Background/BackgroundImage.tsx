@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import RootStyle from '../../App.module.scss';
+import { Icon } from './Icon';
 
 interface Props {}
 interface States {}
@@ -8,7 +9,7 @@ class BackgroundImage extends Component<Props, States> {
     render() {
         return (
             <>
-                <div className={RootStyle.BackgroundImage}>
+                <div className={RootStyle.BackgroundImage} role='figure'>
                     <svg
                         className={RootStyle.SVG_TopLeft}
                         width='450'
@@ -64,6 +65,7 @@ class BackgroundImage extends Component<Props, States> {
                         <circle cx='223' cy='600' r='124' fill='#D5FBF8' fillOpacity='0.33' />
                         <circle cx='145' cy='454' r='145' fill='#D5FBF8' fillOpacity='0.33' />
                     </svg>
+                    <Icon />
                 </div>
             </>
         );

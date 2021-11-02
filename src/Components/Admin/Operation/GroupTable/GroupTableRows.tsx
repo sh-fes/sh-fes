@@ -2,7 +2,7 @@ import { Icon, IconButton } from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import React, { useState } from 'react';
-import { GroupHistory } from '../../types/GroupObjectArray';
+import { GroupHistory } from '../../types/GroupModelArray';
 import { GroupTableCells } from './GroupTableCells';
 
 export const GroupTableRows = ({ groupHistory }: { groupHistory: GroupHistory }) => {

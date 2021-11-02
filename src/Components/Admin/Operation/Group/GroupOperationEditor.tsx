@@ -5,13 +5,13 @@ import { createGroup } from '../../../../graphql/mutations';
 import { adminClient } from '../../../../GraphqlClient';
 import { useAdminDispatch, useAdminState } from '../../AdminContext';
 import Style from '../../AdminUI.module.scss';
-import { GroupKindDisplayValue, GroupObject } from '../../types/GroupObject';
+import { GroupKindDisplayValue, AdminGroupObject } from '../../types/GroupModel';
 
 const TextFieldGroupID = ({ className }: { className?: string }) => {
     const state = useAdminState();
     const dispatch = useAdminDispatch();
     function onChange(e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
-        const payload = Object.assign(new GroupObject(), state.Group);
+        const payload = Object.assign(new AdminGroupObject(), state.Group);
         payload.groupID = e.target.value;
         dispatch({ type: 'GroupObject', payload });
     }
@@ -32,7 +32,7 @@ const TextFieldGroupKind = ({ className }: { className?: string }) => {
     const state = useAdminState();
     const dispatch = useAdminDispatch();
     function onChange(e: React.ChangeEvent<{ name?: string | undefined; value: unknown }>) {
-        const payload = Object.assign(new GroupObject(), state.Group);
+        const payload = Object.assign(new AdminGroupObject(), state.Group);
         payload.groupKind = e.target.value as GroupKind;
         dispatch({ type: 'GroupObject', payload });
     }
@@ -58,7 +58,7 @@ const TextFieldGroupName = ({ className }: { className?: string }) => {
     const state = useAdminState();
     const dispatch = useAdminDispatch();
     function onChange(e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
-        const payload = Object.assign(new GroupObject(), state.Group);
+        const payload = Object.assign(new AdminGroupObject(), state.Group);
         payload.groupName = e.target.value;
         dispatch({ type: 'GroupObject', payload });
     }
@@ -79,7 +79,7 @@ const TextFieldIcon = ({ className }: { className?: string }) => {
     const state = useAdminState();
     const dispatch = useAdminDispatch();
     function onChange(e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
-        const payload = Object.assign(new GroupObject(), state.Group);
+        const payload = Object.assign(new AdminGroupObject(), state.Group);
         payload.icon = e.target.value;
         dispatch({ type: 'GroupObject', payload });
     }
@@ -100,7 +100,7 @@ const TextFieldThumb = ({ className }: { className?: string }) => {
     const state = useAdminState();
     const dispatch = useAdminDispatch();
     function onChange(e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
-        const payload = Object.assign(new GroupObject(), state.Group);
+        const payload = Object.assign(new AdminGroupObject(), state.Group);
         payload.thumb = e.target.value;
         dispatch({ type: 'GroupObject', payload });
     }
@@ -121,7 +121,7 @@ const TextFieldTags = ({ className }: { className?: string }) => {
     const state = useAdminState();
     const dispatch = useAdminDispatch();
     function onChange(e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) {
-        const payload = Object.assign(new GroupObject(), state.Group);
+        const payload = Object.assign(new AdminGroupObject(), state.Group);
         payload._tags = e.target.value;
         payload.tagsToArray();
         dispatch({ type: 'GroupObject', payload });
@@ -152,7 +152,7 @@ const CancelButton = ({ className }: { className?: string }) => {
             (group) => group.groupID === state.Group.groupID,
         );
         if (groups.length > 0) dispatch({ type: 'GroupObject', payload: groups[0] });
-        else dispatch({ type: 'GroupObject', payload: new GroupObject() });
+        else dispatch({ type: 'GroupObject', payload: new AdminGroupObject() });
     }
     const disabled = state.GOH.DisableSubmit;
     return (

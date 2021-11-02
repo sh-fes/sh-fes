@@ -1,15 +1,15 @@
 import { TableCell, TableRow } from '@material-ui/core';
 import React, { ReactNode } from 'react';
-import { ArticleObject } from '../../types/ArticleObject';
+import { AdminArticleModel } from '../../types';
 
 interface ArticleTableCellsProps {
-    article?: ArticleObject;
+    article?: AdminArticleModel;
     th?: boolean;
     icon?: ReactNode;
     style?: React.CSSProperties;
 }
 export const ArticleTableCells = ({
-    article = new ArticleObject(),
+    article = new AdminArticleModel(),
     th = false,
     icon,
     style,

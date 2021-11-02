@@ -31,6 +31,8 @@ type Group
     icon: String!
     thumb: String!
 
+    seo: SEO!
+
     # author
     author: String!
 
@@ -42,6 +44,7 @@ type Group
 
     # state
     isActive: Boolean!
+    isLatest: Boolean!
 }
 type Article
     @model
@@ -70,6 +73,8 @@ type Article
     tags: [String!]
     thumb: String!
 
+    seo: SEO!
+
     recommend: [Article] @connection(keyName: "byGroup", fields: ["groupID"])
 
     # author
@@ -84,4 +89,27 @@ type Article
 
     # state
     isActive: Boolean!
+    isLatest: Boolean!
+}
+type SEO {
+    common: CommonSEO!
+    og: OGSEO!
+}
+type CommonSEO {
+    title: String!
+    description: String!
+    keywords: String!
+}
+type OGSEO {
+    title: String!
+    type: ArticleType!
+    url: String!
+    image: String!
+    description: String!
+    audio: String
+    video: String
+}
+enum ArticleType {
+    website
+    article
 }

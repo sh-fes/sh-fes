@@ -1,22 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useGlobalDispatch, useGlobalState } from '..';
-import { PayloadScroll } from '../types';
 
 export function ScrollEvent() {
     const state = useGlobalState();
     const dispatch = useGlobalDispatch();
+    const scroll = useRef<number>(window.pageYOffset || document.documentElement.scrollTop);
+    const onScroll = () => {
+        const current = window.pageYOffset || document.documentElement.scrollTop;
+        if ((scroll.current > current) === state.scroll.up) {
+            dispatch({
+                type: 'SET_Scroll',
+                payload: { up: state.scroll.down, down: state.scroll.up },
+            });
+            scroll.current = current;
+        }
+    };
     useEffect(() => {
-        const handle = () => {
-            const st = window.pageYOffset || document.documentElement.scrollTop;
-            const payload: PayloadScroll = {
-                up: st > (state.scroll?.last ?? 0),
-                down: st < (state.scroll?.last ?? 0),
-                last: st <= 0 ? 0 : st,
-            };
-            dispatch({ type: 'SET_Scroll', payload });
-        };
-        window.addEventListener('scroll', handle);
-        return () => window.removeEventListener('scroll', handle);
+        window.addEventListener('scroll', onScroll);
+        return () => window.removeEventListener('scroll', onScroll);
     });
     return <></>;
 }

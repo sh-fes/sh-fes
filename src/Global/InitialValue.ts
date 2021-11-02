@@ -4,5 +4,5 @@ const PrefersColorSchema = () => { return window.matchMedia && window.matchMedia
 
 export const InitialValue: GlobalState = {
     theme: PrefersColorSchema(),
-    scroll: { up: false, down: true, last: 0 },
+    scroll: { up: false, down: true },
 };

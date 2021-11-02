@@ -6,7 +6,7 @@ import { GroupByGroupIDQueryVariables } from '../../../../API';
 import { defaultClient } from '../../../../GraphqlClient';
 import { GroupByGroupIDQuery } from '../../../../types';
 import { useAdminDispatch, useAdminState } from '../../AdminContext';
-import { GroupObject } from '../../types/GroupObject';
+import { AdminGroupObject } from '../../types/GroupModel';
 
 export const OperationButton = ({ className }: { className?: string }) => {
     const state = useAdminState();
@@ -25,7 +25,7 @@ export const OperationButton = ({ className }: { className?: string }) => {
                 const archive = data.GroupByGroupID.items.filter((item) => item.isActive);
                 if (archive.length > 0) {
                     const group = archive[0];
-                    const payload = new GroupObject(group);
+                    const payload = new AdminGroupObject(group);
                     payload.isActive = true;
                     dispatch({ type: 'GroupObject', payload });
                 }
@@ -67,7 +67,7 @@ export const OperationButton = ({ className }: { className?: string }) => {
             type: 'GOH',
             payload: { CurrentOperation: 'CREATE', DisableEditor: false, DisableSubmit: false },
         });
-        const payload = new GroupObject();
+        const payload = new AdminGroupObject();
         dispatch({ type: 'GroupObject', payload });
     }
     function Update() {
@@ -89,7 +89,7 @@ export const OperationButton = ({ className }: { className?: string }) => {
             type: 'GOH',
             payload: { CurrentOperation: 'DELETE', DisableEditor: true, DisableSubmit: false },
         });
-        const payload = new GroupObject();
+        const payload = new AdminGroupObject();
         payload.groupID = state.Group.groupID;
         payload.groupName = state.Group.groupName;
         payload.author = state.Username;

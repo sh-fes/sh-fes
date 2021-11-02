@@ -1,22 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Layout } from '../Components';
 import { ThemeSwitcher } from '../Components/Theme';
-import { GlobalStateContext } from '../Global';
+import { useGlobalState } from '../Global';
 
-interface Props {}
-interface States {}
+const NotfoundRoute = () => {
+    const state = useGlobalState();
+    return (
+        <Layout layout={'notfound'}>
+            <h1>Not Found</h1>
+            <ThemeSwitcher />
+            <p>{JSON.stringify(state)}</p>
+        </Layout>
+    );
+};
 
-class NotFoundPage extends Component<Props, States> {
-    static contextType = GlobalStateContext;
-    context!: React.ContextType<typeof GlobalStateContext>;
-    render() {
-        return (
-            <>
-                <h1>Not Found</h1>
-                <ThemeSwitcher />
-                <p>{JSON.stringify(this.context)}</p>
-            </>
-        );
-    }
-}
-
-export default NotFoundPage;
+export default NotfoundRoute;

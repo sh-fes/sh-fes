@@ -7,12 +7,14 @@ export type CreateGroupInput = {
   groupID: string,
   groupName: string,
   groupKind: GroupKind,
-  tags?: Array< string > | null,
+  tags?: Array<string> | null,
   icon: string,
   thumb: string,
+  seo: SEOInput,
   author: string,
   createdAt?: string | null,
   isActive: boolean,
+  isLatest: boolean,
 };
 
 export enum GroupKind {
@@ -29,6 +31,33 @@ export enum GroupKind {
 }
 
 
+export type SEOInput = {
+  common: CommonSEOInput,
+  og: OGSEOInput,
+};
+
+export type CommonSEOInput = {
+  title: string,
+  description: string,
+  keywords: string,
+};
+
+export type OGSEOInput = {
+  title: string,
+  type: ArticleType,
+  url: string,
+  image: string,
+  description: string,
+  audio?: string | null,
+  video?: string | null,
+};
+
+export enum ArticleType {
+  website = "website",
+  article = "article",
+}
+
+
 export type ModelGroupConditionInput = {
   groupID?: ModelIDInput | null,
   groupName?: ModelStringInput | null,
@@ -38,8 +67,9 @@ export type ModelGroupConditionInput = {
   thumb?: ModelStringInput | null,
   createdAt?: ModelStringInput | null,
   isActive?: ModelBooleanInput | null,
-  and?: Array< ModelGroupConditionInput | null > | null,
-  or?: Array< ModelGroupConditionInput | null > | null,
+  isLatest?: ModelBooleanInput | null,
+  and?: Array<ModelGroupConditionInput | null> | null,
+  or?: Array<ModelGroupConditionInput | null> | null,
   not?: ModelGroupConditionInput | null,
 };
 
@@ -52,7 +82,7 @@ export type ModelIDInput = {
   gt?: string | null,
   contains?: string | null,
   notContains?: string | null,
-  between?: Array< string | null > | null,
+  between?: Array<string | null> | null,
   beginsWith?: string | null,
   attributeExists?: boolean | null,
   attributeType?: ModelAttributeTypes | null,
@@ -80,7 +110,7 @@ export type ModelSizeInput = {
   lt?: number | null,
   ge?: number | null,
   gt?: number | null,
-  between?: Array< number | null > | null,
+  between?: Array<number | null> | null,
 };
 
 export type ModelStringInput = {
@@ -92,7 +122,7 @@ export type ModelStringInput = {
   gt?: string | null,
   contains?: string | null,
   notContains?: string | null,
-  between?: Array< string | null > | null,
+  between?: Array<string | null> | null,
   beginsWith?: string | null,
   attributeExists?: boolean | null,
   attributeType?: ModelAttributeTypes | null,
@@ -117,19 +147,45 @@ export type Group = {
   groupID: string,
   groupName: string,
   groupKind: GroupKind,
-  tags?: Array< string > | null,
+  tags?: Array<string> | null,
   icon: string,
   thumb: string,
+  seo: SEO,
   author: string,
   createdAt: string,
   isActive: boolean,
+  isLatest: boolean,
   updatedAt: string,
   articles?: ModelArticleConnection | null,
 };
 
+export type SEO = {
+  __typename: "SEO",
+  common: CommonSEO,
+  og: OGSEO,
+};
+
+export type CommonSEO = {
+  __typename: "CommonSEO",
+  title: string,
+  description: string,
+  keywords: string,
+};
+
+export type OGSEO = {
+  __typename: "OGSEO",
+  title: string,
+  type: ArticleType,
+  url: string,
+  image: string,
+  description: string,
+  audio?: string | null,
+  video?: string | null,
+};
+
 export type ModelArticleConnection = {
   __typename: "ModelArticleConnection",
-  items?:  Array<Article | null > | null,
+  items?: Array<Article | null> | null,
   nextToken?: string | null,
 };
 
@@ -139,12 +195,14 @@ export type Article = {
   articleID: string,
   title: string,
   content: string,
-  tags?: Array< string > | null,
+  tags?: Array<string> | null,
   thumb: string,
+  seo: SEO,
   author: string,
   createdAt: string,
   groupID: string,
   isActive: boolean,
+  isLatest: boolean,
   updatedAt: string,
   group?: ModelGroupConnection | null,
   recommend?: ModelArticleConnection | null,
@@ -152,7 +210,7 @@ export type Article = {
 
 export type ModelGroupConnection = {
   __typename: "ModelGroupConnection",
-  items?:  Array<Group | null > | null,
+  items?: Array<Group | null> | null,
   nextToken?: string | null,
 };
 
@@ -161,12 +219,14 @@ export type UpdateGroupInput = {
   groupID?: string | null,
   groupName?: string | null,
   groupKind?: GroupKind | null,
-  tags?: Array< string > | null,
+  tags?: Array<string> | null,
   icon?: string | null,
   thumb?: string | null,
+  seo?: SEOInput | null,
   author?: string | null,
   createdAt?: string | null,
   isActive?: boolean | null,
+  isLatest?: boolean | null,
 };
 
 export type DeleteGroupInput = {
@@ -178,12 +238,14 @@ export type CreateArticleInput = {
   articleID: string,
   title: string,
   content: string,
-  tags?: Array< string > | null,
+  tags?: Array<string> | null,
   thumb: string,
+  seo: SEOInput,
   author: string,
   createdAt?: string | null,
   groupID: string,
   isActive: boolean,
+  isLatest: boolean,
 };
 
 export type ModelArticleConditionInput = {
@@ -195,8 +257,9 @@ export type ModelArticleConditionInput = {
   createdAt?: ModelStringInput | null,
   groupID?: ModelIDInput | null,
   isActive?: ModelBooleanInput | null,
-  and?: Array< ModelArticleConditionInput | null > | null,
-  or?: Array< ModelArticleConditionInput | null > | null,
+  isLatest?: ModelBooleanInput | null,
+  and?: Array<ModelArticleConditionInput | null> | null,
+  or?: Array<ModelArticleConditionInput | null> | null,
   not?: ModelArticleConditionInput | null,
 };
 
@@ -205,12 +268,14 @@ export type UpdateArticleInput = {
   articleID?: string | null,
   title?: string | null,
   content?: string | null,
-  tags?: Array< string > | null,
+  tags?: Array<string> | null,
   thumb?: string | null,
+  seo?: SEOInput | null,
   author?: string | null,
   createdAt?: string | null,
   groupID?: string | null,
   isActive?: boolean | null,
+  isLatest?: boolean | null,
 };
 
 export type DeleteArticleInput = {
@@ -228,8 +293,9 @@ export type ModelGroupFilterInput = {
   author?: ModelStringInput | null,
   createdAt?: ModelStringInput | null,
   isActive?: ModelBooleanInput | null,
-  and?: Array< ModelGroupFilterInput | null > | null,
-  or?: Array< ModelGroupFilterInput | null > | null,
+  isLatest?: ModelBooleanInput | null,
+  and?: Array<ModelGroupFilterInput | null> | null,
+  or?: Array<ModelGroupFilterInput | null> | null,
   not?: ModelGroupFilterInput | null,
 };
 
@@ -239,7 +305,7 @@ export type ModelStringKeyConditionInput = {
   lt?: string | null,
   ge?: string | null,
   gt?: string | null,
-  between?: Array< string | null > | null,
+  between?: Array<string | null> | null,
   beginsWith?: string | null,
 };
 
@@ -260,8 +326,9 @@ export type ModelArticleFilterInput = {
   createdAt?: ModelStringInput | null,
   groupID?: ModelIDInput | null,
   isActive?: ModelBooleanInput | null,
-  and?: Array< ModelArticleFilterInput | null > | null,
-  or?: Array< ModelArticleFilterInput | null > | null,
+  isLatest?: ModelBooleanInput | null,
+  and?: Array<ModelArticleFilterInput | null> | null,
+  or?: Array<ModelArticleFilterInput | null> | null,
   not?: ModelArticleFilterInput | null,
 };
 
@@ -271,35 +338,56 @@ export type CreateGroupMutationVariables = {
 };
 
 export type CreateGroupMutation = {
-  createGroup?:  {
+  createGroup?: {
     __typename: "Group",
     id: string,
     groupID: string,
     groupName: string,
     groupKind: GroupKind,
-    tags?: Array< string > | null,
+    tags?: Array<string> | null,
     icon: string,
     thumb: string,
+    seo: {
+      __typename: "SEO",
+      common: {
+        __typename: "CommonSEO",
+        title: string,
+        description: string,
+        keywords: string,
+      },
+      og: {
+        __typename: "OGSEO",
+        title: string,
+        type: ArticleType,
+        url: string,
+        image: string,
+        description: string,
+        audio?: string | null,
+        video?: string | null,
+      },
+    },
     author: string,
     createdAt: string,
     isActive: boolean,
+    isLatest: boolean,
     updatedAt: string,
-    articles?:  {
+    articles?: {
       __typename: "ModelArticleConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Article",
         id: string,
         articleID: string,
         title: string,
         content: string,
-        tags?: Array< string > | null,
+        tags?: Array<string> | null,
         thumb: string,
         author: string,
         createdAt: string,
         groupID: string,
         isActive: boolean,
+        isLatest: boolean,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
   } | null,
@@ -311,35 +399,56 @@ export type UpdateGroupMutationVariables = {
 };
 
 export type UpdateGroupMutation = {
-  updateGroup?:  {
+  updateGroup?: {
     __typename: "Group",
     id: string,
     groupID: string,
     groupName: string,
     groupKind: GroupKind,
-    tags?: Array< string > | null,
+    tags?: Array<string> | null,
     icon: string,
     thumb: string,
+    seo: {
+      __typename: "SEO",
+      common: {
+        __typename: "CommonSEO",
+        title: string,
+        description: string,
+        keywords: string,
+      },
+      og: {
+        __typename: "OGSEO",
+        title: string,
+        type: ArticleType,
+        url: string,
+        image: string,
+        description: string,
+        audio?: string | null,
+        video?: string | null,
+      },
+    },
     author: string,
     createdAt: string,
     isActive: boolean,
+    isLatest: boolean,
     updatedAt: string,
-    articles?:  {
+    articles?: {
       __typename: "ModelArticleConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Article",
         id: string,
         articleID: string,
         title: string,
         content: string,
-        tags?: Array< string > | null,
+        tags?: Array<string> | null,
         thumb: string,
         author: string,
         createdAt: string,
         groupID: string,
         isActive: boolean,
+        isLatest: boolean,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
   } | null,
@@ -351,35 +460,56 @@ export type DeleteGroupMutationVariables = {
 };
 
 export type DeleteGroupMutation = {
-  deleteGroup?:  {
+  deleteGroup?: {
     __typename: "Group",
     id: string,
     groupID: string,
     groupName: string,
     groupKind: GroupKind,
-    tags?: Array< string > | null,
+    tags?: Array<string> | null,
     icon: string,
     thumb: string,
+    seo: {
+      __typename: "SEO",
+      common: {
+        __typename: "CommonSEO",
+        title: string,
+        description: string,
+        keywords: string,
+      },
+      og: {
+        __typename: "OGSEO",
+        title: string,
+        type: ArticleType,
+        url: string,
+        image: string,
+        description: string,
+        audio?: string | null,
+        video?: string | null,
+      },
+    },
     author: string,
     createdAt: string,
     isActive: boolean,
+    isLatest: boolean,
     updatedAt: string,
-    articles?:  {
+    articles?: {
       __typename: "ModelArticleConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Article",
         id: string,
         articleID: string,
         title: string,
         content: string,
-        tags?: Array< string > | null,
+        tags?: Array<string> | null,
         thumb: string,
         author: string,
         createdAt: string,
         groupID: string,
         isActive: boolean,
+        isLatest: boolean,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
   } | null,
@@ -391,53 +521,75 @@ export type CreateArticleMutationVariables = {
 };
 
 export type CreateArticleMutation = {
-  createArticle?:  {
+  createArticle?: {
     __typename: "Article",
     id: string,
     articleID: string,
     title: string,
     content: string,
-    tags?: Array< string > | null,
+    tags?: Array<string> | null,
     thumb: string,
+    seo: {
+      __typename: "SEO",
+      common: {
+        __typename: "CommonSEO",
+        title: string,
+        description: string,
+        keywords: string,
+      },
+      og: {
+        __typename: "OGSEO",
+        title: string,
+        type: ArticleType,
+        url: string,
+        image: string,
+        description: string,
+        audio?: string | null,
+        video?: string | null,
+      },
+    },
     author: string,
     createdAt: string,
     groupID: string,
     isActive: boolean,
+    isLatest: boolean,
     updatedAt: string,
-    group?:  {
+    group?: {
       __typename: "ModelGroupConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Group",
         id: string,
         groupID: string,
         groupName: string,
         groupKind: GroupKind,
-        tags?: Array< string > | null,
+        tags?: Array<string> | null,
         icon: string,
         thumb: string,
         author: string,
         createdAt: string,
         isActive: boolean,
+        isLatest: boolean,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
-    recommend?:  {
+    recommend?: {
       __typename: "ModelArticleConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Article",
         id: string,
         articleID: string,
         title: string,
         content: string,
-        tags?: Array< string > | null,
+        tags?: Array<string> | null,
         thumb: string,
         author: string,
         createdAt: string,
         groupID: string,
         isActive: boolean,
+        isLatest: boolean,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
   } | null,
@@ -449,53 +601,75 @@ export type UpdateArticleMutationVariables = {
 };
 
 export type UpdateArticleMutation = {
-  updateArticle?:  {
+  updateArticle?: {
     __typename: "Article",
     id: string,
     articleID: string,
     title: string,
     content: string,
-    tags?: Array< string > | null,
+    tags?: Array<string> | null,
     thumb: string,
+    seo: {
+      __typename: "SEO",
+      common: {
+        __typename: "CommonSEO",
+        title: string,
+        description: string,
+        keywords: string,
+      },
+      og: {
+        __typename: "OGSEO",
+        title: string,
+        type: ArticleType,
+        url: string,
+        image: string,
+        description: string,
+        audio?: string | null,
+        video?: string | null,
+      },
+    },
     author: string,
     createdAt: string,
     groupID: string,
     isActive: boolean,
+    isLatest: boolean,
     updatedAt: string,
-    group?:  {
+    group?: {
       __typename: "ModelGroupConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Group",
         id: string,
         groupID: string,
         groupName: string,
         groupKind: GroupKind,
-        tags?: Array< string > | null,
+        tags?: Array<string> | null,
         icon: string,
         thumb: string,
         author: string,
         createdAt: string,
         isActive: boolean,
+        isLatest: boolean,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
-    recommend?:  {
+    recommend?: {
       __typename: "ModelArticleConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Article",
         id: string,
         articleID: string,
         title: string,
         content: string,
-        tags?: Array< string > | null,
+        tags?: Array<string> | null,
         thumb: string,
         author: string,
         createdAt: string,
         groupID: string,
         isActive: boolean,
+        isLatest: boolean,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
   } | null,
@@ -507,53 +681,75 @@ export type DeleteArticleMutationVariables = {
 };
 
 export type DeleteArticleMutation = {
-  deleteArticle?:  {
+  deleteArticle?: {
     __typename: "Article",
     id: string,
     articleID: string,
     title: string,
     content: string,
-    tags?: Array< string > | null,
+    tags?: Array<string> | null,
     thumb: string,
+    seo: {
+      __typename: "SEO",
+      common: {
+        __typename: "CommonSEO",
+        title: string,
+        description: string,
+        keywords: string,
+      },
+      og: {
+        __typename: "OGSEO",
+        title: string,
+        type: ArticleType,
+        url: string,
+        image: string,
+        description: string,
+        audio?: string | null,
+        video?: string | null,
+      },
+    },
     author: string,
     createdAt: string,
     groupID: string,
     isActive: boolean,
+    isLatest: boolean,
     updatedAt: string,
-    group?:  {
+    group?: {
       __typename: "ModelGroupConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Group",
         id: string,
         groupID: string,
         groupName: string,
         groupKind: GroupKind,
-        tags?: Array< string > | null,
+        tags?: Array<string> | null,
         icon: string,
         thumb: string,
         author: string,
         createdAt: string,
         isActive: boolean,
+        isLatest: boolean,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
-    recommend?:  {
+    recommend?: {
       __typename: "ModelArticleConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Article",
         id: string,
         articleID: string,
         title: string,
         content: string,
-        tags?: Array< string > | null,
+        tags?: Array<string> | null,
         thumb: string,
         author: string,
         createdAt: string,
         groupID: string,
         isActive: boolean,
+        isLatest: boolean,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
   } | null,
@@ -564,35 +760,56 @@ export type GetGroupQueryVariables = {
 };
 
 export type GetGroupQuery = {
-  getGroup?:  {
+  getGroup?: {
     __typename: "Group",
     id: string,
     groupID: string,
     groupName: string,
     groupKind: GroupKind,
-    tags?: Array< string > | null,
+    tags?: Array<string> | null,
     icon: string,
     thumb: string,
+    seo: {
+      __typename: "SEO",
+      common: {
+        __typename: "CommonSEO",
+        title: string,
+        description: string,
+        keywords: string,
+      },
+      og: {
+        __typename: "OGSEO",
+        title: string,
+        type: ArticleType,
+        url: string,
+        image: string,
+        description: string,
+        audio?: string | null,
+        video?: string | null,
+      },
+    },
     author: string,
     createdAt: string,
     isActive: boolean,
+    isLatest: boolean,
     updatedAt: string,
-    articles?:  {
+    articles?: {
       __typename: "ModelArticleConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Article",
         id: string,
         articleID: string,
         title: string,
         content: string,
-        tags?: Array< string > | null,
+        tags?: Array<string> | null,
         thumb: string,
         author: string,
         createdAt: string,
         groupID: string,
         isActive: boolean,
+        isLatest: boolean,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
   } | null,
@@ -605,26 +822,27 @@ export type ListGroupsQueryVariables = {
 };
 
 export type ListGroupsQuery = {
-  listGroups?:  {
+  listGroups?: {
     __typename: "ModelGroupConnection",
-    items?:  Array< {
+    items?: Array<{
       __typename: "Group",
       id: string,
       groupID: string,
       groupName: string,
       groupKind: GroupKind,
-      tags?: Array< string > | null,
+      tags?: Array<string> | null,
       icon: string,
       thumb: string,
       author: string,
       createdAt: string,
       isActive: boolean,
+      isLatest: boolean,
       updatedAt: string,
-      articles?:  {
+      articles?: {
         __typename: "ModelArticleConnection",
         nextToken?: string | null,
       } | null,
-    } | null > | null,
+    } | null> | null,
     nextToken?: string | null,
   } | null,
 };
@@ -639,26 +857,27 @@ export type GroupByGroupIDQueryVariables = {
 };
 
 export type GroupByGroupIDQuery = {
-  GroupByGroupID?:  {
+  GroupByGroupID?: {
     __typename: "ModelGroupConnection",
-    items?:  Array< {
+    items?: Array<{
       __typename: "Group",
       id: string,
       groupID: string,
       groupName: string,
       groupKind: GroupKind,
-      tags?: Array< string > | null,
+      tags?: Array<string> | null,
       icon: string,
       thumb: string,
       author: string,
       createdAt: string,
       isActive: boolean,
+      isLatest: boolean,
       updatedAt: string,
-      articles?:  {
+      articles?: {
         __typename: "ModelArticleConnection",
         nextToken?: string | null,
       } | null,
-    } | null > | null,
+    } | null> | null,
     nextToken?: string | null,
   } | null,
 };
@@ -668,53 +887,75 @@ export type GetArticleQueryVariables = {
 };
 
 export type GetArticleQuery = {
-  getArticle?:  {
+  getArticle?: {
     __typename: "Article",
     id: string,
     articleID: string,
     title: string,
     content: string,
-    tags?: Array< string > | null,
+    tags?: Array<string> | null,
     thumb: string,
+    seo: {
+      __typename: "SEO",
+      common: {
+        __typename: "CommonSEO",
+        title: string,
+        description: string,
+        keywords: string,
+      },
+      og: {
+        __typename: "OGSEO",
+        title: string,
+        type: ArticleType,
+        url: string,
+        image: string,
+        description: string,
+        audio?: string | null,
+        video?: string | null,
+      },
+    },
     author: string,
     createdAt: string,
     groupID: string,
     isActive: boolean,
+    isLatest: boolean,
     updatedAt: string,
-    group?:  {
+    group?: {
       __typename: "ModelGroupConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Group",
         id: string,
         groupID: string,
         groupName: string,
         groupKind: GroupKind,
-        tags?: Array< string > | null,
+        tags?: Array<string> | null,
         icon: string,
         thumb: string,
         author: string,
         createdAt: string,
         isActive: boolean,
+        isLatest: boolean,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
-    recommend?:  {
+    recommend?: {
       __typename: "ModelArticleConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Article",
         id: string,
         articleID: string,
         title: string,
         content: string,
-        tags?: Array< string > | null,
+        tags?: Array<string> | null,
         thumb: string,
         author: string,
         createdAt: string,
         groupID: string,
         isActive: boolean,
+        isLatest: boolean,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
   } | null,
@@ -727,30 +968,31 @@ export type ListArticlesQueryVariables = {
 };
 
 export type ListArticlesQuery = {
-  listArticles?:  {
+  listArticles?: {
     __typename: "ModelArticleConnection",
-    items?:  Array< {
+    items?: Array<{
       __typename: "Article",
       id: string,
       articleID: string,
       title: string,
       content: string,
-      tags?: Array< string > | null,
+      tags?: Array<string> | null,
       thumb: string,
       author: string,
       createdAt: string,
       groupID: string,
       isActive: boolean,
+      isLatest: boolean,
       updatedAt: string,
-      group?:  {
+      group?: {
         __typename: "ModelGroupConnection",
         nextToken?: string | null,
       } | null,
-      recommend?:  {
+      recommend?: {
         __typename: "ModelArticleConnection",
         nextToken?: string | null,
       } | null,
-    } | null > | null,
+    } | null> | null,
     nextToken?: string | null,
   } | null,
 };
@@ -765,30 +1007,31 @@ export type ArticleByArticleIDQueryVariables = {
 };
 
 export type ArticleByArticleIDQuery = {
-  ArticleByArticleID?:  {
+  ArticleByArticleID?: {
     __typename: "ModelArticleConnection",
-    items?:  Array< {
+    items?: Array<{
       __typename: "Article",
       id: string,
       articleID: string,
       title: string,
       content: string,
-      tags?: Array< string > | null,
+      tags?: Array<string> | null,
       thumb: string,
       author: string,
       createdAt: string,
       groupID: string,
       isActive: boolean,
+      isLatest: boolean,
       updatedAt: string,
-      group?:  {
+      group?: {
         __typename: "ModelGroupConnection",
         nextToken?: string | null,
       } | null,
-      recommend?:  {
+      recommend?: {
         __typename: "ModelArticleConnection",
         nextToken?: string | null,
       } | null,
-    } | null > | null,
+    } | null> | null,
     nextToken?: string | null,
   } | null,
 };
@@ -798,35 +1041,56 @@ export type OnCreateGroupSubscriptionVariables = {
 };
 
 export type OnCreateGroupSubscription = {
-  onCreateGroup?:  {
+  onCreateGroup?: {
     __typename: "Group",
     id: string,
     groupID: string,
     groupName: string,
     groupKind: GroupKind,
-    tags?: Array< string > | null,
+    tags?: Array<string> | null,
     icon: string,
     thumb: string,
+    seo: {
+      __typename: "SEO",
+      common: {
+        __typename: "CommonSEO",
+        title: string,
+        description: string,
+        keywords: string,
+      },
+      og: {
+        __typename: "OGSEO",
+        title: string,
+        type: ArticleType,
+        url: string,
+        image: string,
+        description: string,
+        audio?: string | null,
+        video?: string | null,
+      },
+    },
     author: string,
     createdAt: string,
     isActive: boolean,
+    isLatest: boolean,
     updatedAt: string,
-    articles?:  {
+    articles?: {
       __typename: "ModelArticleConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Article",
         id: string,
         articleID: string,
         title: string,
         content: string,
-        tags?: Array< string > | null,
+        tags?: Array<string> | null,
         thumb: string,
         author: string,
         createdAt: string,
         groupID: string,
         isActive: boolean,
+        isLatest: boolean,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
   } | null,
@@ -837,35 +1101,56 @@ export type OnUpdateGroupSubscriptionVariables = {
 };
 
 export type OnUpdateGroupSubscription = {
-  onUpdateGroup?:  {
+  onUpdateGroup?: {
     __typename: "Group",
     id: string,
     groupID: string,
     groupName: string,
     groupKind: GroupKind,
-    tags?: Array< string > | null,
+    tags?: Array<string> | null,
     icon: string,
     thumb: string,
+    seo: {
+      __typename: "SEO",
+      common: {
+        __typename: "CommonSEO",
+        title: string,
+        description: string,
+        keywords: string,
+      },
+      og: {
+        __typename: "OGSEO",
+        title: string,
+        type: ArticleType,
+        url: string,
+        image: string,
+        description: string,
+        audio?: string | null,
+        video?: string | null,
+      },
+    },
     author: string,
     createdAt: string,
     isActive: boolean,
+    isLatest: boolean,
     updatedAt: string,
-    articles?:  {
+    articles?: {
       __typename: "ModelArticleConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Article",
         id: string,
         articleID: string,
         title: string,
         content: string,
-        tags?: Array< string > | null,
+        tags?: Array<string> | null,
         thumb: string,
         author: string,
         createdAt: string,
         groupID: string,
         isActive: boolean,
+        isLatest: boolean,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
   } | null,
@@ -876,35 +1161,56 @@ export type OnDeleteGroupSubscriptionVariables = {
 };
 
 export type OnDeleteGroupSubscription = {
-  onDeleteGroup?:  {
+  onDeleteGroup?: {
     __typename: "Group",
     id: string,
     groupID: string,
     groupName: string,
     groupKind: GroupKind,
-    tags?: Array< string > | null,
+    tags?: Array<string> | null,
     icon: string,
     thumb: string,
+    seo: {
+      __typename: "SEO",
+      common: {
+        __typename: "CommonSEO",
+        title: string,
+        description: string,
+        keywords: string,
+      },
+      og: {
+        __typename: "OGSEO",
+        title: string,
+        type: ArticleType,
+        url: string,
+        image: string,
+        description: string,
+        audio?: string | null,
+        video?: string | null,
+      },
+    },
     author: string,
     createdAt: string,
     isActive: boolean,
+    isLatest: boolean,
     updatedAt: string,
-    articles?:  {
+    articles?: {
       __typename: "ModelArticleConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Article",
         id: string,
         articleID: string,
         title: string,
         content: string,
-        tags?: Array< string > | null,
+        tags?: Array<string> | null,
         thumb: string,
         author: string,
         createdAt: string,
         groupID: string,
         isActive: boolean,
+        isLatest: boolean,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
   } | null,
@@ -915,53 +1221,75 @@ export type OnCreateArticleSubscriptionVariables = {
 };
 
 export type OnCreateArticleSubscription = {
-  onCreateArticle?:  {
+  onCreateArticle?: {
     __typename: "Article",
     id: string,
     articleID: string,
     title: string,
     content: string,
-    tags?: Array< string > | null,
+    tags?: Array<string> | null,
     thumb: string,
+    seo: {
+      __typename: "SEO",
+      common: {
+        __typename: "CommonSEO",
+        title: string,
+        description: string,
+        keywords: string,
+      },
+      og: {
+        __typename: "OGSEO",
+        title: string,
+        type: ArticleType,
+        url: string,
+        image: string,
+        description: string,
+        audio?: string | null,
+        video?: string | null,
+      },
+    },
     author: string,
     createdAt: string,
     groupID: string,
     isActive: boolean,
+    isLatest: boolean,
     updatedAt: string,
-    group?:  {
+    group?: {
       __typename: "ModelGroupConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Group",
         id: string,
         groupID: string,
         groupName: string,
         groupKind: GroupKind,
-        tags?: Array< string > | null,
+        tags?: Array<string> | null,
         icon: string,
         thumb: string,
         author: string,
         createdAt: string,
         isActive: boolean,
+        isLatest: boolean,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
-    recommend?:  {
+    recommend?: {
       __typename: "ModelArticleConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Article",
         id: string,
         articleID: string,
         title: string,
         content: string,
-        tags?: Array< string > | null,
+        tags?: Array<string> | null,
         thumb: string,
         author: string,
         createdAt: string,
         groupID: string,
         isActive: boolean,
+        isLatest: boolean,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
   } | null,
@@ -972,53 +1300,75 @@ export type OnUpdateArticleSubscriptionVariables = {
 };
 
 export type OnUpdateArticleSubscription = {
-  onUpdateArticle?:  {
+  onUpdateArticle?: {
     __typename: "Article",
     id: string,
     articleID: string,
     title: string,
     content: string,
-    tags?: Array< string > | null,
+    tags?: Array<string> | null,
     thumb: string,
+    seo: {
+      __typename: "SEO",
+      common: {
+        __typename: "CommonSEO",
+        title: string,
+        description: string,
+        keywords: string,
+      },
+      og: {
+        __typename: "OGSEO",
+        title: string,
+        type: ArticleType,
+        url: string,
+        image: string,
+        description: string,
+        audio?: string | null,
+        video?: string | null,
+      },
+    },
     author: string,
     createdAt: string,
     groupID: string,
     isActive: boolean,
+    isLatest: boolean,
     updatedAt: string,
-    group?:  {
+    group?: {
       __typename: "ModelGroupConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Group",
         id: string,
         groupID: string,
         groupName: string,
         groupKind: GroupKind,
-        tags?: Array< string > | null,
+        tags?: Array<string> | null,
         icon: string,
         thumb: string,
         author: string,
         createdAt: string,
         isActive: boolean,
+        isLatest: boolean,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
-    recommend?:  {
+    recommend?: {
       __typename: "ModelArticleConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Article",
         id: string,
         articleID: string,
         title: string,
         content: string,
-        tags?: Array< string > | null,
+        tags?: Array<string> | null,
         thumb: string,
         author: string,
         createdAt: string,
         groupID: string,
         isActive: boolean,
+        isLatest: boolean,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
   } | null,
@@ -1029,53 +1379,75 @@ export type OnDeleteArticleSubscriptionVariables = {
 };
 
 export type OnDeleteArticleSubscription = {
-  onDeleteArticle?:  {
+  onDeleteArticle?: {
     __typename: "Article",
     id: string,
     articleID: string,
     title: string,
     content: string,
-    tags?: Array< string > | null,
+    tags?: Array<string> | null,
     thumb: string,
+    seo: {
+      __typename: "SEO",
+      common: {
+        __typename: "CommonSEO",
+        title: string,
+        description: string,
+        keywords: string,
+      },
+      og: {
+        __typename: "OGSEO",
+        title: string,
+        type: ArticleType,
+        url: string,
+        image: string,
+        description: string,
+        audio?: string | null,
+        video?: string | null,
+      },
+    },
     author: string,
     createdAt: string,
     groupID: string,
     isActive: boolean,
+    isLatest: boolean,
     updatedAt: string,
-    group?:  {
+    group?: {
       __typename: "ModelGroupConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Group",
         id: string,
         groupID: string,
         groupName: string,
         groupKind: GroupKind,
-        tags?: Array< string > | null,
+        tags?: Array<string> | null,
         icon: string,
         thumb: string,
         author: string,
         createdAt: string,
         isActive: boolean,
+        isLatest: boolean,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
-    recommend?:  {
+    recommend?: {
       __typename: "ModelArticleConnection",
-      items?:  Array< {
+      items?: Array<{
         __typename: "Article",
         id: string,
         articleID: string,
         title: string,
         content: string,
-        tags?: Array< string > | null,
+        tags?: Array<string> | null,
         thumb: string,
         author: string,
         createdAt: string,
         groupID: string,
         isActive: boolean,
+        isLatest: boolean,
         updatedAt: string,
-      } | null > | null,
+      } | null> | null,
       nextToken?: string | null,
     } | null,
   } | null,
